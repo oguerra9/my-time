@@ -24,6 +24,7 @@ const eventSchema = new Schema({
     },
     eventDescription: {
         type: String,
+        trim: true,
     },
 });
 
