@@ -31,16 +31,15 @@ const AddEventForm = () => {
       event.stopPropagation();
     }
 
-    // try {
-    //   const {data} = await ADD_EVENT({
-    //     variables: { ...eventFormData },
-    //   });
-    //   console.log(data);
-    //   Auth.login(data.addEvent.token);
-    // } catch (err) {
-    //   console.error(err);
-    //   setShowAlert(true);
-    // }
+    try {
+      const {data} = await ADD_EVENT({
+        variables: { ...eventFormData },
+      });
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
+    }
 
     setEventFormData({
       eventUser: '',
@@ -67,7 +66,7 @@ const AddEventForm = () => {
             placeholder='date'
             name='eventDate'
             onChange={(e) => setImmediate(e.target.value)}
-            value={date}
+            value={eventFormData.eventDate}
           />
           {/* <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback> */}
         </Form.Group>
@@ -81,7 +80,8 @@ const AddEventForm = () => {
             name='eventTime'
             onChange={(ev) => {this.setState({time:ev.target.value})}}
             className="form-control"
-            value={this.state.time}
+            // value={this.state.time}
+            value={eventFormData.eventTime}
           />
           {/* <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback> */}
         </Form.Group>
