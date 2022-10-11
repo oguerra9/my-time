@@ -50,9 +50,9 @@ const AddEventForm = () => {
     }
 
     setEventFormData({
-      eventUser: '',
-      eventDate: '',
-      eventTime: '',
+      //eventUser: '',
+      //eventDate: '',
+      //eventTime: '',
       eventTitle: '',
       eventDescription: '',
     });
