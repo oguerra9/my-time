@@ -47,10 +47,10 @@ const MyEvents = () => {
     }
 
     const currDate = new Date();
-    
+
 
     return (
-        <>
+        <div>
             <Jumbotron fluid className="text-light bg-dark">
                 <Container>
                     <h1>{userData.firstName}'s Day</h1>
@@ -62,6 +62,6 @@ const MyEvents = () => {
 
                 </h2>
             </Container>
-        </>
-    )
-}
+        </div>
+    );
+};
