@@ -7,7 +7,7 @@ import { ADD_EVENT } from '../../utils/mutations';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import Auth from '../../utils/auth';
-import { getNumDays, getFirstWeekDay, getWeekDay } from '../../utils/dateFormat';
+import { getNumDays, getFirstWeekDay, getWeekDay, getMonthName } from '../../utils/dateFormat';
 import events from 'inquirer/lib/utils/events';
 import Week from '../Week';
 
@@ -68,15 +68,24 @@ for (var k = 0; k < events; k++) {
 }
 
 return (
-    <Container>
-        <Row>
-
-        </Row>
-        {monthWeeks && monthWeeks.map((week) => (
-            <Week
-                days={week.days}
-                monthView={true}
-            />
-        ))}
-    </Container>
+    <div>
+        <Container>
+            <Row>
+                <Col>Week</Col>
+                <Col>Sunday</Col>
+                <Col>Monday</Col>
+                <Col>Tuesday</Col>
+                <Col>Wednesday</Col>
+                <Col>Thursday</Col>
+                <Col>Friday</Col>
+                <Col>Saturday</Col>
+            </Row>
+            {monthWeeks && monthWeeks.map((week) => (
+                <Week
+                    days={week.days}
+                    monthView={true}
+                />
+            ))}
+        </Container>
+    </div>
 )

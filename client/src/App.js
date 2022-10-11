@@ -7,6 +7,8 @@ import MyDay from './pages/MyDay';
 import Week from './pages/Week';
 import Navbar from './components/NavBar';
 import { setContext } from '@apollo/client/link/context';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const httpLink = createHttpLink({
     uri: '/graphql',
@@ -32,27 +34,31 @@ function App() {
     return (
         <ApolloProvider client={client}>
             <Router>
-                <>
-                    <Navbar />
-                    <Routes>
-                        <Route
-                            path='/'
-                            element={<MyDay />}
-                        />
-                        <Route
-                            path='/month'
-                            element={<Month />}
-                        />
-                        <Route  
-                            path='/week'
-                            element={<Week />}
-                        />
-                        <Route
-                            path='/day'
-                            element={<Day />}
-                        />
-                    </Routes>
-                </>
+                <div className="flex-column justify-flex-start min-100-vh">
+                    <Header />
+                    <div className="container">
+                        <Navbar />
+                        <Routes>
+                            <Route
+                                path='/'
+                                element={<MyDay />}
+                            />
+                            <Route
+                                path='/month/:currDate'
+                                element={<Month />}
+                            />
+                            <Route  
+                                path='/week/:currDate'
+                                element={<Week />}
+                            />
+                            <Route
+                                path='/myDay'
+                                element={<MyDay />}
+                            />
+                        </Routes>
+                    </div>
+                    <Footer />
+                </div>
             </Router>
         </ApolloProvider>
     );

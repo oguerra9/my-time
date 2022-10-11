@@ -19,8 +19,8 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_EVENTS = gql`
-    query getMyEvents($eventUser: Username!) {
-        events(eventUser: $eventUser) {
+    query getMyEvents($timeStart: Date!, $timeEnd: Date!) {
+        events {
             _id
             eventUser
             eventDate

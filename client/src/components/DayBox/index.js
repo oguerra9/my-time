@@ -18,24 +18,26 @@ const DayBox = ({
     }
 
     return (
-        <Col key={dayDate.getTime()}>
-            <div className="card">
-                <h4 className="card-header bg-primary">
-                    {dayDate.getDate()}
-                </h4>
-                {events && events.map((event) => (
-                    <Container className="card-body">
-                        <Row>
-                            {showEventTime ? (
-                                <p>{event.eventTime} - {event.eventTitle}</p>
-                            ) : (
-                                <p>{event.eventTitle}</p>
-                            )}
-                        </Row>
-                    </Container>
-                ))}
-            </div>
-        </Col>
+        <Link to={`/days/dayDate`}>
+            <Col key={dayDate.getTime()}>
+                <div className="card">
+                    <h4 className="card-header bg-primary">
+                        {dayDate.getDate()}
+                    </h4>
+                    {events && events.map((event) => (
+                        <Container className="card-body">
+                            <Row>
+                                {showEventTime ? (
+                                    <p>{event.eventTime} - {event.eventTitle}</p>
+                                ) : (
+                                    <p>{event.eventTitle}</p>
+                                )}
+                            </Row>
+                        </Container>
+                    ))}
+                </div>
+            </Col>
+        </Link>
     );
 };
 

@@ -7,6 +7,8 @@ import LoginForm from './LoginForm';
 
 import Auth from '../utils/auth';
 
+const currDate = new Date();
+
 const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +30,7 @@ const AppNavbar = () => {
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to='/myDay'>MyDay</Nav.Link>
-                  <Nav.Link as={Link} to='/month'>MyMonth</Nav.Link>
+                  <Nav.Link as={Link} to='/month/currDate.now()'>MyMonth</Nav.Link>
                   <Nav.Link as={Link} to='/week'>MyWeek</Nav.Link>
                   {/* <Nav.Link as={Link} to='/day'>MyDay</Nav.Link> */}
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>

@@ -17,6 +17,9 @@ const resolvers = {
         event: async (parent, { eventId }) => {
             return Event.findOne({ _id: eventId });
         },
+        events: async (parent, { startTime, endTime }) => {
+            return Event.find({eventTime: { $gt: new Date(startTime), $lt: new Date(endTime)}});
+        },
     },
 
     Mutation: {

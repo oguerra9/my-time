@@ -91,3 +91,83 @@ export const getWeekDay = (dayNum) => {
             return "WeekDayErr";
     }
 };
+
+
+export const getMonthStart = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const month = myTime.getMonth();
+    const year = myTime.getFullYear();
+    
+    const monthStart = new Date(year, month, 1, 0,0,0,0);
+
+    return monthStart;
+};
+
+export const getMonthEnd = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const month = myTime.getMonth();
+    const year = myTime.getFullYear();
+    
+    const numDays = getNumDays(month, year);
+
+    const monthEnd = new Date(year, month, numDays, 23,59,59,99);
+
+    return monthEnd;
+};
+
+export const getWeekStart = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const year = myTime.getFullYear();
+    const month = myTime.getMonth();
+    const dateNum = myTime.getDate();
+
+    const weekDay = myTime.getDay();
+    const sundayDate = dateNum - weekDay;
+
+    const weekStart = new Date(year, month, sundayDate, 0, 0, 0, 0);
+
+    return weekStart;
+};
+
+export const getWeekEnd = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const year = myTime.getFullYear();
+    const month = myTime.getMonth();
+    const dateNum = myTime.getDate();
+
+    const weekDay = myTime.getDay();
+    const satOffset = 6 - weekDay;
+    const saturdayDate = dateNum + satOffset;
+
+    const weekEnd = new Date(year, month, saturdayDate, 23, 59, 59, 99);
+
+    return weekEnd;
+};
+
+export const getDayStart = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const year = myTime.getFullYear();
+    const month = myTime.getMonth();
+    const dateNum = myTime.getDate();
+
+    const dayStart = new Date(year, month, dateNum, 0, 0, 0, 0);
+
+    return dayStart;
+};
+
+export const getDayEnd = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const year = myTime.getFullYear();
+    const month = myTime.getMonth();
+    const dateNum = myTime.getDate();
+
+    const dayEnd = new Date(year, month, dateNum, 23, 59, 59, 99);
+
+    return dayEnd;
+};

@@ -6,6 +6,7 @@ import DayBox from '../DayBox';
 
 const Week = ({
     days, 
+    weekStart,
     monthView = true,
 }) => {
 
@@ -13,6 +14,9 @@ const Week = ({
         <div>
             {monthView ? (
                 <Row>
+                    <Link to={`/week/${weekStart}`}>
+                        <Col>week</Col>
+                    </Link>
                     {days && days.map((day) => (
                         <DayBox
                             dayDate={day.dayDate}
