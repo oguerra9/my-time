@@ -36,7 +36,7 @@ function App() {
                     <Navbar />
                     <Routes>
                         <Route
-                            path='/myDay'
+                            path='/'
                             element={<MyDay />}
                         />
                         <Route
