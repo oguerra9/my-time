@@ -5,7 +5,7 @@ import Day from './pages/Day';
 import Month from './pages/Month';
 import MyDay from './pages/MyDay';
 import Week from './pages/Week';
-import Navbar from './components/Navbar';
+import Navbar from './components/NavBar';
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({

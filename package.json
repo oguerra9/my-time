@@ -21,7 +21,8 @@
   "bugs": {
     "url": "https://github.com/oguerra9/my-time/issues"
   },
-  "homepage": "https://github.com/oguerra9/my-time#readme",
+  
+  "homepage": "https://my-t1me.herokuapp.com/",
   "devDependencies": {
     "concurrently": "^7.4.0"
   },
