@@ -18,7 +18,7 @@ const DayBox = ({
     }
 
     return (
-        <Col key={dayDate.now()}>
+        <Col key={dayDate.getTime()}>
             <div className="card">
                 <h4 className="card-header bg-primary">
                     {dayDate.getDate()}
