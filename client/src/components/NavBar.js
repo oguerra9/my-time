@@ -29,9 +29,9 @@ const AppNavbar = () => {
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/myDay'>MyDay</Nav.Link>
-                  <Nav.Link as={Link} to='/month/currDate.now()'>MyMonth</Nav.Link>
-                  <Nav.Link as={Link} to='/week'>MyWeek</Nav.Link>
+                  <Nav.Link as={Link} to='/myDay/currDate'>MyDay</Nav.Link>
+                  <Nav.Link as={Link} to='/month/currDate'>MyMonth</Nav.Link>
+                  <Nav.Link as={Link} to='/week/currDate'>MyWeek</Nav.Link>
                   {/* <Nav.Link as={Link} to='/day'>MyDay</Nav.Link> */}
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>

@@ -11,8 +11,10 @@ const Month = () => {
     const { myTime } = useParams();
     const startTime = getMonthStart(myTime);
     const endTime = getMonthEnd(myTime);
-
+    
+    // below this
     const { loading, data } = useQuery(QUERY_EVENTS, {
+        // above this
         variables: {
             startTime: startTime,
             endTime: endTime,
@@ -27,6 +29,7 @@ const Month = () => {
         startTime = getMonthStart(getNextMonth(startTime));
         return <Navigate to="/month/startTime" />;
     };
+    
 
     const handlePrevMonthBtn = async (event) => {
         event.preventDefault();

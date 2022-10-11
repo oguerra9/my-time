@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_ME, QUERY_EVENTS } from '../utils/queries';
 import { ADD_EVENT, REMOVE_EVENT } from '../utils/mutations';
 import { getSavedEventIds, saveEventIds, removeEventId } from '../utils/localStorage';
 
