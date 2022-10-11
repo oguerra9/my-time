@@ -1,5 +1,8 @@
+const daysToMS = (numDays) => {
+    const numMS = numDays * 24 * 60 * 60 * 1000;
+    return numMS;
+}
 
-    
 export const getNumDays = (monthNum, year) => {
     // if the month number is 1, 3, 5, 7, 8, 10, 12 (jan, mar, may, jul, aug, oct, dec), the month has 31 days
     if ([1,3,5,7,8,10,12].includes(monthNum)) {
@@ -92,6 +95,50 @@ export const getWeekDay = (dayNum) => {
     }
 };
 
+export const getMonthName = (monthNum) => {
+    const monthNum = monthNum;
+    switch (monthNum) {
+        case 0:
+            return "January";
+            break;
+        case 1:
+            return "February";
+            break;
+        case 2:
+            return "March";
+            break;
+        case 3:
+            return "April";
+            break;
+        case 4:
+            return "May";
+            break;
+        case 5:
+            return "June";
+            break;
+        case 6:
+            return "July";
+            break;
+        case 7:
+            return "August";
+            break;
+        case 8:
+            return "September";
+            break;
+        case 9:
+            return "October";
+            break;
+        case 10:
+            return "November";
+            break;
+        case 11:
+            return "December";
+            break;
+        default:
+            return "MonthNameErr";
+    }
+}
+
 
 export const getMonthStart = (timeStamp) => {
     const myTime = new Date(timeStamp);
@@ -99,7 +146,7 @@ export const getMonthStart = (timeStamp) => {
     const month = myTime.getMonth();
     const year = myTime.getFullYear();
     
-    const monthStart = new Date(year, month, 1, 0,0,0,0);
+    const monthStart = new Date(year, month, 1, 0, 0, 0, 0);
 
     return monthStart;
 };
@@ -112,7 +159,7 @@ export const getMonthEnd = (timeStamp) => {
     
     const numDays = getNumDays(month, year);
 
-    const monthEnd = new Date(year, month, numDays, 23,59,59,99);
+    const monthEnd = new Date(year, month, numDays, 23, 59, 59, 999);
 
     return monthEnd;
 };
@@ -143,7 +190,7 @@ export const getWeekEnd = (timeStamp) => {
     const satOffset = 6 - weekDay;
     const saturdayDate = dateNum + satOffset;
 
-    const weekEnd = new Date(year, month, saturdayDate, 23, 59, 59, 99);
+    const weekEnd = new Date(year, month, saturdayDate, 23, 59, 59, 999);
 
     return weekEnd;
 };
@@ -167,7 +214,87 @@ export const getDayEnd = (timeStamp) => {
     const month = myTime.getMonth();
     const dateNum = myTime.getDate();
 
-    const dayEnd = new Date(year, month, dateNum, 23, 59, 59, 99);
+    const dayEnd = new Date(year, month, dateNum, 23, 59, 59, 999);
 
     return dayEnd;
+};
+
+export const getNextMonth = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const year = myTime.getFullYear();
+    const month = myTime.getMonth();
+
+    if (month == 11) {
+        myTime.setFullYear(year++);
+        myTime.setMonth(0);
+    } else {
+        myTime.setMonth(month++);
+    }
+
+    return myTime;
+};
+
+export const getPrevMonth = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const year = myTime.getFullYear();
+    const month = myTime.getMonth();
+
+    if (month == 0) {
+        myTime.setFullYear(year--);
+        myTime.setMonth(11);
+    } else {
+        myTime.setMonth(month--);
+    }
+
+    return myTime;
+};
+
+export const getNextWeek = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const myTimeMS = myTime.getTime();
+    const weekMS = daysToMS(7);
+
+    const nextWeekMS = myTimeMS + weekMS;
+    const nextWeek = new Date(nextWeekMS);
+
+    return nextWeek;
+};
+
+export const getPrevWeek = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const myTimeMS = myTime.getTime();
+    const weekMS = daysToMS(7);
+
+    const prevWeekMS = myTimeMS - weekMS;
+    const prevWeek = new Date(prevWeekMS);
+
+    return prevWeek;
+};
+
+export const getNextDay = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const myTimeMS = myTime.getTime();
+    const dayMS = daysToMS(1);
+
+    const nextDayMS = myTimeMS + dayMS;
+    const nextDay = new Date(nextDayMS);
+
+    return nextDay;
+};
+
+export const getPrevDay = (timeStamp) => {
+    const myTime = new Date(timeStamp);
+
+    const myTimeMS = myTime.getTime();
+    const dayMS = daysToMS(1);
+
+    const prevDayMS = myTimeMS + dayMS;
+    const prevDay = new Date(prevDayMS);
+
+    return prevDay;
 };
