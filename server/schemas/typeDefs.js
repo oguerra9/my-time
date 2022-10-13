@@ -28,9 +28,7 @@ const typeDefs = gql`
     type Query {
         users: [User]
         user(username: String!): User
-        events(username: String): [Event]
         event(eventId: ID!): Event
-        events(startTime: String, endTime: String): [Event]
     }
 
     type Mutation {

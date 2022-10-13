@@ -10,16 +10,16 @@ const resolvers = {
         user: async (parent, { username }) => {
             return User.findOne({ username }).populate('thoughts');
         },
-        events: async (parent, { username }) => {
-            const params = username ? { username } : {};
-            return Event.find(params).sort({ eventData: -1 });
-        },
+        // events: async (parent, { username }) => {
+        //     const params = username ? { username } : {};
+        //     return Event.find(params).sort({ eventData: -1 });
+        // },
         event: async (parent, { eventId }) => {
             return Event.findOne({ _id: eventId });
         },
-        events: async (parent, { startTime, endTime }) => {
-            return Event.find({eventTime: { $gt: new Date(startTime), $lt: new Date(endTime)}});
-        },
+        // events: async (parent, { startTime, endTime }) => {
+        //     return Event.find({eventTime: { $gt: new Date(startTime), $lt: new Date(endTime)}});
+        // },
     },
 
     Mutation: {
