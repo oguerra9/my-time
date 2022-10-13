@@ -6,7 +6,8 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import MonthFormat from '../components/MonthFormat';
 import { getNumDays, getFirstWeekDay, getDayName, getMonthName, getMonthStart, getMonthEnd, getWeekStart, getWeekEnd, getDayStart, getDayEnd, getNextMonth, getPrevMonth, getNextWeek, getPrevWeek, getNextDay, getPrevDay } from '../utils/dateFormat';
 
-import { QUERY_EVENTS, QUERY_ME } from '../utils/queries';
+// import { QUERY_EVENTS, QUERY_ME } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 
 const Month = () => {
     const { myTime } = useParams();
