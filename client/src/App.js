@@ -5,6 +5,7 @@ import Day from './pages/Day';
 import Month from './pages/Month';
 import MyDay from './pages/MyDay';
 import Week from './pages/Week';
+import Home from './pages/Home';
 import Navbar from './components/NavBar';
 import { setContext } from '@apollo/client/link/context';
 import Header from './components/Header';
@@ -29,6 +30,9 @@ const client = new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
 });
+
+const currDate = new Date();
+const currTime = (currDate.now()).getTime();
 // space used to contain "<Header />"
 function App() {
     return (
@@ -41,18 +45,18 @@ function App() {
                         <Routes>
                             <Route
                                 path='/'
-                                element={<MyDay />}
+                                element={<Home />}
                             />
                             <Route
-                                path='/month/:currDate'
+                                path={`/month/${currTime}`}
                                 element={<Month />}
                             />
                             <Route  
-                                path='/week/:currDate'
+                                path={`/week/${currTime}`}
                                 element={<Week />}
                             />
                             <Route
-                                path='/myDay'
+                                path={`/myDay/${currTime}`}
                                 element={<MyDay />}
                             />
                         </Routes>
