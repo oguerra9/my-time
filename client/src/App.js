@@ -5,11 +5,14 @@ import Day from './pages/Day';
 import Month from './pages/Month';
 import MyDay from './pages/MyDay';
 import Week from './pages/Week';
-import Home from './pages/Home';
+//import Home from './components/Home';
+import GetStarted from './components/GetStarted';
 import Navbar from './components/NavBar';
 import { setContext } from '@apollo/client/link/context';
 import Header from './components/Header';
 import Footer from './components/Footer';
+
+import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
     uri: '/graphql',
