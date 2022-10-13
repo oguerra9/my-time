@@ -45,19 +45,19 @@ const MyDay = () => {
         userData = {};
     }
 
-    const month = myDate.getMonth();
+    let month = myDate.getMonth();
     console.log("----- month ----- MyDay.js");
     console.log(month);
-    const year = myDate.getFullYear();
+    let year = myDate.getFullYear();
     console.log("----- year ----- MyDay.js");
     console.log(year);
-    const day = myDate.getDate();
+    let day = myDate.getDate();
     console.log("----- day ----- MyDay.js");
     console.log(day);
-    const dayName = getDayName(myDate.getDay());
+    let dayName = getDayName(myDate.getDay());
     console.log("----- dayName ----- MyDay.js");
     console.log(dayName);
-    const monthName = getMonthName(month);
+    let monthName = getMonthName(month);
     console.log("----- monthName ----- MyDay.js");
     console.log(monthName);
 
@@ -122,9 +122,9 @@ const MyDay = () => {
             <div fluid className="jumbotron text-light bg-dark">
                 <Container>
                     <h1>{userData.firstName}'s Day</h1>
-                    <Button className="btn btn-lg btn-light m-2" onClick={prevDay}>`{'<'}`</Button>
+                    <Button className="btn btn-lg btn-light m-2" onClick={prevDay}>{'<'}</Button>
                     <h2>{dayName}, {monthName} {day},{year}</h2>
-                    <Button className="btn btn-lg btn-light m-2" onClick={nextDay}>`{'>'}`</Button>
+                    <Button className="btn btn-lg btn-light m-2" onClick={nextDay}>{'>'}</Button>
                 </Container>
             </div>
             <Container>
