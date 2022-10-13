@@ -43,10 +43,17 @@ function App() {
                     <div className="container">
                         <Navbar />
                         <Routes>
-                            <Route
+                            {Auth.loggedIn() ? (
+                                <Route
                                 path='/'
-                                element={<Home />}
-                            />
+                                element={<MyDay />}
+                                />
+                            ) : (
+                                <Route 
+                                path='/'
+                                element={<GetStarted />}
+                                />
+                            )}
                             <Route
                                 path="/month/:currTime"
                                 element={<Month />}

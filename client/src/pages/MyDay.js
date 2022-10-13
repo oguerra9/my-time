@@ -21,11 +21,18 @@ const MyDay = () => {
 
     const [addEvent, { error }] = useMutation(ADD_EVENT);
 
-    //const [removeEvent, { error }] = useMutation(REMOVE_EVENT);
-
     let userData = {};
     let myEvents = {};
     let todayEvents = {};
+
+    //const [removeEvent, { error }] = useMutation(REMOVE_EVENT);
+    if ( data ) {
+        userData = data.me;
+        myEvents = userData.events;
+    } else {
+        userData = {};
+    }
+
 
     const myDate = new Date(currTime);
     const month = myDate.getMonth();
@@ -34,12 +41,6 @@ const MyDay = () => {
     const dayName = getDayName(myDate.getDay());
     const monthName = getMonthName(month);
 
-    if ( data ) {
-        userData = data.me;
-        myEvents = userData.events;
-    } else {
-        console.error('user data not found');
-    }
 
     for (let i = 0; i < myEvents.length; i++) {
         const currEventDate = new Date(myEvents[i].eventDate);
