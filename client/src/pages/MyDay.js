@@ -19,12 +19,16 @@ const MyDay = () => {
     const { currTime } = useParams();
     const { loading, data } = useQuery(QUERY_ME);
 
-    console.log("----- currTime ----- MyDay.js");
-    console.log(currTime);
+    let myDate = new Date ();
 
-    const myDate = new Date(parseInt(currTime));
-    console.log("----- myDate ----- MyDay.js");
-    console.log(myDate);
+    if (currTime) {
+        console.log("----- currTime ----- MyDay.js");
+        console.log(currTime);
+
+        myDate = new Date(parseInt(currTime));
+        console.log("----- myDate ----- MyDay.js");
+        console.log(myDate);
+    }     
 
 
     const [addEvent, { error }] = useMutation(ADD_EVENT);
@@ -89,13 +93,38 @@ const MyDay = () => {
     }
 
     //const currDate = new Date();
+    const prevDay = (event) => {
+        event.preventDefault();
+
+        myDate.setDate(day--);
+        const timeParam = myDate.getTime();
+        return <Navigate to={`/myDay/${timeParam}`} />;
+    };
+
+    const nextDay = (event) => {
+        event.preventDefault();
+        myDate.setDate(day++);
+        const timeParam = myDate.getTime();
+        return <Navigate to={`/myDay/${timeParam}`} />;
+    }
+
+    // return (
+    //         <div>
+    //             <h1>Get Started with MyTime</h1>
+    //             <Button className="btn btn-lg btn-light m-2" onClick={myDayNav}>
+    //                 See MyDay
+    //             </Button>
+    //         </div>
+    // );
 
     return (
         <div>
             <div fluid className="jumbotron text-light bg-dark">
                 <Container>
                     <h1>{userData.firstName}'s Day</h1>
+                    <Button className="btn btn-lg btn-light m-2" onClick={prevDay}>`{'<'}`</Button>
                     <h2>{dayName}, {monthName} {day},{year}</h2>
+                    <Button className="btn btn-lg btn-light m-2" onClick={nextDay}>`{'>'}`</Button>
                 </Container>
             </div>
             <Container>

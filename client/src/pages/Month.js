@@ -27,7 +27,7 @@ const Month = () => {
     console.log("----- my events: -----");
     console.log(myEvents);
 
-    const myDate = new Date(currTime);
+    const myDate = new Date(parseInt(currTime));
     let month = myDate.getMonth();
     let year = myDate.getFullYear();
 
