@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+//const dateFormat = require('../utils/dateFormat');
 
 const eventSchema = new Schema({
     eventUser: {
@@ -9,11 +9,11 @@ const eventSchema = new Schema({
     },
     eventDate: {
         type: Date,
-        get: (timestamp) => dateFormat(timestamp),
+        get: (timestamp) => (new Date(timestamp)).getTime(),
     },
     eventTime: {
         type: Date,
-        get: (timestamp) => dateFormat(timestamp),
+        get: (timestamp) => (new Date(timestamp)).getTime(),
     },
     eventTitle: {
         type: String,
