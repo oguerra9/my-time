@@ -58,11 +58,11 @@ function App() {
                                 />
                             )}
                             <Route
-                                path="/month/:currTime"
+                                path="/myMonth/:currTime"
                                 element={<Month />}
                             />
                             <Route  
-                                path="/week/:currTime"
+                                path="/myWeek/:currTime"
                                 element={<Week />}
                             />
                             <Route

@@ -94,7 +94,7 @@ const MyDay = () => {
 
     //const currDate = new Date();
     const prevDay = (event) => {
-        event.preventDefault();
+        //event.preventDefault();
 
         myDate.setDate(day--);
         const timeParam = myDate.getTime();
@@ -102,7 +102,7 @@ const MyDay = () => {
     };
 
     const nextDay = (event) => {
-        event.preventDefault();
+        //event.preventDefault();
         myDate.setDate(day++);
         const timeParam = myDate.getTime();
         return <Navigate to={`/myDay/${timeParam}`} />;
