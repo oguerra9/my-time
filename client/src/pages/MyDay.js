@@ -22,7 +22,7 @@ const MyDay = () => {
     console.log("----- currTime ----- MyDay.js");
     console.log(currTime);
 
-    const myDate = new Date(currTime);
+    const myDate = new Date(parseInt(currTime));
     console.log("----- myDate ----- MyDay.js");
     console.log(myDate);
 
