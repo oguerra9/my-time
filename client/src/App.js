@@ -32,7 +32,7 @@ const client = new ApolloClient({
 });
 
 const currDate = new Date();
-const currTime = (currDate.now()).getTime();
+const currTime = currDate.getTime();
 // space used to contain "<Header />"
 function App() {
     return (
