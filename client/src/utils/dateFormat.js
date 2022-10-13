@@ -62,13 +62,19 @@ export const getNumDays = (monthNum, year) => {
 };
 
 export const getFirstWeekDay = (monthNum, year) => {
+    console.log("----- getFirstWeekDay ----- dateFormat:65");
+    console.log("monthNum:");
+    console.log(monthNum);
+    console.log("year:");
+    console.log(year);
     const firstDay = new Date(year, monthNum, 1);
     // return first day of the month (numbers 0-6)
     return firstDay.getDay();
 };
 
 export const getDayName = (dayNum) => {
-    console.log("----- dayNum ----- (client/src/utils/dateFormat:71) -----")
+    console.log("----- dayNum ----- (client/src/utils/dateFormat:71) -----");
+    console.log(dayNum);
     switch (dayNum) {
         case 0:
             return "Sunday";
