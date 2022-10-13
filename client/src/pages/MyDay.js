@@ -94,15 +94,16 @@ const MyDay = () => {
 
     //const currDate = new Date();
     const prevDay = (event) => {
-        //event.preventDefault();
-
+        event.preventDefault();
+        console.log('prevDay button clicked');
         myDate.setDate(day--);
         const timeParam = myDate.getTime();
         return <Navigate to={`/myDay/${timeParam}`} />;
     };
 
     const nextDay = (event) => {
-        //event.preventDefault();
+        event.preventDefault();
+        console.log('nextDay button clicked');
         myDate.setDate(day++);
         const timeParam = myDate.getTime();
         return <Navigate to={`/myDay/${timeParam}`} />;
@@ -128,9 +129,13 @@ const MyDay = () => {
                 </Container>
             </div>
             <Container>
-                <h2>
-
-                </h2>
+                <DayBox
+                    dayDate={currTime}
+                    events={todayEvents}
+                    showDescription={false}
+                    showDescPreview={true}
+                    showEventTime={true}
+                />
             </Container>
             
         </div>
