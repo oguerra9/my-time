@@ -5,7 +5,7 @@ import SignUpForm from '../SignupForm';
 import LoginForm from '../LoginForm';
 //import AddEventForm from './AddEventForm';
 
-import Auth from '../utils/auth';
+import Auth from '../../utils/auth';
 
 const currDate = new Date();
 const currTime = currDate.getTime();
