@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, Col, Row, Form, Button, Card, CardColumns, } from 'react-bootstrap';
+import { Container, Col, Row, Form, Button, Card, CardColumns, Modal } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 // import { QUERY_ME, QUERY_EVENTS } from '../utils/queries';
@@ -15,6 +15,7 @@ import Auth from '../utils/auth';
 import events from 'inquirer/lib/utils/events';
 
 const MyDay = () => {
+    const [ showModal, setShowModal ] = useState(false);
     const { myTime } = useParams();
     const { loading, data } = useQuery(QUERY_ME);
 
@@ -85,6 +86,7 @@ const MyDay = () => {
 
                 </h2>
             </Container>
+            
         </div>
     );
 };

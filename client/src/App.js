@@ -29,13 +29,13 @@ const client = new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
 });
-
+// space used to contain "<Header />"
 function App() {
     return (
         <ApolloProvider client={client}>
             <Router>
                 <div className="flex-column justify-flex-start min-100-vh">
-                    <Header />
+                    
                     <div className="container">
                         <Navbar />
                         <Routes>

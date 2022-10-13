@@ -68,6 +68,7 @@ export const getFirstWeekDay = (monthNum, year) => {
 };
 
 export const getDayName = (dayNum) => {
+    console.log("----- dayNum ----- (client/src/utils/dateFormat:71) -----")
     switch (dayNum) {
         case 0:
             return "Sunday";
