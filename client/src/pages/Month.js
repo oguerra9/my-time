@@ -10,11 +10,11 @@ import { getNumDays, getFirstWeekDay, getDayName, getMonthName, getMonthStart, g
 import { QUERY_ME } from '../utils/queries';
 
 const Month = () => {
-    const { myTime } = useParams();
+    const { currTime } = useParams();
     const { loading, data } = useQuery(QUERY_ME);
 
-    // const startTime = getMonthStart(myTime);
-    // const endTime = getMonthEnd(myTime);
+    // const startTime = getMonthStart(currTime);
+    // const endTime = getMonthEnd(currTime);
     let userData = {};
 
     if (data) {
@@ -27,7 +27,7 @@ const Month = () => {
     console.log("----- my events: -----");
     console.log(myEvents);
 
-    const myDate = new Date(myTime);
+    const myDate = new Date(currTime);
     let month = myDate.getMonth();
     let year = myDate.getFullYear();
 
@@ -74,7 +74,7 @@ const Month = () => {
                     <Month 
                         monthNum={myDate.getMonth()}
                         year={myDate.getFullYear()}
-                        firstWeekDay={getFirstWeekDay(myTime)}
+                        firstWeekDay={getFirstWeekDay(currTime)}
                         numDays={getNumDays(myDate.getMonth())}
                         events={myEvents}
                     />

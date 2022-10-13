@@ -16,7 +16,7 @@ import events from 'inquirer/lib/utils/events';
 
 const MyDay = () => {
     const [ showModal, setShowModal ] = useState(false);
-    const { myTime } = useParams();
+    const { currTime } = useParams();
     const { loading, data } = useQuery(QUERY_ME);
 
     const [addEvent, { error }] = useMutation(ADD_EVENT);
@@ -27,7 +27,7 @@ const MyDay = () => {
     let myEvents = {};
     let todayEvents = {};
 
-    const myDate = new Date(myTime);
+    const myDate = new Date(currTime);
     const month = myDate.getMonth();
     const year = myDate.getFullYear();
     const day = myDate.getDate();

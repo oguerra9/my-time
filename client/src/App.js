@@ -48,15 +48,15 @@ function App() {
                                 element={<Home />}
                             />
                             <Route
-                                path={`/month/${currTime}`}
+                                path="/month/:currTime"
                                 element={<Month />}
                             />
                             <Route  
-                                path={`/week/${currTime}`}
+                                path="/week/:currTime"
                                 element={<Week />}
                             />
                             <Route
-                                path={`/myDay/${currTime}`}
+                                path="/myDay/:currTime"
                                 element={<MyDay />}
                             />
                         </Routes>
