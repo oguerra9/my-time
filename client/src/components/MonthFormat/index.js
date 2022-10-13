@@ -7,7 +7,7 @@ import { ADD_EVENT } from '../../utils/mutations';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import Auth from '../../utils/auth';
-import { getNumDays, getFirstWeekDay, getWeekDay, getMonthName } from '../../utils/dateFormat';
+import { getNumDays, getFirstWeekDay, getDayName, getMonthName } from '../../utils/dateFormat';
 import events from 'inquirer/lib/utils/events';
 import Week from '../Week';
 
@@ -38,13 +38,13 @@ const MonthFormat = ({
         };
         monthDays.push(daySq);
     }
-    if (((monthDays.length) % 7) != 0) {
+    if (((monthDays.length) % 7) !== 0) {
         const currLength = monthDays.length;
         const fullWeeks = currLength % 7;
         const leftOver = currLength - (fullWeeks * 7);
         const fillSpace = 7 - leftOver;
 
-        for (var i = 0; i < fillSpace; i++) {
+        for (var k = 0; k < fillSpace; k++) {
             const notDay = {
                 dayDate: 0,
                 events: [],
@@ -59,9 +59,9 @@ const MonthFormat = ({
         }
     }
 
-    for (var k = 0; k < events; k++) {
-        if (events[k].eventDate && events[k].eventDate.getMonth() == monthNum) {
-            monthDays[dayOffset + events[k].eventDate.getDate()].events.push(events[k]);
+    for (var p = 0; p < events; p++) {
+        if (events[p].eventDate && events[p].eventDate.getMonth() === monthNum) {
+            monthDays[dayOffset + events[p].eventDate.getDate()].events.push(events[p]);
         }
     }
 

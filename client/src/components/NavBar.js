@@ -8,6 +8,7 @@ import LoginForm from './LoginForm';
 import Auth from '../utils/auth';
 
 const currDate = new Date();
+const currTime = currDate.getTime();
 
 const AppNavbar = () => {
   // set modal display state
@@ -29,9 +30,9 @@ const AppNavbar = () => {
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/myDay/currDate'>MyDay</Nav.Link>
-                  <Nav.Link as={Link} to='/month/currDate'>MyMonth</Nav.Link>
-                  <Nav.Link as={Link} to='/week/currDate'>MyWeek</Nav.Link>
+                  <Nav.Link as={Link} to='/myDay/{currTime}'>MyDay</Nav.Link>
+                  <Nav.Link as={Link} to='/month/{currTime}'>MyMonth</Nav.Link>
+                  <Nav.Link as={Link} to='/week/{currTime}'>MyWeek</Nav.Link>
                   {/* <Nav.Link as={Link} to='/day'>MyDay</Nav.Link> */}
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>

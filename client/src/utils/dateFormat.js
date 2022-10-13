@@ -13,7 +13,7 @@ export const getNumDays = (monthNum, year) => {
         return 30;
     }
     // if the month number is 2 (february)
-    if (monthNum == 2) {
+    if (monthNum === 2) {
         // check if year is a leap year
         /*
             rules:
@@ -41,15 +41,15 @@ export const getNumDays = (monthNum, year) => {
         var div400 = false;
             
         // sets div4 to true if the year is evenly divisible by 4
-        if ((year % 4) == 0) {
+        if ((year % 4) === 0) {
             div4 = true;
         }
         // sets div100 to true if the year is evenly divisible by 100
-        if ((year % 100) == 0) {
+        if ((year % 100) === 0) {
             div100 = true;
         }
         // sets div400 to true is the year is evenly divisible by 400
-        if ((year % 400) == 0) {
+        if ((year % 400) === 0) {
             div400 = true;
         }
 
@@ -67,73 +67,54 @@ export const getFirstWeekDay = (monthNum, year) => {
     return firstDay.getDay();
 };
 
-export const getWeekDay = (dayNum) => {
+export const getDayName = (dayNum) => {
     switch (dayNum) {
         case 0:
             return "Sunday";
-            break;
         case 1:
             return "Monday";
-            break;
         case 2:
             return "Tuesday";
-            break;
         case 3:
             return "Wednesday";
-            break;
         case 4:
             return "Thursday";
-            break;
         case 5:
             return "Friday";
-            break;
         case 6:
             return "Saturday";
-            break;
         default:
             return "WeekDayErr";
     }
 };
 
 export const getMonthName = (monthNum) => {
-    const monthNum = monthNum;
+    //const monthNum = monthNum;
     switch (monthNum) {
         case 0:
             return "January";
-            break;
         case 1:
             return "February";
-            break;
         case 2:
             return "March";
-            break;
         case 3:
             return "April";
-            break;
         case 4:
             return "May";
-            break;
         case 5:
             return "June";
-            break;
         case 6:
             return "July";
-            break;
         case 7:
             return "August";
-            break;
         case 8:
             return "September";
-            break;
         case 9:
             return "October";
-            break;
         case 10:
             return "November";
-            break;
         case 11:
             return "December";
-            break;
         default:
             return "MonthNameErr";
     }
@@ -143,8 +124,8 @@ export const getMonthName = (monthNum) => {
 export const getMonthStart = (timeStamp) => {
     const myTime = new Date(timeStamp);
 
-    const month = myTime.getMonth();
-    const year = myTime.getFullYear();
+    let month = myTime.getMonth();
+    let year = myTime.getFullYear();
     
     const monthStart = new Date(year, month, 1, 0, 0, 0, 0);
 
@@ -154,8 +135,8 @@ export const getMonthStart = (timeStamp) => {
 export const getMonthEnd = (timeStamp) => {
     const myTime = new Date(timeStamp);
 
-    const month = myTime.getMonth();
-    const year = myTime.getFullYear();
+    let month = myTime.getMonth();
+    let year = myTime.getFullYear();
     
     const numDays = getNumDays(month, year);
 
@@ -167,8 +148,8 @@ export const getMonthEnd = (timeStamp) => {
 export const getWeekStart = (timeStamp) => {
     const myTime = new Date(timeStamp);
 
-    const year = myTime.getFullYear();
-    const month = myTime.getMonth();
+    let year = myTime.getFullYear();
+    let month = myTime.getMonth();
     const dateNum = myTime.getDate();
 
     const weekDay = myTime.getDay();
@@ -182,8 +163,8 @@ export const getWeekStart = (timeStamp) => {
 export const getWeekEnd = (timeStamp) => {
     const myTime = new Date(timeStamp);
 
-    const year = myTime.getFullYear();
-    const month = myTime.getMonth();
+    let year = myTime.getFullYear();
+    let month = myTime.getMonth();
     const dateNum = myTime.getDate();
 
     const weekDay = myTime.getDay();
@@ -198,8 +179,8 @@ export const getWeekEnd = (timeStamp) => {
 export const getDayStart = (timeStamp) => {
     const myTime = new Date(timeStamp);
 
-    const year = myTime.getFullYear();
-    const month = myTime.getMonth();
+    let year = myTime.getFullYear();
+    let month = myTime.getMonth();
     const dateNum = myTime.getDate();
 
     const dayStart = new Date(year, month, dateNum, 0, 0, 0, 0);
@@ -210,8 +191,8 @@ export const getDayStart = (timeStamp) => {
 export const getDayEnd = (timeStamp) => {
     const myTime = new Date(timeStamp);
 
-    const year = myTime.getFullYear();
-    const month = myTime.getMonth();
+    let year = myTime.getFullYear();
+    let month = myTime.getMonth();
     const dateNum = myTime.getDate();
 
     const dayEnd = new Date(year, month, dateNum, 23, 59, 59, 999);
@@ -222,10 +203,10 @@ export const getDayEnd = (timeStamp) => {
 export const getNextMonth = (timeStamp) => {
     const myTime = new Date(timeStamp);
 
-    const year = myTime.getFullYear();
-    const month = myTime.getMonth();
+    let year = myTime.getFullYear();
+    let month = myTime.getMonth();
 
-    if (month == 11) {
+    if (month === 11) {
         myTime.setFullYear(year++);
         myTime.setMonth(0);
     } else {
@@ -238,10 +219,10 @@ export const getNextMonth = (timeStamp) => {
 export const getPrevMonth = (timeStamp) => {
     const myTime = new Date(timeStamp);
 
-    const year = myTime.getFullYear();
-    const month = myTime.getMonth();
+    let year = myTime.getFullYear();
+    let month = myTime.getMonth();
 
-    if (month == 0) {
+    if (month === 0) {
         myTime.setFullYear(year--);
         myTime.setMonth(11);
     } else {

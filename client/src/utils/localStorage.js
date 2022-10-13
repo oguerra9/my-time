@@ -6,6 +6,9 @@ export const getSavedEventIds = () => {
     return savedEventIds;
 };
   
+// testing here
+
+
 export const saveEventIds = (eventIdArr) => {
     if (eventIdArr.length) {
       localStorage.setItem('saved_events', JSON.stringify(eventIdArr));
@@ -23,7 +26,11 @@ export const removeEventId = (eventId) => {
       return false;
     }
   
-    const updatedSavedEventIds = savedEventIds?.filter((savedEventId) => savedEventId !== eventId);
+    let updatedSavedEventIds = [];
+
+    if (savedEventIds) {
+      updatedSavedEventIds = savedEventIds.filter((savedEventId) => savedEventId !== eventId);
+    }
     localStorage.setItem('saved_events', JSON.stringify(updatedSavedEventIds));
   
     return true;

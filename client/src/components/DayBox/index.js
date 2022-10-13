@@ -11,7 +11,7 @@ const DayBox = ({
     //showEventDate = true,
     showEventTime = true
 }) => {
-    if (dayDate.getDate() == 0) {
+    if (dayDate.getDate() === 0) {
         return (
             <Col></Col>
         );
