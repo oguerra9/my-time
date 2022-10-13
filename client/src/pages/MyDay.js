@@ -19,6 +19,9 @@ const MyDay = () => {
     const { currTime } = useParams();
     const { loading, data } = useQuery(QUERY_ME);
 
+    console.log("----- currTime ----- MyDay.js");
+    console.log(currTime);
+
     const [addEvent, { error }] = useMutation(ADD_EVENT);
 
     let userData = {};
@@ -35,11 +38,23 @@ const MyDay = () => {
 
 
     const myDate = new Date(currTime);
+    console.log("----- myDate ----- MyDay.js");
+    console.log(myDate);
     const month = myDate.getMonth();
+    console.log("----- month ----- MyDay.js");
+    console.log(month);
     const year = myDate.getFullYear();
+    console.log("----- year ----- MyDay.js");
+    console.log(year);
     const day = myDate.getDate();
+    console.log("----- day ----- MyDay.js");
+    console.log(day);
     const dayName = getDayName(myDate.getDay());
+    console.log("----- dayName ----- MyDay.js");
+    console.log(dayName);
     const monthName = getMonthName(month);
+    console.log("----- monthName ----- MyDay.js");
+    console.log(monthName);
 
 
     for (let i = 0; i < myEvents.length; i++) {
@@ -72,7 +87,7 @@ const MyDay = () => {
         return <h2>LOADING...</h2>;
     }
 
-    const currDate = new Date();
+    //const currDate = new Date();
 
     return (
         <div>
