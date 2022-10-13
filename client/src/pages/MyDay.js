@@ -22,6 +22,11 @@ const MyDay = () => {
     console.log("----- currTime ----- MyDay.js");
     console.log(currTime);
 
+    const myDate = new Date(currTime);
+    console.log("----- myDate ----- MyDay.js");
+    console.log(myDate);
+
+
     const [addEvent, { error }] = useMutation(ADD_EVENT);
 
     let userData = {};
@@ -36,10 +41,6 @@ const MyDay = () => {
         userData = {};
     }
 
-
-    const myDate = new Date(currTime);
-    console.log("----- myDate ----- MyDay.js");
-    console.log(myDate);
     const month = myDate.getMonth();
     console.log("----- month ----- MyDay.js");
     console.log(month);
