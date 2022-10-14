@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Modal } from 'react-bootstrap';
 
-import {useMutation} from '@apollo/client';
-import {ADD_EVENT} from '../utils/mutations';
+//import {useMutation} from '@apollo/client';
+//import {ADD_EVENT} from '../utils/mutations';
 
 // import Auth from '../utils/auth';
 
