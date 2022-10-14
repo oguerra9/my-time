@@ -141,13 +141,15 @@ const MyDay = () => {
             </div>
             <Container>
                 <h3> Today's Events </h3>
-                {todayEvents && todayEvents.map((event) => (
-                    <Container className="card-body">
-                        <Row>
-                            <p>{event.eventTitle}</p>
-                        </Row>
-                    </Container>
-                ))}
+                <div>
+                    {todayEvents && todayEvents.map((event) => (
+                        <Container className="card-body">
+                            <Row>
+                                <p>{event.eventTitle}</p>
+                            </Row>
+                        </Container>
+                    ))}
+                </div>
             </Container>
             
         </div>
