@@ -8,7 +8,7 @@ import { QUERY_ME } from '../utils/queries';
 import { ADD_EVENT, REMOVE_EVENT } from '../utils/mutations';
 import { getSavedEventIds, saveEventIds, removeEventId } from '../utils/localStorage';
 import { getNumDays, getFirstWeekDay, getDayName, getMonthName, getMonthStart, getMonthEnd, getWeekStart, getWeekEnd, getDayStart, getDayEnd, getNextMonth, getPrevMonth, getNextWeek, getPrevWeek, getNextDay, getPrevDay } from '../utils/dateFormat';
-import { DayBox } from '../components/DayBox';
+//import { DayBox } from '../components/DayBox';
 
 
 import Auth from '../utils/auth';
@@ -118,6 +118,17 @@ const MyDay = () => {
     //         </div>
     // );
 
+    //was inside container
+    /*
+<DayBox
+                    dayDate={currTime}
+                    events={todayEvents}
+                    showDescription={false}
+                    showDescPreview={true}
+                    showEventTime={true}
+                />
+    */
+
     return (
         <div>
             <div fluid className="jumbotron text-light bg-dark">
@@ -129,13 +140,14 @@ const MyDay = () => {
                 </Container>
             </div>
             <Container>
-                <DayBox
-                    dayDate={currTime}
-                    events={todayEvents}
-                    showDescription={false}
-                    showDescPreview={true}
-                    showEventTime={true}
-                />
+                <h3> Today's Events </h3>
+                {todayEvents && todayEvents.map((event) => (
+                    <Container className="card-body">
+                        <Row>
+                            <p>{event.eventTitle}</p>
+                        </Row>
+                    </Container>
+                ))}
             </Container>
             
         </div>
