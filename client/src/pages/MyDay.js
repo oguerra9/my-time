@@ -9,7 +9,7 @@ import { ADD_EVENT, REMOVE_EVENT } from '../utils/mutations';
 import { getSavedEventIds, saveEventIds, removeEventId } from '../utils/localStorage';
 import { getNumDays, getFirstWeekDay, getDayName, getMonthName, getMonthStart, getMonthEnd, getWeekStart, getWeekEnd, getDayStart, getDayEnd, getNextMonth, getPrevMonth, getNextWeek, getPrevWeek, getNextDay, getPrevDay } from '../utils/dateFormat';
 //import { DayBox } from '../components/DayBox';
-
+import { AddEventForm } from '../components/AddEventForm';
 
 import Auth from '../utils/auth';
 import events from 'inquirer/lib/utils/events';
@@ -20,6 +20,12 @@ const MyDay = () => {
     const { loading, data } = useQuery(QUERY_ME);
 
     let myDate = new Date ();
+    myDate.setHours(0);
+    myDate.setMinutes(0);
+    myDate.setSeconds(0);
+    myDate.setMilliseconds(0);
+
+    let myTime = myDate.getTime();
 
     if (currTime) {
         console.log("----- currTime ----- MyDay.js");
@@ -39,7 +45,10 @@ const MyDay = () => {
 
     //const [removeEvent, { error }] = useMutation(REMOVE_EVENT);
     if ( data ) {
+        console.log("===== user data found =====");
         userData = data.me;
+        console.log("----- User Data: -----");
+        console.log(userData);
         myEvents = userData.events;
     } else {
         userData = {};
@@ -141,15 +150,35 @@ const MyDay = () => {
                 </Container>
             </div>
             <Container>
-                <h3> Today's Events </h3>
-                {todayEvents && todayEvents.map((event) => (
-                    <Container className="card-body">
+                <Row>
+                    <h3> Today's Events </h3>
+                </Row>
+                <Container className="card-body">
+                    {todayEvents && todayEvents.map((event) => (
                         <Row>
                             <p>{event.eventTitle}</p>
                         </Row>
-                    </Container>
-                ))}
+                    ))}
+                    <Row>
+                        <Button onClick={() => setShowModal(true)}>Add Event</Button>
+                    </Row>
+                </Container>
             </Container>
+            <Modal
+                size='lg'
+                show={showModal}
+                onHide={() => setShowModal(false)}
+                aria-labelledby='addEvent-modal'>
+                
+                <Modal.Header closeButton>
+                    <Modal.Title id='addEvent-modal'>
+                        New Event
+                    </Modal.Title>
+                    <AddEventForm
+                        eventDate={myTime}
+                    />
+                </Modal.Header>
+            </Modal>
             
         </div>
     );
