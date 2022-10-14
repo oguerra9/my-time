@@ -8,8 +8,8 @@ import { QUERY_ME } from '../utils/queries';
 import { ADD_EVENT, REMOVE_EVENT } from '../utils/mutations';
 import { getSavedEventIds, saveEventIds, removeEventId } from '../utils/localStorage';
 import { getNumDays, getFirstWeekDay, getDayName, getMonthName, getMonthStart, getMonthEnd, getWeekStart, getWeekEnd, getDayStart, getDayEnd, getNextMonth, getPrevMonth, getNextWeek, getPrevWeek, getNextDay, getPrevDay } from '../utils/dateFormat';
-//import { DayBox } from '../components/DayBox';
-import { AddEventForm } from '../components/AddEventForm';
+import DayBox from '../components/DayBox';
+import AddEventForm from '../components/AddEventForm';
 
 import Auth from '../utils/auth';
 import events from 'inquirer/lib/utils/events';
