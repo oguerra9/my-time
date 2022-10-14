@@ -35,7 +35,7 @@ const MyDay = () => {
 
     let userData = {};
     let myEvents = {};
-    let todayEvents = {};
+
 
     //const [removeEvent, { error }] = useMutation(REMOVE_EVENT);
     if ( data ) {
@@ -61,6 +61,7 @@ const MyDay = () => {
     console.log("----- monthName ----- MyDay.js");
     console.log(monthName);
 
+    let todayEvents = [];
 
     for (let i = 0; i < myEvents.length; i++) {
         const currEventDate = new Date(myEvents[i].eventDate);
@@ -141,15 +142,13 @@ const MyDay = () => {
             </div>
             <Container>
                 <h3> Today's Events </h3>
-                <div>
-                    {todayEvents && todayEvents.map((event) => (
-                        <Container className="card-body">
-                            <Row>
-                                <p>{event.eventTitle}</p>
-                            </Row>
-                        </Container>
-                    ))}
-                </div>
+                {todayEvents && todayEvents.map((event) => (
+                    <Container className="card-body">
+                        <Row>
+                            <p>{event.eventTitle}</p>
+                        </Row>
+                    </Container>
+                ))}
             </Container>
             
         </div>
