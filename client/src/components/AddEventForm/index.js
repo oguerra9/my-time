@@ -17,10 +17,12 @@ const AddEventForm = ({
   const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: '', eventTitle: '', eventDescription: ''});
 
   if (data) {
+    console.log('AddEventForm ----- line 20');
     userData = data.me;
     setEventFormData({ ...eventFormData, eventUser: userData.username });
   } 
   if (eventDate) {
+    console.log('AddEventForm ----- line 25');
     setEventFormData({ ...eventFormData, eventDate: eventDate });
   }
 
@@ -32,8 +34,10 @@ const AddEventForm = ({
 
   useEffect(() => {
     if (error) {
+      console.log('AddEventForm ----- line 37');
       setShowAlert(true);
     } else {
+      console.log('AddEventForm ----- line 40');
       setShowAlert(false);
     }
   }, [error])
@@ -68,14 +72,16 @@ const AddEventForm = ({
       eventDate: '',
       eventTitle: '',
       eventDescription: '',
-    })
-  }
+    });
+  };
 
   let myDate = new Date (parseInt(eventDate));
   let monthNum = myDate.getMonth() + 1;
   let dateNum = myDate.getDate();
   let yearNum = myDate.getFullYear();
   let myTime = myDate.getTime();
+
+  console.log('AddEventForm ----- line 84');
 
 
   // const handleInputChange = (event) => {
