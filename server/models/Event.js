@@ -8,8 +8,9 @@ const eventSchema = new Schema({
         trim: true,
     },
     eventDate: {
-        type: Date,
-        get: (timestamp) => (new Date(timestamp)).getTime(),
+        type: String,
+        trim: true,
+        default: "0",
     },
     eventTitle: {
         type: String,

@@ -74,9 +74,9 @@ const MyDay = () => {
 
     for (let i = 0; i < myEvents.length; i++) {
         // if eventDate is in milliseconds
-        // const currEventDate = new Date(myEvents[i].eventDate);
+        const currEventDate = new Date(parseInt(myEvents[i].eventDate));
         // if eventDate is a Date object
-        const currEventDate = myEvents[i].eventDate;
+        // const currEventDate = myEvents[i].eventDate;
 
         if (currEventDate.getDate() === day && currEventDate.getMonth() === month && currEventDate.getFullYear() === year) {
             todayEvents.push(myEvents[i]);
@@ -178,7 +178,7 @@ const MyDay = () => {
                         New Event
                     </Modal.Title>
                     <AddEventForm
-                        eventDate={myDate}
+                        eventDate={myTime}
                     />
                 </Modal.Header>
             </Modal>

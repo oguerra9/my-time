@@ -1,37 +1,37 @@
-export const getSavedEventIds = () => {
-    const savedEventIds = localStorage.getItem('saved_events')
+export const getSavedEvents = () => {
+    const savedEvents = localStorage.getItem('saved_events')
       ? JSON.parse(localStorage.getItem('saved_events'))
       : [];
   
-    return savedEventIds;
+    return savedEvents;
 };
   
 // testing here
 
 
-export const saveEventIds = (eventIdArr) => {
-    if (eventIdArr.length) {
-      localStorage.setItem('saved_events', JSON.stringify(eventIdArr));
+export const saveEvent = (eventArr) => {
+    if (eventArr.length) {
+      localStorage.setItem('saved_events', JSON.stringify(eventArr));
     } else {
       localStorage.removeItem('saved_events');
     }
 };
   
-export const removeEventId = (eventId) => {
-    const savedEventIds = localStorage.getItem('saved_events')
+export const removeEvent = (eventId) => {
+    const savedEvents = localStorage.getItem('saved_events')
       ? JSON.parse(localStorage.getItem('saved_events'))
       : null;
   
-    if (!savedEventIds) {
+    if (!savedEvents) {
       return false;
     }
   
-    let updatedSavedEventIds = [];
+    let updatedSavedEvents = [];
 
-    if (savedEventIds) {
-      updatedSavedEventIds = savedEventIds.filter((savedEventId) => savedEventId !== eventId);
+    if (savedEvents) {
+      updatedSavedEvents = savedEvents.filter((savedEvent) => savedEvent._id !== eventId);
     }
-    localStorage.setItem('saved_events', JSON.stringify(updatedSavedEventIds));
+    localStorage.setItem('saved_events', JSON.stringify(updatedSavedEvents));
   
     return true;
 };
