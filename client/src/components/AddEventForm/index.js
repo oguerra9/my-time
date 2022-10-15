@@ -8,36 +8,27 @@ import { QUERY_ME } from '../../utils/queries';
 const AddEventForm = ({
   eventDate,
 }) => {
-  const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: '', eventTitle: '', eventDescription: ''});
-  console.log("----- Event Date ----- AddEventForm");
-  console.log(eventDate);
-
-  let myDate = new Date (parseInt(eventDate));
-  let monthNum = myDate.getMonth() + 1;
-  let dateNum = myDate.getDate();
-  let yearNum = myDate.getFullYear();
-  let myTime = myDate.getTime();
-
   const { loading, data } = useQuery(QUERY_ME);
   const userData = {};
 
+  console.log('----- Event Date: ----- AddEventForm');
+  console.log(eventDate);
+
+  const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: '', eventTitle: '', eventDescription: ''});
+
   if (data) {
-    console.log('user data found');
     userData = data.me;
-    console.log(userData);
     setEventFormData({ ...eventFormData, eventUser: userData.username });
-  }
+  } 
   if (eventDate) {
-    console.log('eventDate found');
-    console.log(eventDate);
-    setEventFormData({ ...eventFormData, eventDate: myDate });
+    setEventFormData({ ...eventFormData, eventDate: eventDate });
   }
 
   const [validated] = useState(false);
 
   const [showAlert, setShowAlert] = useState(false);
 
-  const [addEvent, {error}] = useMutation(ADD_EVENT);
+  const [addEvent, { error }] = useMutation(ADD_EVENT);
 
   useEffect(() => {
     if (error) {
@@ -48,28 +39,24 @@ const AddEventForm = ({
   }, [error])
 
   const handleInputChange = (event) => {
+    console.log('handleInputChange called ----- AddEventForm');
     const { name, value } = event.target;
-    setEventFormData({ ... eventFormData, [name]: value });
+    setEventFormData({ ...eventFormData, [name]: value });
   };
 
   const handleFormSubmit = async (event) => {
+    console.log('handleFormSubmit called ----- AddEventForm');
     event.preventDefault();
 
     const form = event.currentTarget;
-
     if (form.checkValidity() === false) {
       event.preventDefault();
-      event.stopPropagation(); 
+      event.stopPropagation();
     }
 
     try {
       const {data} = await addEvent({
-        variables: { 
-          eventUser: eventFormData.eventUser,
-          eventDate: myTime,
-          eventTitle: eventFormData.eventTitle,
-          eventDescription: eventFormData.eventDescription,
-         },
+        variables: { ...eventFormData },
       });
       console.log(data);
     } catch (err) {
@@ -77,35 +64,79 @@ const AddEventForm = ({
       setShowAlert(true);
     }
 
-    if (eventDate) {
-      setEventFormData({
-        eventUser: userData.username,
-        eventDate: myDate,
-        eventTitle: '',
-        eventDescription: '',
-      });
-    } else {
-      setEventFormData({
-        eventUser: userData.username,
-        eventDate: '',
-        eventTitle: '',
-        eventDescription: '',
-      });
-    }
-  };
+    setEventFormData({
+      eventDate: '',
+      eventTitle: '',
+      eventDescription: '',
+    })
+  }
+
+  let myDate = new Date (parseInt(eventDate));
+  let monthNum = myDate.getMonth() + 1;
+  let dateNum = myDate.getDate();
+  let yearNum = myDate.getFullYear();
+  let myTime = myDate.getTime();
+
+
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setEventFormData({ ... eventFormData, [name]: value });
+  // };
+
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   const form = event.currentTarget;
+
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault();
+  //     event.stopPropagation(); 
+  //   }
+
+  //   try {
+  //     const {data} = await addEvent({
+  //       variables: { 
+  //         eventUser: eventFormData.eventUser,
+  //         eventDate: myTime,
+  //         eventTitle: eventFormData.eventTitle,
+  //         eventDescription: eventFormData.eventDescription,
+  //        },
+  //     });
+  //     console.log(data);
+  //   } catch (err) {
+  //     console.error(err);
+  //     setShowAlert(true);
+  //   }
+
+  //   if (eventDate) {
+  //     setEventFormData({
+  //       eventUser: userData.username,
+  //       eventDate: myDate,
+  //       eventTitle: '',
+  //       eventDescription: '',
+  //     });
+  //   } else {
+  //     setEventFormData({
+  //       eventUser: userData.username,
+  //       eventDate: '',
+  //       eventTitle: '',
+  //       eventDescription: '',
+  //     });
+  //   }
+  // };
 
   return (
-    <div>
+    <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong adding your event
         </Alert>
 
         {eventDate ? (
-          <div>
+          <Form.Text>
             <h3>Event Date</h3>
             <p>{monthNum}/{dateNum}/{yearNum}</p>
-          </div>
+          </Form.Text>
         ) : (
           <Form.Group>
             <Form.Label htmlFor='eventDate'>Event Date</Form.Label>
@@ -150,7 +181,7 @@ const AddEventForm = ({
             Add Event
         </Button>
       </Form>
-    </div>
+    </>
   );
 };
 

@@ -13,7 +13,7 @@ const MyDay = () => {
     const { currTime } = useParams();
     const {loading, data } = useQuery(QUERY_ME);
 
-    const [addEvent, { error }] = useMutation(ADD_EVENT);
+    // const [addEvent, { error }] = useMutation(ADD_EVENT);
 
     let myDate = new Date ();
     if (currTime) {
@@ -47,7 +47,9 @@ const MyDay = () => {
     let todayEvents = [];
 
     for (let i = 0; i < myEvents; i++) {
-        if (parseInt(myEvents[i].eventDate) === myDate.getTime()) {
+        const currEventDate = new Date(parseInt(myEvents[i].eventDate));
+
+        if (currEventDate.getDate() === dateNum && currEventDate.getMonth() === monthNum && currEventDate.getFullYear() === yearNum) {
             todayEvents.push(myEvents[i]);
         }
     }
@@ -77,7 +79,7 @@ const MyDay = () => {
     // };
 
     return (
-        <>
+        <div>
             <div fluid className="jumbotron text-light bg-dark">
                 <Container>
                     <Row>
@@ -116,13 +118,15 @@ const MyDay = () => {
                 aria-labelledby='addEvent-modal'>
 
                 <Modal.Header closeButton>
-                    <Modal.Title id='addEvent-modal'>New Event</Modal.Title>
+                    <Modal.Title id='addEvent-modal'>
+                        New Event
+                    </Modal.Title>
                     <AddEventForm
                         eventDate={myTime}
                     />
                 </Modal.Header>
             </Modal>
-        </>
+        </div>
     );
 };
 
