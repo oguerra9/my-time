@@ -85,6 +85,21 @@ const MonthFormat = ({
                     />
                 ))}
             </Container>
+            <Modal
+                size='lg'
+                show={showModal}
+                onHide={() => setShowModal(false)}
+                aria-labelledby='addEvent-modal'>
+
+                <Modal.Header closeButton>
+                    <Modal.Title id='addEvent-modal'>
+                        New Event
+                    </Modal.Title>
+                    <AddEventForm
+                        eventDate={myTime}
+                    />
+                </Modal.Header>
+            </Modal>
         </div>
     );
 };

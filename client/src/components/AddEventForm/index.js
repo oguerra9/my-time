@@ -181,7 +181,6 @@ const AddEventForm = ({
           />
         </Form.Group>
         <Button
-          disabled={!(eventFormData.title)}
           type='submit'
           variant='success'>
             Add Event
