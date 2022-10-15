@@ -8,6 +8,7 @@ import { QUERY_ME } from '../../utils/queries';
 const AddEventForm = ({
   eventDate,
 }) => {
+  const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: '', eventTitle: '', eventDescription: ''});
   console.log("----- Event Date ----- AddEventForm");
   console.log(eventDate);
 
@@ -16,8 +17,6 @@ const AddEventForm = ({
   let dateNum = myDate.getDate();
   let yearNum = myDate.getFullYear();
   let myTime = myDate.getTime();
-
-  const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: myDate, eventTitle: '', eventDescription: ''});
 
   const { loading, data } = useQuery(QUERY_ME);
   const userData = {};

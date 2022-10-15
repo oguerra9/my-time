@@ -10,7 +10,7 @@ import Auth from '../../utils/auth';
 const currDate = new Date();
 const currTime = currDate.getTime();
 
-const AppNavbar = () => {
+const NavBar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
 
@@ -79,4 +79,4 @@ const AppNavbar = () => {
   );
 };
 
-export default AppNavbar;
+export default NavBar;

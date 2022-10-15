@@ -77,7 +77,7 @@ const MyDay = () => {
     // };
 
     return (
-        <div>
+        <>
             <div fluid className="jumbotron text-light bg-dark">
                 <Container>
                     <Row>
@@ -122,7 +122,7 @@ const MyDay = () => {
                     />
                 </Modal.Header>
             </Modal>
-        </div>
+        </>
     );
 };
 

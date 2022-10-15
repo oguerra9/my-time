@@ -6,8 +6,10 @@ const resolvers = {
     Query: {
         me: async (parent, args, context) => {
             if (context.user) {
+                console.log('----- context.user found ----- server/schemas/resolvers');
                 const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
 
+                console.log(userData);
                 return userData;
             }
 
@@ -46,7 +48,7 @@ const resolvers = {
 
             await Event.findOneAndUpdate(
                 { username: eventUser },
-                { $addToSet: { events: event._id } }
+                { $addToSet: { event } }
             );
         },
         removeEvent: async (parent, { eventId }) => {
