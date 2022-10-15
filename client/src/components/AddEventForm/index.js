@@ -11,6 +11,7 @@ const AddEventForm = ({
 }) => {
   console.log("----- Event Date: ----- AddEventForm");
   console.log(eventDate);
+  const myDate = new Date(eventDate);
   // set initial form state
   const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: '', eventTime: '', eventTitle: '', eventDescription: '' });
   // set state for form validation
@@ -28,10 +29,10 @@ const AddEventForm = ({
     }
   }, [error])
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setEventFormData({ ...eventFormData, [name]: value });
-  };
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setEventFormData({ ...eventFormData, [name]: value });
+  // };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -55,7 +56,7 @@ const AddEventForm = ({
 
     setEventFormData({
       //eventUser: '',
-      eventDate: eventDate,
+      eventDate: '',
       eventTime: '',
       eventTitle: '',
       eventDescription: '',
@@ -119,7 +120,6 @@ const AddEventForm = ({
             type='text'
             placeholder='Title'
             name='eventTitle'
-            onChange={handleInputChange}
             value={eventFormData.eventTitle}
             required
           />
@@ -132,7 +132,7 @@ const AddEventForm = ({
             type='text'
             placeholder='Description'
             name='eventDescription'
-            onChange={handleInputChange}
+    
             value={eventFormData.eventDescription}
           />
         </Form.Group>
