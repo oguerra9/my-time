@@ -4,7 +4,8 @@ import { Container, Col, Row, Form, Button, Card, CardColumns, Modal } from 'rea
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { ADD_EVENT } from '../utils/mutations';
-import { getDayName, getMonthName, getNextDay, getPrevDay } from '../utils/dateFormat';
+import { getNumDays, getFirstWeekDay, getDayName, getMonthName } from '../utils/dateFormat';
+import { getMonthStart, getMonthEnd, getWeekStart, getWeekEnd, getDayStart, getDayEnd, getNextMonth, getPrevMonth, getNextWeek, getPrevWeek, getNextDay, getPrevDay } from '../utils/dateFunctions';
 import AddEventForm from '../components/AddEventForm';
 
 const MyDay = () => {
@@ -49,25 +50,25 @@ const MyDay = () => {
         return <h2>LOADING...</h2>;
     }
 
-    const prevDay = (event) => {
-        event.preventDefault();
-        console.log(myDate);
-        console.log('prevDay button clicked');
-        myDate.setDate(dateNum--);
-        console.log(myDate);
-        const timeParam = myDate.getTime();
-        return <Navigate to={`/myDay/${timeParam}`} />;
-    };
+    // const prevDay = (event) => {
+    //     event.preventDefault();
+    //     console.log(myDate);
+    //     console.log('prevDay button clicked');
+    //     myDate.setDate(dateNum--);
+    //     console.log(myDate);
+    //     const timeParam = myDate.getTime();
+    //     return <Navigate to={`/myDay/${timeParam}`} />;
+    // };
 
-    const nextDay = (event) => {
-        event.preventDefault();
-        console.log(myDate);
-        console.log('nextDay button clicked');
-        myDate.setDate(dateNum++);
-        console.log(myDate);
-        const timeParam = myDate.getTime();
-        return <Navigate to={`/myDate/${timeParam}`} />;
-    };
+    // const nextDay = (event) => {
+    //     event.preventDefault();
+    //     console.log(myDate);
+    //     console.log('nextDay button clicked');
+    //     myDate.setDate(dateNum++);
+    //     console.log(myDate);
+    //     const timeParam = myDate.getTime();
+    //     return <Navigate to={`/myDate/${timeParam}`} />;
+    // };
 
     return (
         <div>
@@ -78,11 +79,11 @@ const MyDay = () => {
                     </Row>
                     <Row>
                         <Col>
-                            <Link to={`/myDay/${getPrevDay(myDate)}`}>{'<'}</Link>
+                            <Link to={`/myDay/${getPrevDay(myDate.getTime())}`}>{'<'}</Link>
                         </Col>
                         <Col><h2>{dayName}, {monthName} {dateNum}, {yearNum}</h2></Col>
                         <Col>
-                            <Link to={`/myDay/${getNextDay(myDate)}`}>{'>'}</Link>
+                            <Link to={`/myDay/${getNextDay(myDate.getTime())}`}>{'>'}</Link>
                         </Col>
                     </Row>
                 </Container>
