@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert, Modal } from 'react-bootstrap';
 
-import {useMutation} from '@apollo/client';
-import {ADD_EVENT} from '../../utils/mutations';
+import { useMutation, useQuery } from '@apollo/client';
+import { ADD_EVENT } from '../../utils/mutations';
+import { QUERY_ME } from '../../utils/queries';
+import { useRouteLoaderData } from 'react-router-dom';
 
 //import Auth from '../../utils/auth';
 
 const AddEventForm = ({
   eventDate,
 }) => {
+  const { loading, data } = useQuery(QUERY_ME);
+  const userData = {};
+
   console.log("----- Event Date: ----- AddEventForm");
   console.log(eventDate);
-  const myDate = new Date(eventDate);
+  //const myDate = new Date(eventDate);
   // set initial form state
   const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: '', eventTitle: '', eventDescription: '' });
+  if (data) {
+    userData = data.me;
+    setEventFormData({ ...eventFormData, eventUser: userData.username });
+  }
+  if (eventDate) {
+    setEventFormData({ ...eventFormData, eventDate: eventDate});
+  }
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -29,10 +41,10 @@ const AddEventForm = ({
     }
   }, [error])
 
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setEventFormData({ ...eventFormData, [name]: value });
-  // };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setEventFormData({ ...eventFormData, [name]: value });
+  };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -104,6 +116,7 @@ const AddEventForm = ({
             placeholder='Title'
             name='eventTitle'
             value={eventFormData.eventTitle}
+            onChange={handleInputChange}
             required
           />
           <Form.Control.Feedback type='invalid'>Title is required!</Form.Control.Feedback>
@@ -115,7 +128,7 @@ const AddEventForm = ({
             type='text'
             placeholder='Description'
             name='eventDescription'
-    
+            onChange={handleInputChange}
             value={eventFormData.eventDescription}
           />
         </Form.Group>
