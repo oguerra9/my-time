@@ -14,17 +14,17 @@ const AddEventForm = ({
   console.log('----- Event Date: ----- AddEventForm');
   console.log(eventDate);
 
-  const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: '', eventTitle: '', eventDescription: ''});
+  const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: eventDate, eventTitle: '', eventDescription: ''});
 
   if (data) {
     console.log('AddEventForm ----- line 20');
     userData = data.me;
     setEventFormData({ ...eventFormData, eventUser: userData.username });
   } 
-  if (eventDate) {
-    console.log('AddEventForm ----- line 25');
-    setEventFormData({ ...eventFormData, eventDate: eventDate });
-  }
+  // if (eventDate) {
+  //   console.log('AddEventForm ----- line 25');
+  //   setEventFormData({ ...eventFormData, eventDate: eventDate });
+  // }
 
   const [validated] = useState(false);
 
