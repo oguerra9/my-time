@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams, Link } from 'react-router-dom';
 import { Container, Col, Row, Form, Button, Card, CardColumns, Modal } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { ADD_EVENT } from '../utils/mutations';
-import { getDayName, getMonthName } from '../utils/dateFormat';
+import { getDayName, getMonthName, getNextDay, getPrevDay } from '../utils/dateFormat';
 import AddEventForm from '../components/AddEventForm';
 
 const MyDay = () => {
@@ -50,17 +50,21 @@ const MyDay = () => {
     }
 
     const prevDay = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
+        console.log(myDate);
         console.log('prevDay button clicked');
         myDate.setDate(dateNum--);
+        console.log(myDate);
         const timeParam = myDate.getTime();
         return <Navigate to={`/myDay/${timeParam}`} />;
     };
 
     const nextDay = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
+        console.log(myDate);
         console.log('nextDay button clicked');
         myDate.setDate(dateNum++);
+        console.log(myDate);
         const timeParam = myDate.getTime();
         return <Navigate to={`/myDate/${timeParam}`} />;
     };
@@ -74,11 +78,11 @@ const MyDay = () => {
                     </Row>
                     <Row>
                         <Col>
-                            <Button className="btn btn-lg btn-light m-2" onClick={prevDay}>{'<'}</Button>
+                            <Link to={`/myDay/${getPrevDay(myDate)}`}>{'<'}</Link>
                         </Col>
                         <Col><h2>{dayName}, {monthName} {dateNum}, {yearNum}</h2></Col>
                         <Col>
-                            <Button className="btn btn-lg btn-light m-2" onClick={nextDay}>{'>'}</Button>
+                            <Link to={`/myDay/${getNextDay(myDate)}`}>{'>'}</Link>
                         </Col>
                     </Row>
                 </Container>
