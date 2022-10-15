@@ -49,11 +49,12 @@ const AddEventForm = ({
   };
 
   const handleFormSubmit = async (event) => {
-    console.log('handleFormSubmit called ----- AddEventForm');
     event.preventDefault();
+    console.log('handleFormSubmit called ----- AddEventForm');
 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
+      console.log('checkValidity = false ----- AddEventForm');
       event.preventDefault();
       event.stopPropagation();
     }
@@ -182,8 +183,7 @@ const AddEventForm = ({
         <Button
           disabled={!(eventFormData.title)}
           type='submit'
-          variant='success'
-          onClick={handleFormSubmit}>
+          variant='success'>
             Add Event
         </Button>
       </Form>
