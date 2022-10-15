@@ -15,17 +15,22 @@ const AddEventForm = ({
   let monthNum = myDate.getMonth() + 1;
   let dateNum = myDate.getDate();
   let yearNum = myDate.getFullYear();
+  let myTime = myDate.getTime();
 
-  const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: '', eventTitle: '', eventDescription: ''});
+  const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: myDate, eventTitle: '', eventDescription: ''});
 
   const { loading, data } = useQuery(QUERY_ME);
   const userData = {};
 
   if (data) {
+    console.log('user data found');
     userData = data.me;
+    console.log(userData);
     setEventFormData({ ...eventFormData, eventUser: userData.username });
   }
   if (eventDate) {
+    console.log('eventDate found');
+    console.log(eventDate);
     setEventFormData({ ...eventFormData, eventDate: myDate });
   }
 
@@ -60,7 +65,12 @@ const AddEventForm = ({
 
     try {
       const {data} = await addEvent({
-        variables: { ...eventFormData },
+        variables: { 
+          eventUser: eventFormData.eventUser,
+          eventDate: myTime,
+          eventTitle: eventFormData.eventTitle,
+          eventDescription: eventFormData.eventDescription,
+         },
       });
       console.log(data);
     } catch (err) {

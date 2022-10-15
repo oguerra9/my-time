@@ -24,12 +24,18 @@ const MyDay = () => {
     myDate.setSeconds(0);
     myDate.setMilliseconds(0);
 
+    let myTime = myDate.getTime();
+
     let userData = {};
     let myEvents = {};
 
     if (data) {
+        console.log('user data found');
         userData = data.me;
+        console.log(userData);
         myEvents = userData.events;
+        console.log('user events');
+        console.log(myEvents);
     } 
 
     let monthNum = myDate.getMonth();
@@ -41,7 +47,7 @@ const MyDay = () => {
     let todayEvents = [];
 
     for (let i = 0; i < myEvents; i++) {
-        if (myEvents[i].eventDate === myDate.getTime()) {
+        if (parseInt(myEvents[i].eventDate) === myDate.getTime()) {
             todayEvents.push(myEvents[i]);
         }
     }
@@ -112,7 +118,7 @@ const MyDay = () => {
                 <Modal.Header closeButton>
                     <Modal.Title id='addEvent-modal'>New Event</Modal.Title>
                     <AddEventForm
-                        eventDate={myDate.getTime()}
+                        eventDate={myTime}
                     />
                 </Modal.Header>
             </Modal>
