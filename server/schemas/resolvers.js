@@ -26,9 +26,6 @@ const resolvers = {
         event: async (parent, { eventId }) => {
             return Event.findOne({ _id: eventId });
         },
-        // events: async (parent, { startTime, endTime }) => {
-        //     return Event.find({eventTime: { $gt: new Date(startTime), $lt: new Date(endTime)}});
-        // },
     },
 
     Mutation: {
@@ -54,8 +51,8 @@ const resolvers = {
 
             return { token, user };
         },
-        addEvent: async (parent, { eventUser, eventDate, eventTime, eventTitle, eventDescription }) => {
-            const event = await Event.create({ eventUser, eventDate, eventTime, eventTitle, eventDescription });
+        addEvent: async (parent, { eventUser, eventDate, eventTitle, eventDescription }) => {
+            const event = await Event.create({ eventUser, eventDate, eventTitle, eventDescription });
 
             await Event.findOneAndUpdate(
                 { username: eventUser },

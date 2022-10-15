@@ -13,8 +13,6 @@ const Month = () => {
     const { currTime } = useParams();
     const { loading, data } = useQuery(QUERY_ME);
 
-    // const startTime = getMonthStart(currTime);
-    // const endTime = getMonthEnd(currTime);
     let userData = {};
 
     if (data) {

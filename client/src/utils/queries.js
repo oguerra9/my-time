@@ -10,7 +10,6 @@ export const QUERY_ME = gql`
                 eventId
                 eventUser
                 eventDate
-                eventTime
                 eventTitle
                 eventDescription
             }
@@ -24,7 +23,6 @@ export const QUERY_ME = gql`
 //             _id
 //             eventUser
 //             eventDate
-//             eventTime
 //             eventTitle
 //             eventDescription
 //         }

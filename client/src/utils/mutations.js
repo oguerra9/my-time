@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_EVENT = gql`
-    mutation addEvent($eventUser: String!, $eventDate: String!, $eventTime: String!, $eventTitle: String!, $eventDescription: String!) {
-        addEvent(eventUser: $eventUser, eventDate: $eventDate, eventTime: $eventTime, eventDescription: $eventDescription) {
+    mutation addEvent($eventUser: String!, $eventDate: String!, $eventTitle: String!, $eventDescription: String!) {
+        addEvent(eventUser: $eventUser, eventDate: $eventDate, eventDescription: $eventDescription) {
             _id
             username
             email
@@ -34,7 +34,6 @@ export const ADD_EVENT = gql`
                 eventId
                 eventUser
                 eventDate
-                eventTime
                 eventTitle
                 eventDescription
             }
@@ -52,7 +51,6 @@ export const REMOVE_EVENT = gql`
                 eventId
                 eventUser
                 eventDate
-                eventTime
                 eventTitle
                 eventDescription
             }

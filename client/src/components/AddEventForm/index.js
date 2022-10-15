@@ -13,7 +13,7 @@ const AddEventForm = ({
   console.log(eventDate);
   const myDate = new Date(eventDate);
   // set initial form state
-  const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: '', eventTime: '', eventTitle: '', eventDescription: '' });
+  const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: '', eventTitle: '', eventDescription: '' });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -57,7 +57,6 @@ const AddEventForm = ({
     setEventFormData({
       //eventUser: '',
       eventDate: '',
-      eventTime: '',
       eventTitle: '',
       eventDescription: '',
     });
@@ -98,22 +97,6 @@ const AddEventForm = ({
         
           {/* <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback> */}
         
-
-        <Form.Group>
-          <Form.Label htmlFor='eventTime'>Event Time</Form.Label>
-          <Form.Control
-            type='time'
-            step="1"
-            placeholder='Time'
-            name='eventTime'
-            onChange={(ev) => {this.setState({time:ev.target.value})}}
-            className="form-control"
-            // value={this.state.time}
-            value={eventFormData.eventTime}
-          />
-          {/* <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback> */}
-        </Form.Group>
-
         <Form.Group>
           <Form.Label htmlFor='eventTitle'>Title</Form.Label>
           <Form.Control

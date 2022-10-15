@@ -9,7 +9,6 @@ const DayBox = ({
     showDescription = true,
     showDescPreview = true,
     //showEventDate = true,
-    showEventTime = true
 }) => {
     if (dayDate.getDate() === 0) {
         return (
@@ -27,11 +26,7 @@ const DayBox = ({
                     {events && events.map((event) => (
                         <Container className="card-body">
                             <Row>
-                                {showEventTime ? (
-                                    <p>{event.eventTime} - {event.eventTitle}</p>
-                                ) : (
-                                    <p>{event.eventTitle}</p>
-                                )}
+                                <p>{event.eventTitle}</p>
                             </Row>
                         </Container>
                     ))}

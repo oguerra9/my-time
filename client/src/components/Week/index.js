@@ -23,7 +23,6 @@ const Week = ({
                             events={day.events}
                             showDescription={false}
                             showDescPreview={false}
-                            showEventTime={true}
                         />
                     ))}
                 </Row>
@@ -35,7 +34,6 @@ const Week = ({
                             events={day.events}
                             showDescription={false}
                             showDescPreview={true}
-                            showEventTime={true}
                         />
                     ))}
                 </Row>
