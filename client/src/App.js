@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
-import Day from './pages/Day';
 import Month from './pages/Month';
 import MyDay from './pages/MyDay';
 import Week from './pages/Week';

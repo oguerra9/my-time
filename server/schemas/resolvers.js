@@ -13,19 +13,9 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in');
         },
-        users: async () => {
-            return User.find().populate('events');
-        },
-        user: async (parent, { username }) => {
-            return User.findOne({ username }).populate('thoughts');
-        },
-        // events: async (parent, { username }) => {
-        //     const params = username ? { username } : {};
-        //     return Event.find(params).sort({ eventData: -1 });
+        // event: async (parent, { eventId }) => {
+        //     return Event.findOne({ _id: eventId });
         // },
-        event: async (parent, { eventId }) => {
-            return Event.findOne({ _id: eventId });
-        },
     },
 
     Mutation: {
