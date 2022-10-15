@@ -1,87 +1,123 @@
-import React from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Navigate, useParams, Link } from 'react-router-dom';
+import { Container, Col, Row, Form, Button, Card, CardColumns, Modal } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-
-import MonthFormat from '../components/MonthFormat';
+import { QUERY_ME } from '../utils/queries';
+import { ADD_EVENT } from '../utils/mutations';
 import { getNumDays, getFirstWeekDay, getDayName, getMonthName } from '../utils/dateFormat';
 import { getMonthStart, getMonthEnd, getWeekStart, getWeekEnd, getDayStart, getDayEnd, getNextMonth, getPrevMonth, getNextWeek, getPrevWeek, getNextDay, getPrevDay } from '../utils/dateFunctions';
+import AddEventForm from '../components/AddEventForm';
 
-// import { QUERY_EVENTS, QUERY_ME } from '../utils/queries';
-import { QUERY_ME } from '../utils/queries';
-
-const Month = () => {
+const MyMonth = () => {
+    const [ showModal, setShowModal ] = useState(false);
     const { currTime } = useParams();
-    const { loading, data } = useQuery(QUERY_ME);
+    const {loading, data } = useQuery(QUERY_ME);
+
+    const [addEvent, { error }] = useMutation(ADD_EVENT);
+
+    let myDate = new Date ();
+    if (currTime) {
+        myDate = new Date (parseInt(currTime));
+    }
+    myDate.setHours(0);
+    myDate.setMinutes(0);
+    myDate.setSeconds(0);
+    myDate.setMilliseconds(0);
 
     let userData = {};
+    let myEvents = {};
 
     if (data) {
         userData = data.me;
-    }
+        myEvents = userData.events;
+    } 
 
-    console.log("----- user data: -----");
-    console.log(userData);
-    const myEvents = userData.events;
-    console.log("----- my events: -----");
-    console.log(myEvents);
+    let monthNum = myDate.getMonth();
+    let yearNum = myDate.getFullYear();
+    let dateNum = myDate.getDate();
+    let dayName = getDayName(myDate.getDay());
+    let monthName = getMonthName(monthNum);
 
-    const myDate = new Date(parseInt(currTime));
-    let month = myDate.getMonth();
-    let year = myDate.getFullYear();
+    let todayEvents = [];
 
-    const monthEvents = [];
-
-    for (let i = 0; i < myEvents.length; i++) {
-        if (myEvents[i].eventDate.getMonth() === month && myEvents[i].eventDate.getFullYear() === year) {
-            monthEvents.push(myEvents[i]);
+    for (let i = 0; i < myEvents; i++) {
+        if (myEvents[i].eventDate === myDate.getTime()) {
+            todayEvents.push(myEvents[i]);
         }
     }
-     
-
-    const handleNextMonthBtn = async (event) => {
-        event.preventDefault();
-        
-        const nextMonth = myDate.setMonth(month++);
-        const timeParam = nextMonth.getTime();
-        return <Navigate to={`/month/${timeParam}`} />;
-    };
-    
-
-    const handlePrevMonthBtn = async (event) => {
-        event.preventDefault();
-
-        const prevMonth = myDate.setMonth(month--);
-        const timeParam = prevMonth.getTime();
-
-        return <Navigate to={`/month/${timeParam}`} />;
-    };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <h2>LOADING...</h2>;
     }
+
+    // const prevDay = (event) => {
+    //     event.preventDefault();
+    //     console.log(myDate);
+    //     console.log('prevDay button clicked');
+    //     myDate.setDate(dateNum--);
+    //     console.log(myDate);
+    //     const timeParam = myDate.getTime();
+    //     return <Navigate to={`/myDay/${timeParam}`} />;
+    // };
+
+    // const nextDay = (event) => {
+    //     event.preventDefault();
+    //     console.log(myDate);
+    //     console.log('nextDay button clicked');
+    //     myDate.setDate(dateNum++);
+    //     console.log(myDate);
+    //     const timeParam = myDate.getTime();
+    //     return <Navigate to={`/myDate/${timeParam}`} />;
+    // };
 
     return (
         <div>
-            <Container>
-                <Row>
-                    <Button onClick={handlePrevMonthBtn}>Prev Month</Button>
-                    <h3>{getMonthName(myDate.getMonth())}</h3>
-                    <Button onClick={handleNextMonthBtn}>Next Month</Button>
-                </Row>
-                <Row>
-                    <Month 
-                        monthNum={myDate.getMonth()}
-                        year={myDate.getFullYear()}
-                        firstWeekDay={getFirstWeekDay(currTime)}
-                        numDays={getNumDays(myDate.getMonth())}
-                        events={myEvents}
-                    />
-                </Row>
+            <div fluid className="jumbotron text-light bg-dark">
+                <Container>
+                    <Row>
+                        <h1>{userData.firstName}'s Day</h1>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Link to={`/myDay/${getPrevDay(myDate.getTime())}`}>{'<'}</Link>
+                        </Col>
+                        <Col><h2>{dayName}, {monthName} {dateNum}, {yearNum}</h2></Col>
+                        <Col>
+                            <Link to={`/myDay/${getNextDay(myDate.getTime())}`}>{'>'}</Link>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+            <Container className="card">
+                <Container className="card-header">
+                    <h3>Today's Events</h3>
+                </Container>
+                <Container className="card-body">
+                    {todayEvents && todayEvents.map((event) => (
+                        <Row>
+                            <p>{event.eventTitle}</p>
+                        </Row>
+                    ))}
+                    <Row>
+                        <Button onClick={() => setShowModal(true)}>Add Event</Button>
+                    </Row>
+                </Container>
             </Container>
+            <Modal
+                size='lg'
+                show={showModal}
+                onHide={() => setShowModal(false)}
+                aria-labelledby='addEvent-modal'>
+
+                <Modal.Header closeButton>
+                    <Modal.Title id='addEvent-modal'>New Event</Modal.Title>
+                    <AddEventForm
+                        eventDate={myDate.getTime()}
+                    />
+                </Modal.Header>
+            </Modal>
         </div>
     );
-
 };
 
-export default Month;
+export default MyDay;

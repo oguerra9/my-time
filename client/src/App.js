@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
-import Month from './pages/Month';
+import MyMonth from './pages/MyMonth';
 import MyDay from './pages/MyDay';
-import Week from './pages/Week';
+import Week from './pages/MyWeek';
 //import Home from './components/Home';
 import GetStarted from './components/GetStarted';
 import Navbar from './components/NavBar';
@@ -58,7 +58,7 @@ function App() {
                             )}
                             <Route
                                 path="/myMonth/:currTime"
-                                element={<Month />}
+                                element={<MyMonth />}
                             />
                             <Route  
                                 path="/myWeek/:currTime"

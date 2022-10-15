@@ -14,7 +14,7 @@ const Week = ({
         <div>
             {monthView ? (
                 <Row>
-                    <Link to={`/week/${weekStart}`}>
+                    <Link to={`/myWeek/${weekStart}`}>
                         <Col>week</Col>
                     </Link>
                     {days && days.map((day) => (
