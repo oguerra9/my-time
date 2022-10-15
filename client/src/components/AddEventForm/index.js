@@ -6,10 +6,11 @@ import {ADD_EVENT} from '../../utils/mutations';
 
 //import Auth from '../../utils/auth';
 
-
 const AddEventForm = ({
   eventDate,
 }) => {
+  console.log("----- Event Date: ----- AddEventForm");
+  console.log(eventDate);
   // set initial form state
   const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: '', eventTime: '', eventTitle: '', eventDescription: '' });
   // set state for form validation
@@ -54,7 +55,7 @@ const AddEventForm = ({
 
     setEventFormData({
       //eventUser: '',
-      //eventDate: '',
+      eventDate: eventDate,
       eventTime: '',
       eventTitle: '',
       eventDescription: '',
@@ -72,25 +73,25 @@ const AddEventForm = ({
 
         {eventDate ? (
           <Form.Group>
-          <Form.Label htmlFor='eventDate'>Event Date</Form.Label>
-          <Form.Control
-            type='date'
-            placeholder='date'
-            name='eventDate'
-            onChange={(e) => setImmediate(e.target.value)}
-            value={eventFormData.eventDate}
-          />
+            <Form.Label htmlFor='eventDate'>Event Date</Form.Label>
+            <Form.Control
+              type='date'
+              placeholder='date'
+              name='eventDate'
+              onChange={(e) => setImmediate(e.target.value)}
+              value={eventFormData.eventDate}
+            />
           </Form.Group>
         ) : (
           <Form.Group>
-          <Form.Label htmlFor='eventDate'>Event Date</Form.Label>
-          <Form.Control
-            type='date'
-            placeholder='date'
-            name='eventDate'
-            onChange={(e) => setImmediate(e.target.value)}
-            value={eventFormData.eventDate}
-          />
+            <Form.Label htmlFor='eventDate'>Event Date</Form.Label>
+            <Form.Control
+              type='date'
+              placeholder='date'
+              name='eventDate'
+              onChange={(e) => setImmediate(e.target.value)}
+              value={eventFormData.eventDate}
+            />
           </Form.Group>
         )}
         
@@ -139,13 +140,13 @@ const AddEventForm = ({
         <Button
           disabled={!(eventFormData.title)}
           type='submit'
-          variant='success'>
+          variant='success'
+          onClick={handleFormSubmit}>
           Add Event
         </Button>
       </Form>
     </>
   );
 };
-
 
 export default AddEventForm;
