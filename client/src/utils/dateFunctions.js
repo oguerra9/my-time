@@ -93,38 +93,40 @@ export const getDayEnd = (timestamp) => {
 export const getNextMonth = (timestamp) => {
     const myTime = new Date(parseInt(timestamp));
 
-    let year = myTime.getFullYear();
-    let month = myTime.getMonth();
+    let year = parseInt(myTime.getFullYear());
+    let month = parseInt(myTime.getMonth());
 
     if (month === 11) {
-        myTime.setFullYear(year++);
-        myTime.setMonth(0);
+        year++;
+        month = 0;
     } else {
-        myTime.setMonth(month++);
+        month++;
     }
 
-    const myTimeMS = myTime.getTime();
+    const nextMonth = new Date (year, month, 0);
+    const nextMonthMS = nextMonth.getTime();
 
-    return myTimeMS;
+    return nextMonthMS;
 };
 
 // given the date (in milliseconds), determines the current date, sets date to previous month, returns new date in milliseconds
 export const getPrevMonth = (timestamp) => {
     const myTime = new Date(parseInt(timestamp));
 
-    let year = myTime.getFullYear();
-    let month = myTime.getMonth();
+    let year = parseInt(myTime.getFullYear());
+    let month = parseInt(myTime.getMonth());
 
     if (month === 0) {
-        myTime.setFullYear(year--);
-        myTime.setMonth(11);
+        year--;
+        month = 11;
     } else {
-        myTime.setMonth(month--);
+        month--;
     }
 
-    const myTimeMS = myTime.getTime();
-    
-    return myTimeMS;
+    const prevMonth = new Date(year, month, 0);
+    const prevMonthMS = prevMonth.getTime();
+
+    return prevMonthMS;
 };
 
 // given the date (in milliseconds), adds 7 days (in milliseconds) to change the date to the following week, returns new date in milliseconds
