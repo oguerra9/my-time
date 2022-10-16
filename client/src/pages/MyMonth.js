@@ -11,6 +11,7 @@ import MonthFormat from '../components/MonthFormat';
 
 const MyMonth = () => {
     //const [ showModal, setShowModal ] = useState(false);
+    console.log('myMonth page called');
     const { currTime } = useParams();
     const {loading, data } = useQuery(QUERY_ME);
 
@@ -18,6 +19,8 @@ const MyMonth = () => {
 
     let myDate = new Date ();
     if (currTime) {
+        console.log('----- currTime found ----- MyMonth');
+        console.log(currTime);
         myDate = new Date (parseInt(currTime));
         myDate.setHours(0);
         myDate.setMinutes(0);
@@ -53,10 +56,12 @@ const MyMonth = () => {
     let monthEvents = [];
 
     for (let i = 0; i < myEvents; i++) {
+        console.log('----- adding events ----- MyMonth');
         const currEventDate = new Date(parseInt(myEvents[i].eventDate));
         const currEventDateMS = parseInt(currEventDate.getTime());
 
         if (currEventDateMS >= monthStart && currEventDateMS <= monthEnd) {
+            console.log('----- event matching time frame ----- MyMonth');
             monthEvents.push(myEvents[i]);
         }
     }
