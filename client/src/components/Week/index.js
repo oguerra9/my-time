@@ -14,9 +14,7 @@ const Week = ({
         <Container>
             {monthView ? (
                 <Row>
-                    <Link to={`/myWeek/${days[0].dayDate}`}>
-                        <Col>week</Col>
-                    </Link>
+                    <Col>Week</Col>
                     {days && days.map((day) => (
                         <Col>
                             <DayBox 
