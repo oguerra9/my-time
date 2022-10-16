@@ -91,10 +91,16 @@ export const getDayEnd = (timestamp) => {
 
 // given the date (in milliseconds), determines the current date, sets date to next month, returns new date in milliseconds
 export const getNextMonth = (timestamp) => {
+    console.log('===== getNextMonth called ===== dateFunctions/getNextMonth');
     const myTime = new Date(parseInt(timestamp));
+    console.log('----- currTime ----- dateFunctions/getNextMonth');
 
     let year = parseInt(myTime.getFullYear());
     let month = parseInt(myTime.getMonth());
+    console.log('----- year ----- dateFunctions/getNextMonth');
+    console.log(year);
+    console.log('----- month ----- dateFunctions/getNextMonth');
+    console.log(month);
 
     if (month === 11) {
         year++;
@@ -104,6 +110,8 @@ export const getNextMonth = (timestamp) => {
     }
 
     const nextMonth = new Date (year, month, 0);
+    console.log('----- next month ----- dateFunctions/getNextMonth');
+    console.log(nextMonth);
     const nextMonthMS = nextMonth.getTime();
 
     return nextMonthMS;
@@ -111,10 +119,16 @@ export const getNextMonth = (timestamp) => {
 
 // given the date (in milliseconds), determines the current date, sets date to previous month, returns new date in milliseconds
 export const getPrevMonth = (timestamp) => {
+    console.log('===== getPrevMonth called ===== dateFunctions/getPrevMonth');
     const myTime = new Date(parseInt(timestamp));
+    console.log('----- currTime ----- dateFunctions/getPrevMonth');
+    console.log(myTime);
 
     let year = parseInt(myTime.getFullYear());
     let month = parseInt(myTime.getMonth());
+    console.log('----- year ----- dateFunctions/getPrevMonth');
+    console.log(year);
+    console.log('----- month ----- dateFunctions/getPrevMonth');
 
     if (month === 0) {
         year--;
@@ -124,6 +138,7 @@ export const getPrevMonth = (timestamp) => {
     }
 
     const prevMonth = new Date(year, month, 0);
+    console.log('----- previous month ----- dateFunction/getPrevMonth');
     const prevMonthMS = prevMonth.getTime();
 
     return prevMonthMS;
