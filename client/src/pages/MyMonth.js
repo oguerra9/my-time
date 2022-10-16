@@ -99,11 +99,11 @@ const MyMonth = () => {
                     </Row>
                     <Row>
                         <Col>
-                            <Link to={`/myMonth/${getPrevMonth(myDate.getTime())}`}>{'<'}</Link>
+                            <Link to={`/myMonth/${getPrevMonth(monthStart)}`}>{'<'}</Link>
                         </Col>
                         <Col><h2>{monthName} {yearNum}</h2></Col>
                         <Col>
-                            <Link to={`/myMonth/${getNextMonth(myDate.getTime())}`}>{'>'}</Link>
+                            <Link to={`/myMonth/${getNextMonth(monthStart)}`}>{'>'}</Link>
                         </Col>
                     </Row>
                 </Container>

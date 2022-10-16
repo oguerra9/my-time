@@ -71,7 +71,7 @@ const AddEventForm = ({
 
     try {
       const {data} = await addEvent({
-        variables: { ...eventFormData },
+        variables: { eventData: { ...eventFormData } },
       });
       console.log('----- data to be added: ----- AddEventForm');
       console.log(data);

@@ -24,9 +24,26 @@ export const ADD_USER = gql`
     }
 `;
 
+// export const ADD_EVENT = gql`
+//     mutation addEvent($eventUser: String!, $eventDate: String!, $eventTitle: String!, $eventDescription: String!) {
+//         addEvent(eventUser: $eventUser, eventDate: $eventDate, eventDescription: $eventDescription) {
+//             _id
+//             username
+//             email
+//             events {
+//                 eventId
+//                 eventUser
+//                 eventDate
+//                 eventTitle
+//                 eventDescription
+//             }
+//         }
+//     } 
+// `;
+
 export const ADD_EVENT = gql`
-    mutation addEvent($eventUser: String!, $eventDate: String!, $eventTitle: String!, $eventDescription: String!) {
-        addEvent(eventUser: $eventUser, eventDate: $eventDate, eventDescription: $eventDescription) {
+    mutation addEvent($eventData: EventInput!) {
+        addEvent(eventData: $eventData) {
             _id
             username
             email

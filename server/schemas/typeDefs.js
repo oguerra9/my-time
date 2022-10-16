@@ -24,6 +24,14 @@ const typeDefs = gql`
         user: User
     }
 
+    input EventInput {
+        eventId: String!
+        eventUser: String!
+        eventDate: String!
+        eventTitle: String!
+        eventDescription: String!
+    }
+
     type Query {
         me: User
         event(eventId: ID!): Event
@@ -32,7 +40,7 @@ const typeDefs = gql`
     type Mutation {
         addUser(firstName: String!, lastName: String!, username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
-        addEvent(eventUser: String!, eventDate: String!, eventTitle: String!, eventDescription: String!): Event
+        addEvent(eventData: EventInput!): Event
         removeEvent(eventId: ID!): Event
     }
 `;

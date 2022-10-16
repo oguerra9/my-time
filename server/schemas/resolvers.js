@@ -43,16 +43,30 @@ const resolvers = {
 
             return { token, user };
         },
-        addEvent: async (parent, { eventUser, eventDate, eventTitle, eventDescription }) => {
-            const event = await Event.create({ eventUser, eventDate, eventTitle, eventDescription });
+        addEvent: async (parent, { eventData }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { events: eventData } },
+                    { new: true }
+                );
+                return updatedUser;
+            }
 
-            await Event.findOneAndUpdate(
-                { username: eventUser },
-                { $addToSet: { event } }
-            );
+            throw new AuthenticationError('You need to be loggged in!');
         },
-        removeEvent: async (parent, { eventId }) => {
-            return Event.findOneAndDelete({ _id: eventId });
+        removeEvent: async (parent, { eventId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { events: { eventId } } },
+                    { new: true }
+                );
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
         },
     },
 };
