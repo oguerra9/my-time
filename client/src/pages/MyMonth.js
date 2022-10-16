@@ -10,7 +10,7 @@ import AddEventForm from '../components/AddEventForm';
 import MonthFormat from '../components/MonthFormat';
 
 const MyMonth = () => {
-    const [ showModal, setShowModal ] = useState(false);
+    //const [ showModal, setShowModal ] = useState(false);
     const { currTime } = useParams();
     const {loading, data } = useQuery(QUERY_ME);
 
@@ -19,12 +19,12 @@ const MyMonth = () => {
     let myDate = new Date ();
     if (currTime) {
         myDate = new Date (parseInt(currTime));
+        myDate.setHours(0);
+        myDate.setMinutes(0);
+        myDate.setSeconds(0);
+        myDate.setMilliseconds(0);
     }
-    myDate.setHours(0);
-    myDate.setMinutes(0);
-    myDate.setSeconds(0);
-    myDate.setMilliseconds(0);
-
+    
     let myTime = myDate.getTime();
 
     let userData = {};
