@@ -16,3 +16,7 @@ body {
     font-style: italic;
   }
   
+  .card {
+    height: 300;
+    width: 200;
+  }

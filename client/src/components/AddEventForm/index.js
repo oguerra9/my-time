@@ -32,6 +32,16 @@ const AddEventForm = ({
 
   const [addEvent, { error }] = useMutation(ADD_EVENT);
 
+  // const [addEvent, { error }] = useMutation(ADD_EVENT, {
+  //   update(cache, { data: { addEvent } }) {
+  //     try {
+  //       const { events } = cache.readQuery({ query: QUERY_ME});
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   }
+  // });
+
   useEffect(() => {
     if (error) {
       console.log('AddEventForm ----- line 37');
@@ -63,6 +73,7 @@ const AddEventForm = ({
       const {data} = await addEvent({
         variables: { ...eventFormData },
       });
+      console.log('----- data to be added: ----- AddEventForm');
       console.log(data);
     } catch (err) {
       console.error(err);

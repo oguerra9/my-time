@@ -122,7 +122,9 @@ export const getPrevMonth = (timestamp) => {
         myTime.setMonth(month--);
     }
 
-    return myTime;
+    const myTimeMS = myTime.getTime();
+    
+    return myTimeMS;
 };
 
 // given the date (in milliseconds), adds 7 days (in milliseconds) to change the date to the following week, returns new date in milliseconds
