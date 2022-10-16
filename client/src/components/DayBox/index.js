@@ -6,9 +6,7 @@ import events from 'inquirer/lib/utils/events';
 const DayBox = ({
     dayDate, 
     events,
-    showDescription = true,
     showDescPreview = true,
-    //showEventDate = true,
 }) => {
     if (dayDate.getDate() === 0) {
         return (
@@ -17,23 +15,57 @@ const DayBox = ({
     }
 
     return (
-        <Link to={`/days/dayDate`}>
-            <Col key={dayDate.getTime()}>
-                <div className="card">
-                    <h4 className="card-header bg-primary">
-                        {dayDate.getDate()}
-                    </h4>
+        <Container className='card'>
+            <div className='card-header'>
+                {dayDate}
+            </div>
+            {showDescPreview ? (
+                <div className='card-body'>
                     {events && events.map((event) => (
-                        <Container className="card-body">
+                        <Row>
                             <Row>
-                                <p>{event.eventTitle}</p>
+                                {event.eventTitle}
                             </Row>
-                        </Container>
+                            <Row>
+                                {((event.eventDescription.length) > 50) ? (
+                                    <Row>{(event.eventDescription).substring(0,49)}...</Row>
+                                ) : (
+                                    <Row>{(event.eventDescription)}</Row>
+                                )}
+                            </Row>
+                        </Row>
                     ))}
-                </div>
-            </Col>
-        </Link>
+                </div>    
+            ) : (
+                <div className='card-body'>
+                    {events && events.map((event) => (
+                        <Row>
+                            {event.eventTitle}
+                        </Row>
+                    ))}
+                </div>  
+            )}
+        </Container>
     );
+
+    // return (
+    //     <Link to={`/days/${dayDate}`}>
+    //         <Col key={dayDate.getTime()}>
+    //             <div className="card">
+    //                 <h4 className="card-header bg-primary">
+    //                     {dayDate.getDate()}
+    //                 </h4>
+    //                 {events && events.map((event) => (
+    //                     <Container className="card-body">
+    //                         <Row>
+    //                             <p>{event.eventTitle}</p>
+    //                         </Row>
+    //                     </Container>
+    //                 ))}
+    //             </div>
+    //         </Col>
+    //     </Link>
+    // );
 };
 
 export default DayBox;

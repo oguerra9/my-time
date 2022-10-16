@@ -1,45 +1,76 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import events from 'inquirer/lib/utils/events';
 import DayBox from '../DayBox';
 
 const Week = ({
     days, 
-    weekStart,
     monthView = true,
 }) => {
 
+
     return (
-        <div>
+        <Container>
             {monthView ? (
                 <Row>
-                    <Link to={`/myWeek/${weekStart}`}>
+                    <Link to={`/myWeek/${days[0].dayDate}`}>
                         <Col>week</Col>
                     </Link>
                     {days && days.map((day) => (
-                        <DayBox
-                            dayDate={day.dayDate}
-                            events={day.events}
-                            showDescription={false}
-                            showDescPreview={false}
-                        />
+                        <Col>
+                            <DayBox 
+                                dayDate={day.dayDate}
+                                events={day.events}
+                                showDescPreview={false} />
+                        </Col>
                     ))}
                 </Row>
             ) : (
                 <Row>
                     {days && days.map((day) => (
-                        <DayBox
-                            dayDate={day.dayDate}
-                            events={day.events}
-                            showDescription={false}
-                            showDescPreview={true}
-                        />
+                        <Col>
+                            <DayBox
+                                dayDate={day.dayDate}
+                                events={day.events}
+                                showDescPreview={true} />
+                        </Col>
                     ))}
                 </Row>
-            )}   
-        </div>          
+            )}
+                
+        </Container>
     );
+
+    // return (
+    //     <div>
+    //         {monthView ? (
+    //             <Row>
+    //                 <Link to={`/myWeek/${weekStart}`}>
+    //                     <Col>week</Col>
+    //                 </Link>
+    //                 {days && days.map((day) => (
+    //                     <DayBox
+    //                         dayDate={day.dayDate}
+    //                         events={day.events}
+
+    //                         showDescPreview={false}
+    //                     />
+    //                 ))}
+    //             </Row>
+    //         ) : (
+    //             <Row>
+    //                 {days && days.map((day) => (
+    //                     <DayBox
+    //                         dayDate={day.dayDate}
+    //                         events={day.events}
+    //                         showDescPreview={true}
+    //                     />
+    //                 ))}
+    //             </Row>
+    //         )}   
+    //     </div>          
+    // );
 };
 
 export default Week;

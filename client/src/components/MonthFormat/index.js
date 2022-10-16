@@ -4,12 +4,13 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_EVENT } from '../../utils/mutations';
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Modal } from 'react-bootstrap';
 
 import Auth from '../../utils/auth';
 import { getNumDays, getFirstWeekDay, getDayName, getMonthName } from '../../utils/dateFormat';
 import events from 'inquirer/lib/utils/events';
 import Week from '../Week';
+//import AddEventForm from '../AddEventForm';
 
 
 const MonthFormat = ({
@@ -19,6 +20,7 @@ const MonthFormat = ({
     numDays,
     events,
 }) => {
+    //const [showModal, setShowModal] = useState(false);
 
     const monthDays = [];
     const dayOffset = firstWeekDay;
@@ -79,27 +81,14 @@ const MonthFormat = ({
                     <Col>Saturday</Col>
                 </Row>
                 {monthWeeks && monthWeeks.map((week) => (
-                    <Week
-                        days={week.days}
-                        monthView={true}
-                    />
+                    <Row>
+                        <Week
+                            days={week.days}
+                            monthView={true}
+                        />
+                    </Row>
                 ))}
             </Container>
-            <Modal
-                size='lg'
-                show={showModal}
-                onHide={() => setShowModal(false)}
-                aria-labelledby='addEvent-modal'>
-
-                <Modal.Header closeButton>
-                    <Modal.Title id='addEvent-modal'>
-                        New Event
-                    </Modal.Title>
-                    <AddEventForm
-                        eventDate={myTime}
-                    />
-                </Modal.Header>
-            </Modal>
         </div>
     );
 };
