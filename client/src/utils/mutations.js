@@ -43,13 +43,41 @@ export const ADD_USER = gql`
 export const ADD_EVENT = gql`
     mutation addEvent($eventData: EventInput!) {
         addEvent(eventData: $eventData) {
-            eventId
-            eventDate
-            eventTitle
-            eventDescription
+            _id
+            firstName
+            lastName
+            username
+            email
+            events {
+                eventId
+                eventDate
+                eventTitle
+                eventDescription
+            }
         }
     } 
 `;
+
+/*
+
+export const ADD_EVENT = gql`
+    mutation addEvent($eventId: String!, $eventDate: String, $eventTitle: String!, eventDescription: String) {
+        addEvent(eventId: $eventId, eventDate: $eventDate, eventTitle: $eventTitle, eventDescription: $eventDescription) {
+            _id
+            firstName
+            lastName
+            username
+            email
+            events {
+                eventId
+                eventDate
+                eventTitle
+                eventDescription
+            }
+        }
+    } 
+`;
+*/
 
 // export const REMOVE_EVENT = gql`
 //     mutation removeEvent($eventId: ID!) {

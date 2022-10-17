@@ -13,7 +13,7 @@ const typeDefs = gql`
     }
 
     type Event {
-        eventId: ID!
+        eventId: String!
         eventDate: String
         eventTitle: String!
         eventDescription: String
