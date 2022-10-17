@@ -15,7 +15,7 @@ const DayBox = ({
     }
 
     return (
-        <Card className='square border border-dark'>
+        <Card>
             <Card.Title>
                 {dayDate}
             </Card.Title>

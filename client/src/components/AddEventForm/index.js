@@ -16,8 +16,11 @@ const AddEventForm = ({
 
   console.log('----- Event Date: ----- AddEventForm');
   console.log(eventDate);
+  
+  const userIdNum = parseInt(userData._id);
+  const eventIdNum = userIdNum + userData.eventCount;
 
-  const [eventFormData, setEventFormData] = useState({ eventId: (parseInt(userData._id) + userData.eventCount), eventDate: eventDate, eventTitle: '', eventDescription: ''});
+  const [eventFormData, setEventFormData] = useState({ eventId: eventIdNum, eventDate: eventDate, eventTitle: '', eventDescription: ''});
 
   const [savedEvents, setSavedEvents] = useState([]);
 
@@ -96,6 +99,8 @@ const AddEventForm = ({
       });
       console.log(savedEvents);
       setSavedEvents([...savedEvents, eventFormData]);
+
+      window.location.reload();
     } catch (err) {
       console.error(err);
       setShowAlert(true);

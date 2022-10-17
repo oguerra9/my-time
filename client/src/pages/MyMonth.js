@@ -19,8 +19,8 @@ const MyMonth = () => {
 
     let myDate = new Date ();
     if (currTime) {
-        console.log('----- currTime found ----- MyMonth');
-        console.log(currTime);
+        //console.log('----- currTime found ----- MyMonth');
+        //console.log(currTime);
         myDate = new Date (parseInt(currTime));
         myDate.setHours(0);
         myDate.setMinutes(0);
@@ -90,14 +90,20 @@ const MyMonth = () => {
     //     return <Navigate to={`/myDate/${timeParam}`} />;
     // };
 
-    const prevDay = (event) => {
+    // const prevMonthBtn = (event) => {
+    //     console.log('prev month button clicked');
+    //     return <Navigate to={`myDay/${getPrevMonth(currTime)}`} replace={true} />;
+    // };
 
-    };
+    // const nextMonthBtn = (event) => {
+    //     console.log('next month button clicked');
+    //     return <Navigate to={`myDay/${getNextMonth(currTime)}`} replace={true} />;
+    // };
 
-    const nextDay = (event) => {
-
-    };
-
+    console.log('=============================');
+    console.log('=============================');
+    const prevMonthTime = getPrevMonth(currTime);
+    const nextMonthTime = getNextMonth(currTime);
     return (
         <div>
             <div fluid className="jumbotron text-light bg-dark">
@@ -107,11 +113,15 @@ const MyMonth = () => {
                     </Row>
                     <Row>
                         <Col>
-                            <Link to={`/myMonth/${getPrevMonth(monthStart)}`}>{'<'}</Link>
+                            <Button>
+                                <Link to={`/myMonth/${prevMonthTime}`}>prev</Link>
+                            </Button>
                         </Col>
                         <Col><h2>{monthName} {yearNum}</h2></Col>
                         <Col>
-                            <Link to={`/myMonth/${getNextMonth(monthStart)}`}>{'>'}</Link>
+                            <Button>
+                                <Link to={`/myMonth/${nextMonthTime}`}>next</Link>
+                            </Button>
                         </Col>
                     </Row>
                 </Container>
