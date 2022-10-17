@@ -7,7 +7,7 @@ export const QUERY_ME = gql`
             username
             email
             events {
-                eventId
+                _id
                 eventUser
                 eventDate
                 eventTitle

@@ -96,11 +96,11 @@ const MyDay = () => {
                     </Row>
                 </Container>
             </div>
-            <Container className="card">
-                <Container className="card-header">
+            <Card>
+                <Card.Title>
                     <h3>Today's Events</h3>
-                </Container>
-                <Container className="card-body">
+                </Card.Title>
+                <Card.Body>
                     {todayEvents && todayEvents.map((event) => (
                         <Row>
                             <p>{event.eventTitle}</p>
@@ -109,8 +109,8 @@ const MyDay = () => {
                     <Row>
                         <Button onClick={() => setShowModal(true)}>Add Event</Button>
                     </Row>
-                </Container>
-            </Container>
+                </Card.Body>
+            </Card>
             <Modal
                 size='lg'
                 show={showModal}

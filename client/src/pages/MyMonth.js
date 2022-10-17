@@ -90,6 +90,14 @@ const MyMonth = () => {
     //     return <Navigate to={`/myDate/${timeParam}`} />;
     // };
 
+    const prevDay = (event) => {
+
+    };
+
+    const nextDay = (event) => {
+
+    };
+
     return (
         <div>
             <div fluid className="jumbotron text-light bg-dark">

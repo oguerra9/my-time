@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import events from 'inquirer/lib/utils/events';
 
 const DayBox = ({
@@ -15,12 +15,12 @@ const DayBox = ({
     }
 
     return (
-        <Container className='card square border border-dark'>
-            <div className='card-header'>
+        <Card className='square border border-dark'>
+            <Card.Title>
                 {dayDate}
-            </div>
+            </Card.Title>
             {showDescPreview ? (
-                <div className='card-body'>
+                <Card.Body>
                     {events && events.map((event) => (
                         <Row>
                             <Row>
@@ -35,17 +35,17 @@ const DayBox = ({
                             </Row>
                         </Row>
                     ))}
-                </div>    
+                </Card.Body>    
             ) : (
-                <div className='card-body'>
+                <Card.Body>
                     {events && events.map((event) => (
                         <Row>
                             {event.eventTitle}
                         </Row>
                     ))}
-                </div>  
+                </Card.Body>  
             )}
-        </Container>
+        </Card>
     );
 
     // return (
