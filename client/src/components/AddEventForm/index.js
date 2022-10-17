@@ -17,14 +17,14 @@ const AddEventForm = ({
   console.log('----- Event Date: ----- AddEventForm');
   console.log(eventDate);
 
-  const [eventFormData, setEventFormData] = useState({ eventDate: eventDate, eventTitle: '', eventDescription: ''});
+  const [eventFormData, setEventFormData] = useState({ eventId: (parseInt(userData._id) + userData.eventCount), eventDate: eventDate, eventTitle: '', eventDescription: ''});
 
   const [savedEvents, setSavedEvents] = useState([]);
 
   if (data) {
     console.log('AddEventForm ----- line 20');
     userData = data.me;
-    setEventFormData({ ...eventFormData });
+    //setEventFormData({ ...eventFormData });
   } 
   // if (eventDate) {
   //   console.log('AddEventForm ----- line 25');
@@ -92,12 +92,7 @@ const AddEventForm = ({
 
     try {
       const { data } = await addEvent({
-        variables: { eventData: {
-          eventId: (parseInt(userData._id) + (userData.eventCount)),
-          eventDate: eventFormData.eventDate,
-          eventTitle: eventFormData.eventTitle,
-          eventDescription: eventFormData.eventDescription,
-        }}
+        variables: { eventData: [ ...eventFormData ]}
       });
       console.log(savedEvents);
       setSavedEvents([...savedEvents, eventFormData]);

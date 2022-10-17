@@ -83,7 +83,7 @@ const MyDay = () => {
             <div fluid className="jumbotron text-light bg-dark">
                 <Container>
                     <Row>
-                        <h1>{userData.firstName}'s Day</h1>
+                        <h1>{userData.username}'s Day</h1>
                     </Row>
                     <Row>
                         <Col>
