@@ -6,7 +6,7 @@ import { ADD_EVENT } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
-import { saveEvents, getSavedEvents } from '../../utils/localStorage';
+import { addMyEvent, getMyEvents } from '../../utils/localStorage';
 
 const AddEventForm = ({
   eventDate,
@@ -22,7 +22,7 @@ const AddEventForm = ({
 
   const [eventFormData, setEventFormData] = useState({ eventId: eventIdNum, eventDate: eventDate, eventTitle: '', eventDescription: ''});
 
-  const [savedEvents, setSavedEvents] = useState([]);
+  const [myEvents, setMyEvents] = useState([]);
 
   if (data) {
     console.log('AddEventForm ----- line 20');
@@ -61,7 +61,7 @@ const AddEventForm = ({
   // }, [error])
 
   useEffect(() => {
-    return () => saveEvents(savedEvents);
+    return () => addMyEvent(myEvents);
   });
 
   const handleInputChange = (event) => {
@@ -110,8 +110,8 @@ const AddEventForm = ({
          },
       });
       console.log('----- addEventData SUCCESS ----- AddEventForm');
-      console.log(savedEvents);
-      setSavedEvents([...savedEvents, eventFormData]);
+      console.log(myEvents);
+      setMyEvents([...myEvents, eventFormData]);
 
       // window.location.reload();
     } catch (err) {
