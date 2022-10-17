@@ -74,6 +74,8 @@ const AddEventForm = ({
       event.stopPropagation();
     }
 
+    handleSaveEvent();
+
     setEventFormData({
       eventDate: '',
       eventTitle: '',
@@ -81,7 +83,7 @@ const AddEventForm = ({
     });
   };
 
-  const handleSaveEvent = async (myEvent) => {
+  const handleSaveEvent = async () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -90,10 +92,15 @@ const AddEventForm = ({
 
     try {
       const { data } = await addEvent({
-        variables: { eventData: { ...myEvent } },
+        variables: { eventData: {
+          eventId: (parseInt(userData._id) + (userData.events.length)),
+          eventDate: eventFormData.eventDate,
+          eventTitle: eventFormData.eventTitle,
+          eventDescription: eventFormData.eventDescription,
+        }}
       });
       console.log(savedEvents);
-      setSavedEvents([...savedEvents, myEvent]);
+      setSavedEvents([...savedEvents, eventFormData]);
     } catch (err) {
       console.error(err);
       setShowAlert(true);

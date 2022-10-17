@@ -5,9 +5,6 @@ export const getSavedEvents = () => {
   
     return savedEvents;
 };
-  
-// testing here
-
 
 export const saveEvent = (eventArr) => {
     if (eventArr.length) {
@@ -17,22 +14,22 @@ export const saveEvent = (eventArr) => {
     }
 };
   
-export const removeEvent = (eventId) => {
-    const savedEvents = localStorage.getItem('saved_events')
-      ? JSON.parse(localStorage.getItem('saved_events'))
-      : null;
+// export const removeEvent = (eventId) => {
+//     const savedEvents = localStorage.getItem('saved_events')
+//       ? JSON.parse(localStorage.getItem('saved_events'))
+//       : null;
   
-    if (!savedEvents) {
-      return false;
-    }
+//     if (!savedEvents) {
+//       return false;
+//     }
   
-    let updatedSavedEvents = [];
+//     let updatedSavedEvents = [];
 
-    if (savedEvents) {
-      updatedSavedEvents = savedEvents.filter((savedEvent) => savedEvent._id !== eventId);
-    }
-    localStorage.setItem('saved_events', JSON.stringify(updatedSavedEvents));
+//     if (savedEvents) {
+//       updatedSavedEvents = savedEvents.filter((savedEvent) => savedEvent._id !== eventId);
+//     }
+//     localStorage.setItem('saved_events', JSON.stringify(updatedSavedEvents));
   
-    return true;
-};
+//     return true;
+// };
   
