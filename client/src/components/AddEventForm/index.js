@@ -102,18 +102,18 @@ const AddEventForm = ({
 
     try {
       const { data } = await addEvent({
-        variables: { eventData: { 
+        variables: {
           eventIdNum,
           eventDate,
           eventTitle,
           eventDescription,
-         } },
+         },
       });
       console.log('----- addEventData SUCCESS ----- AddEventForm');
       console.log(savedEvents);
       setSavedEvents([...savedEvents, eventFormData]);
 
-      window.location.reload();
+      // window.location.reload();
     } catch (err) {
       console.error(err);
       setShowAlert(true);

@@ -43,11 +43,14 @@ const resolvers = {
 
             return { token, user };
         },
-        addEvent: async (parent, { eventData }, context) => {
+        addEvent: async (parent, { eventId, eventDate, eventTitle, eventDescription }, context) => {
             if (context.user) {
                 const updatedUser = await User.findByIdAndUpdate(
-                    { _id: context.user._id },
-                    { $addToSet: { events: eventData } },
+                    { _id: eventId },
+                    { $addToSet: {
+                            events: { eventId, eventDate, eventTitle, eventDescription },
+                        },
+                    },
                     { new: true }
                 );
                 return updatedUser;
