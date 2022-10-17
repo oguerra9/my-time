@@ -13,14 +13,36 @@ const resolvers = {
     },
 
     Mutation: {
+        // addUser: async (parent, { firstName, lastName, username, email, password }) => {
+        //     const user = await User.create({ firstName, lastName, username, email, password });
+        //     const token = signToken(user);
+        //     return { token, user };
+        // },
+        // login: async (parent, { email, password }) => {
+        //     const user = await User.findOne({ email });
+
+        //     if (!user) {
+        //         throw new AuthenticationError('No user found with this email address');
+        //     }
+
+        //     const correctPw = await user.isCorrectPassword(password);
+
+        //     if (!correctPw) {
+        //         throw new AuthenticationError('Incorrect credentials');
+        //     }
+
+        //     const token = signToken(user);
+
+        //     return { token, user };
+        // },
         addUser: async (parent, { firstName, lastName, username, email, password }) => {
             const user = await User.create({ firstName, lastName, username, email, password });
             const token = signToken(user);
             return { token, user };
         },
         login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
-
+            const user = await User.findOne({ email }).select('-__v -password');
+            
             if (!user) {
                 throw new AuthenticationError('No user found with this email address');
             }
@@ -28,7 +50,7 @@ const resolvers = {
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new AuthenticationError('Incorrect credentials');
+                throw new AuthenticationError('Email and password do not match');
             }
 
             const token = signToken(user);
