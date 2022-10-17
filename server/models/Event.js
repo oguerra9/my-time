@@ -1,16 +1,14 @@
-const { Schema, model } = require('mongoose');
-//const dateFormat = require('../utils/dateFormat');
+const { Schema } = require('mongoose');
 
 const eventSchema = new Schema({
-    eventUser: {
-        type: String,
+    eventId: {
+        type: String, 
         required: true,
-        trim: true,
     },
     eventDate: {
         type: String,
-        trim: true,
-        default: "0",
+        trim: true, 
+        default: '0',   
     },
     eventTitle: {
         type: String,
@@ -25,8 +23,35 @@ const eventSchema = new Schema({
     },
 });
 
-//const Event = model('Event', eventSchema);
+module.exports = eventSchema;
 
-//module.exports = { Event };
-//module.exports = { eventSchema, Event };
-module.exports = { eventSchema };
+
+
+
+// const { Schema, model } = require('mongoose');
+// //const dateFormat = require('../utils/dateFormat');
+
+// const eventSchema = new Schema({
+//     eventDate: {
+//         type: String,
+//         trim: true,
+//         default: "0",
+//     },
+//     eventTitle: {
+//         type: String,
+//         required: true,
+//         minlength: 1,
+//         maxlength: 100,
+//         trim: true,
+//     },
+//     eventDescription: {
+//         type: String,
+//         trim: true,
+//     },
+// });
+
+// //const Event = model('Event', eventSchema);
+
+// //module.exports = { Event };
+// //module.exports = { eventSchema, Event };
+// module.exports = { eventSchema };

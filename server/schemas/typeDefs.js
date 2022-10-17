@@ -2,20 +2,20 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
     type User {
-        _id: ID
-        firstName: String
-        lastName: String
-        username: String
-        email: String
-        password: String
-        events: [Event]!
+        _id: ID!
+        firstName: String!
+        lastName: String!
+        username: String!
+        email: String!
+        password: String!
+        eventCount: Int
+        events: [Event]
     }
 
     type Event {
-        _id: ID
-        eventUser: String
+        eventId: ID!
         eventDate: String
-        eventTitle: String
+        eventTitle: String!
         eventDescription: String
     }
 
@@ -26,15 +26,13 @@ const typeDefs = gql`
 
     input EventInput {
         eventId: String!
-        eventUser: String!
-        eventDate: String!
+        eventDate: String
         eventTitle: String!
-        eventDescription: String!
+        eventDescription: String
     }
 
     type Query {
         me: User
-        event(eventId: ID!): Event
     }
 
     type Mutation {
