@@ -5,6 +5,9 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_EVENT } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
+import Auth from '../../utils/auth';
+import { saveEvents, getSavedEvents } from '../../utils/localStorage';
+
 const AddEventForm = ({
   eventDate,
 }) => {
@@ -15,6 +18,8 @@ const AddEventForm = ({
   console.log(eventDate);
 
   const [eventFormData, setEventFormData] = useState({ eventUser: '', eventDate: eventDate, eventTitle: '', eventDescription: ''});
+
+  const [savedEvents, setSavedEvents] = useState([]);
 
   if (data) {
     console.log('AddEventForm ----- line 20');
@@ -69,22 +74,30 @@ const AddEventForm = ({
       event.stopPropagation();
     }
 
-    try {
-      const {data} = await addEvent({
-        variables: { eventData: { ...eventFormData } },
-      });
-      console.log('----- data to be added: ----- AddEventForm');
-      console.log(data);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
-
     setEventFormData({
       eventDate: '',
       eventTitle: '',
       eventDescription: '',
     });
+  };
+
+  const handleSaveEvent = async (myEvent) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const { data } = await addEvent({
+        variables: { eventData: { ...myEvent } },
+      });
+      console.log(savedEvents);
+      setSavedEvents([...savedEvents, myEvent]);
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
+    }
   };
 
   let myDate = new Date (parseInt(eventDate));

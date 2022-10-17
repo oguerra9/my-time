@@ -11,7 +11,7 @@ const Week = ({
 
 
     return (
-        <Container>
+        <Container square border border-primary>
             {monthView ? (
                 <Row>
                     <Col>Week</Col>
