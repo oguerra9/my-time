@@ -95,7 +95,7 @@ const AddEventForm = ({
 
     try {
       const { data } = await addEvent({
-        variables: { eventData: [ ...eventFormData ]}
+        variables: { ...eventFormData },
       });
       console.log(savedEvents);
       setSavedEvents([...savedEvents, eventFormData]);
