@@ -7,7 +7,7 @@ const resolvers = {
         me: async (parent, args, context) => {
             if (context.user) {
                 console.log('----- context.user found ----- server/schemas/resolvers');
-                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
+                let userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
 
                 console.log(userData);
                 return userData;

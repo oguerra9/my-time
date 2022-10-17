@@ -12,7 +12,7 @@ const AddEventForm = ({
   eventDate,
 }) => {
   const { loading, data } = useQuery(QUERY_ME);
-  const userData = {};
+  let userData = {};
 
   console.log('----- Event Date: ----- AddEventForm');
   console.log(eventDate);

@@ -27,7 +27,7 @@ const MyDay = () => {
     let myTime = myDate.getTime();
 
     let userData = {};
-    let myEvents = {};
+    let myEvents = [];
 
     if (data) {
         console.log('user data found');
