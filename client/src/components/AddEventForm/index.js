@@ -93,7 +93,7 @@ const AddEventForm = ({
     try {
       const { data } = await addEvent({
         variables: { eventData: {
-          eventId: (parseInt(userData._id) + (userData.events.length)),
+          eventId: (parseInt(userData._id) + (userData.eventCount)),
           eventDate: eventFormData.eventDate,
           eventTitle: eventFormData.eventTitle,
           eventDescription: eventFormData.eventDescription,
