@@ -50,15 +50,19 @@ const AddEventForm = ({
   //   }
   // });
 
+  // useEffect(() => {
+  //   if (error) {
+  //     console.log('AddEventForm ----- line 37');
+  //     setShowAlert(true);
+  //   } else {
+  //     console.log('AddEventForm ----- line 40');
+  //     setShowAlert(false);
+  //   }
+  // }, [error])
+
   useEffect(() => {
-    if (error) {
-      console.log('AddEventForm ----- line 37');
-      setShowAlert(true);
-    } else {
-      console.log('AddEventForm ----- line 40');
-      setShowAlert(false);
-    }
-  }, [error])
+    return () => saveEvents(savedEvents);
+  });
 
   const handleInputChange = (event) => {
     console.log('handleInputChange called ----- AddEventForm');
@@ -67,6 +71,7 @@ const AddEventForm = ({
   };
 
   const handleFormSubmit = async (event) => {
+    handleSaveEvent();
     event.preventDefault();
     console.log('handleFormSubmit called ----- AddEventForm');
 
@@ -77,8 +82,6 @@ const AddEventForm = ({
       event.stopPropagation();
     }
 
-    handleSaveEvent();
-
     setEventFormData({
       eventDate: '',
       eventTitle: '',
@@ -87,6 +90,7 @@ const AddEventForm = ({
   };
 
   const handleSaveEvent = async () => {
+    console.log('----- handleSaveEvent called ----- AddEventForm');
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -95,8 +99,9 @@ const AddEventForm = ({
 
     try {
       const { data } = await addEvent({
-        variables: { ...eventFormData },
+        variables: { eventData: { ...eventFormData } },
       });
+      console.log('----- addEventData ----- AddEventForm');
       console.log(savedEvents);
       setSavedEvents([...savedEvents, eventFormData]);
 

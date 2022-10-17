@@ -26,6 +26,8 @@ const SignupForm = () => {
     };
 
     const handleFormSubmit = async (event) => {
+        console.log('----- signup form submitted -----');
+        console.log(userFormData);
         event.preventDefault();
 
         const form = event.currentTarget;
@@ -36,7 +38,13 @@ const SignupForm = () => {
 
         try {
             const { data } = await addUser({
-                variables: { ...userFormData },
+                variables: { 
+                    firstName: userFormData.firstName,
+                    lastName: userFormData.lastName,
+                    username: userFormData.username,
+                    email: userFormData.email,
+                    password: userFormData.password,
+                 },
             });
 
             console.log(data);
@@ -59,7 +67,7 @@ const SignupForm = () => {
             <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
                 <Alert
                     dismissible
-                    onCLose={() => setShowAlert(false)}
+                    onClose={() => setShowAlert(false)}
                     show={showAlert}
                     variant="danger"
                 >

@@ -6,7 +6,7 @@ export const getSavedEvents = () => {
     return savedEvents;
 };
 
-export const saveEvent = (eventArr) => {
+export const saveEvents = (eventArr) => {
     if (eventArr.length) {
       localStorage.setItem('saved_events', JSON.stringify(eventArr));
     } else {
