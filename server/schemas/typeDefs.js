@@ -1,45 +1,3 @@
-// const { gql } = require('apollo-server-express');
-
-// const typeDefs = gql`
-//     type User {
-//         _id: ID!
-//         firstName: String!
-//         lastName: String!
-//         username: String!
-//         email: String!
-//         password: String!
-//         eventCount: Int
-//         events: [Events]
-//     }
-
-//     type Events {
-//         eventId: String!
-//         eventDate: String
-//         eventTitle: String!
-//         eventDescription: String
-//     }
-
-//     type Auth {
-//         token: ID!
-//         user: User
-//     }
-
-//     type Query {
-//         me: User
-//     }
-
-//     type Mutation {
-//         addUser(firstName: String!, lastName: String!, username: String!, email: String!, password: String!): Auth
-//         login(email: String!, password: String!): Auth
-//         addEvent(eventId: String!, eventDate: String, eventTitle: String!, eventDescription: String): Events
-//     }
-// `;
-
-// module.exports = typeDefs;
-
-
-
-
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
@@ -51,10 +9,10 @@ const typeDefs = gql`
         email: String!
         password: String!
         eventCount: Int
-        events: [Event]
+        events: [Events]
     }
 
-    type Event {
+    type Events {
         eventId: String!
         eventDate: String
         eventTitle: String!
@@ -66,7 +24,6 @@ const typeDefs = gql`
         user: User
     }
 
-
     type Query {
         me: User
     }
@@ -74,8 +31,51 @@ const typeDefs = gql`
     type Mutation {
         addUser(firstName: String!, lastName: String!, username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
-        addEvent(eventId: String!, eventDate: String, eventTitle: String!, eventDescription: String): Event
+        addEvent(eventId: String!, eventDate: String, eventTitle: String!, eventDescription: String): Events
     }
 `;
 
 module.exports = typeDefs;
+
+
+
+
+// const { gql } = require('apollo-server-express');
+
+// const typeDefs = gql`
+//     type User {
+//         _id: ID!
+//         firstName: String!
+//         lastName: String!
+//         username: String!
+//         email: String!
+//         password: String!
+//         eventCount: Int
+//         events: [Event]
+//     }
+
+//     type Event {
+//         eventId: String!
+//         eventDate: String
+//         eventTitle: String!
+//         eventDescription: String
+//     }
+
+//     type Auth {
+//         token: ID!
+//         user: User
+//     }
+
+
+//     type Query {
+//         me: User
+//     }
+
+//     type Mutation {
+//         addUser(firstName: String!, lastName: String!, username: String!, email: String!, password: String!): Auth
+//         login(email: String!, password: String!): Auth
+//         addEvent(eventId: String!, eventDate: String, eventTitle: String!, eventDescription: String): Event
+//     }
+// `;
+
+// module.exports = typeDefs;
