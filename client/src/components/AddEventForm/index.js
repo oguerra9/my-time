@@ -97,11 +97,19 @@ const AddEventForm = ({
       return false;
     }
 
+    const eventTitle = eventFormData.eventTitle;
+    const eventDescription = eventFormData.eventDescription;
+
     try {
       const { data } = await addEvent({
-        variables: { eventData: { ...eventFormData } },
+        variables: { eventData: { 
+          eventIdNum,
+          eventDate,
+          eventTitle,
+          eventDescription,
+         } },
       });
-      console.log('----- addEventData ----- AddEventForm');
+      console.log('----- addEventData SUCCESS ----- AddEventForm');
       console.log(savedEvents);
       setSavedEvents([...savedEvents, eventFormData]);
 

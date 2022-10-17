@@ -43,17 +43,10 @@ export const ADD_USER = gql`
 export const ADD_EVENT = gql`
     mutation addEvent($eventData: EventInput!) {
         addEvent(eventData: $eventData) {
-            _id
-            firstName
-            lastName
-            username
-            email
-            events {
-                eventId
-                eventDate
-                eventTitle
-                eventDescription
-            }
+            eventId
+            eventDate
+            eventTitle
+            eventDescription
         }
     } 
 `;
