@@ -32,7 +32,7 @@ const AddEventForm = ({ eventDateIn }) => {
   eventIdString = "placeholder";
 
 
-  const [eventFormData, setEventFormData] = useState({ eventId: eventIdString, eventDate: JSON.stringify(eventDateIn), eventTitle: '', eventDescription: '' });
+  const [eventFormData, setEventFormData] = useState({ eventId: '', eventDate: JSON.stringify(eventDateIn), eventTitle: '', eventDescription: '' });
   const [myEvents, setMyEvents] = useState([]);
 
   if (data) {

@@ -52,10 +52,12 @@ const MyMonth = () => {
 
     let monthStart = parseInt(getMonthStart(currTime));
     let monthEnd = parseInt(getMonthEnd(currTime));
+    console.log('monthStart = ' + JSON.stringify(monthStart));
+    console.log('monthEnd = ' + JSON.stringify(monthEnd));
 
     let monthEvents = [];
 
-    for (let i = 0; i < myEvents; i++) {
+    for (let i = 0; i < myEvents.length; i++) {
         console.log('----- adding events ----- MyMonth');
         const currEventDate = new Date(parseInt(myEvents[i].eventDate));
         const currEventDateMS = parseInt(currEventDate.getTime());
@@ -65,6 +67,8 @@ const MyMonth = () => {
             monthEvents.push(myEvents[i]);
         }
     }
+    console.log('--- monthEvents --- MyMonth');
+    console.log(monthEvents);
 
     if (loading) {
         return <h2>LOADING...</h2>;
