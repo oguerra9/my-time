@@ -110,11 +110,8 @@ const MyMonth = () => {
     const nextMonthTime = getNextMonth(currTime);
     return (
         <div>
-            <div className="jumbotron text-light bg-dark">
-                <Container>
-                    <Row>
-                        <h1>{userData.firstName}'s Day</h1>
-                    </Row>
+            <div className="jumbotron text-light bg-dark flex-row justify-center align-center">
+                <Container  className="flex-row justify-center align-center">
                     <Row>
                         <Col>
                             <Button>

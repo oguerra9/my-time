@@ -31,7 +31,7 @@ const GetStarted = () => {
 
     return (
             <div>
-                <h1>Get Started with MyTime</h1>
+                <h1 className="m-4">Get Started with MyTime</h1>
                 
                 <Button className="btn btn-lg btn-light m-2" onClick={myDayNav}>
                     See MyDay
