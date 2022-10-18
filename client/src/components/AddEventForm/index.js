@@ -25,7 +25,7 @@ const AddEventForm = ({
   const userIdString = String.valueOf(userData._id);
   console.log('----- eventCountString ----- AddEventForm');
   console.log(eventCountString);
-  const eventIdString = userIdString.concat(eventCountString);
+  const eventIdString = userIdString + eventCountString;
 
   const [eventFormData, setEventFormData] = useState({ eventId: eventIdString, eventDate: eventDate, eventTitle: '', eventDescription: ''});
 
