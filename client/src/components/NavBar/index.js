@@ -16,7 +16,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Navbar fluid='true' bg='dark' variant='dark' expand='lg'>
+      <Navbar fluid='true' bg='dark' variant='dark' expand='lg' style={{ width: '100%' }}>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
             MyTime

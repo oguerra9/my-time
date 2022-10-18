@@ -16,6 +16,12 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(function(req, res, next) {
+    req.header("Content-Type", "application/graphql");
+    res.header("Content-Type", "application/graphql");
+
+    next();
+});
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "https://studio.apollographql.com");
 //     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

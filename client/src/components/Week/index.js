@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Table } from 'react-bootstrap';
 //import events from 'inquirer/lib/utils/events';
 import DayBox from '../DayBox';
 import EventsList from '../EventsList';
@@ -24,6 +24,22 @@ const Week = ({
             ))}
         </Row>
     );
+    
+    // return (
+    //     <>
+    //         {days && days.map((day) => {
+    //             <td key={day.boxKey}>
+    //                 <Card style={{ border: '1px #1a1a1a'}}>
+    //                     <Card.Title>{day.dayDate}</Card.Title>
+    //                     <Card.Body>
+    //                       <EventsList
+    //                          events={day.events} />
+    //                     </Card.Body>
+    //                 </Card>
+    //             </td>
+    //         })}
+    //     </>
+    // )
 
     // return (
     //     <div>

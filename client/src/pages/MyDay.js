@@ -95,13 +95,13 @@ const MyDay = () => {
             <div fluid className="jumbotron text-light bg-dark">
                 <Container>
                     <Row>
-                        <h1>{userData.username}'s Day</h1>
+                        <h2 className="flex-row align-center">{dayName}</h2>
                     </Row>
                     <Row>
                         <Col>
                             <Link to={`/myDay/${getPrevDay(myDate.getTime())}`}>{'<'}</Link>
                         </Col>
-                        <Col><h2>{dayName}, {monthName} {dateNum}, {yearNum}</h2></Col>
+                        <Col><h2>{monthName} {dateNum}, {yearNum}</h2></Col>
                         <Col>
                             <Link to={`/myDay/${getNextDay(myDate.getTime())}`}>{'>'}</Link>
                         </Col>

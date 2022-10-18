@@ -38,8 +38,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
-          <div className="container">
+        <div fluid='true' className="flex-column justify-flex-start min-100-vh" style={{ width: '100%' }}>
             <Navbar />
             <Routes>
               {Auth.loggedIn() ? (
@@ -66,7 +65,6 @@ function App() {
                 element={<MyDay />}
               />
             </Routes>
-          </div>
         </div>
       </Router>
     </ApolloProvider>
