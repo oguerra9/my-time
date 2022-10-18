@@ -22,7 +22,7 @@ const AddEventForm = ({
   //console.log(userIdNum);
   //const eventIdNum = userIdNum + userData.eventCount;
   const eventCountString = String.valueOf(userData.eventCount);
-  const userIdString = String.valueOf(userData._id);
+  const userIdString = JSON.stringify(userData._id);
   console.log('----- eventCountString ----- AddEventForm');
   console.log(eventCountString);
   const eventIdString = userIdString + eventCountString;
