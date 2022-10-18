@@ -48,7 +48,7 @@ const resolvers = {
                 return User.findOneAndUpdate(
                     {_id: context.user._id},
                     {
-                        $push: {
+                        $addToSet: {
                             events: { eventId, eventDate, eventTitle, eventDescription },
                         },
                     },
