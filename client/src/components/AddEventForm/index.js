@@ -22,9 +22,10 @@ const AddEventForm = ({
   //console.log(userIdNum);
   //const eventIdNum = userIdNum + userData.eventCount;
   const eventCountString = String.valueOf(userData.eventCount);
+  const userIdString = String.valueOf(userData._id);
   console.log('----- eventCountString ----- AddEventForm');
   console.log(eventCountString);
-  const eventIdString = String.concat(String.valueOf(userData._id), eventCountString);
+  const eventIdString = userIdString.concat(eventCountString);
 
   const [eventFormData, setEventFormData] = useState({ eventId: eventIdString, eventDate: eventDate, eventTitle: '', eventDescription: ''});
 

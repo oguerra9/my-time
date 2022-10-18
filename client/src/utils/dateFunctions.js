@@ -128,7 +128,7 @@ export const getPrevWeek = (timestamp) => {
 };
 
 export const getNextDay = (timestamp) => {
-    const nextDayMS = parseInt(timestamp) - (MS_PER_DAY);
+    const nextDayMS = parseInt(timestamp) + (MS_PER_DAY);
 
     return nextDayMS;
 };
