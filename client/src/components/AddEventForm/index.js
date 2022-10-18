@@ -90,6 +90,7 @@ const AddEventForm = ({ eventDateIn }) => {
     setEventFormData({ ...eventFormData, [name]: value });
   };
 
+  /*
   return (
     <div>
       <h3>Add Event</h3>
@@ -142,8 +143,8 @@ const AddEventForm = ({ eventDateIn }) => {
       )}
     </div>
   );
-
-  /*
+*/
+  
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
@@ -200,7 +201,7 @@ const AddEventForm = ({ eventDateIn }) => {
       </Form>
     </>
   );
-  */
+  
 };
 
 export default AddEventForm;
