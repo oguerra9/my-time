@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import events from 'inquirer/lib/utils/events';
+//import events from 'inquirer/lib/utils/events';
 import DayBox from '../DayBox';
 
 const Week = ({
