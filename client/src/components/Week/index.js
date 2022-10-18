@@ -1,43 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 //import events from 'inquirer/lib/utils/events';
 import DayBox from '../DayBox';
+import EventsList from '../EventsList';
 
 const Week = ({
-    days, 
-    monthView = true,
+    days,
 }) => {
 
-
     return (
-        <Container square border border-primary>
-            {monthView ? (
-                <Row>
-                    <Col>Week</Col>
-                    {days && days.map((day) => (
-                        <Col>
-                            <DayBox 
-                                dayDate={day.dayDate}
-                                events={day.events}
-                                showDescPreview={false} />
-                        </Col>
-                    ))}
-                </Row>
-            ) : (
-                <Row>
-                    {days && days.map((day) => (
-                        <Col>
-                            <DayBox
-                                dayDate={day.dayDate}
-                                events={day.events}
-                                showDescPreview={true} />
-                        </Col>
-                    ))}
-                </Row>
-            )}
-                
-        </Container>
+        <Row className="square border border-primary">
+            {days && days.map((day) => (
+                <Col key={day.boxKey} className="square border border-primary">
+                    <Card style={{ border: '1px #1a1a1a'}}>
+                        <Card.Title>{day.dayDate}</Card.Title>
+                        <Card.Body>
+                            <EventsList
+                                events={day.events} />
+                        </Card.Body>
+                    </Card>
+                </Col>
+            ))}
+        </Row>
     );
 
     // return (

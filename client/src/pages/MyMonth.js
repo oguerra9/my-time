@@ -110,7 +110,7 @@ const MyMonth = () => {
     const nextMonthTime = getNextMonth(currTime);
     return (
         <div>
-            <div fluid className="jumbotron text-light bg-dark">
+            <div className="jumbotron text-light bg-dark">
                 <Container>
                     <Row>
                         <h1>{userData.firstName}'s Day</h1>
@@ -132,10 +132,7 @@ const MyMonth = () => {
             </div>
             <Container>
                 <MonthFormat
-                    monthNum={monthNum}
-                    year={yearNum}
-                    firstWeekDay={firstWeekDay}
-                    numDays={numDays}
+                    monthStart={JSON.stringify(monthStart)}
                     events={monthEvents}
                 />
             </Container>

@@ -1,35 +1,72 @@
 export const getNumDays = (monthNum, year) => {
-    if ([0,2,4,6,7,9,11].includes(monthNum)) {
-        return 31;
+    console.log('--- monthNum --- dateFormat/getNumDays');
+    console.log(parseInt(monthNum));
+    console.log('--- year --- dateFormat/getNumDays');
+    console.log(parseInt(year));
+    const month = parseInt(monthNum);
+    console.log('--- month --- dateFormat/getNumDays');
+
+    switch (month) {
+        case 0:
+            return 31;
+        case 2:
+            return 31;
+        case 4:
+            return 31;
+        case 6:
+            return 31;
+        case 7:
+            return 31;
+        case 9:
+            return 31;
+        case 11:
+            return 31;
+        case 3:
+            return 30;
+        case 5:
+            return 30;
+        case 8:
+            return 30;
+        case 10:
+            return 30;
+        case 1:
+            var div4 = false;
+            var div100 = false;
+            var div400 = false;
+
+            if ((year % 4) === 0) {
+                div4 = true;
+            }
+
+            if ((year % 100) === 0) {
+                div100 = true;
+            }
+
+            if ((year % 400) === 0) {
+                div400 = true;
+            }
+
+            if ((div4 && !div100) || (div4 && div100 && div400)) {
+                return 29;
+            } else {
+                return 28;
+            }
+        default: 
+            return 0;
+
     }
 
-    if ([3,5,8,10].includes(monthNum)) {
-        return 30;
-    }
+    // if ([0,2,4,6,7,9,11].indexOf(parseInt(monthNum)) !== -1) {
+    //     return 31;
+    // }
 
-    if (monthNum === 1) {
-        var div4 = false;
-        var div100 = false;
-        var div400 = false;
+    // if ([3,5,8,10].includes(parseInt(monthNum))) {
+    //     return 30;
+    // }
 
-        if ((year % 4) === 0) {
-            div4 = true;
-        }
-
-        if ((year % 100) === 0) {
-            div100 = true;
-        }
-
-        if ((year % 400) === 0) {
-            div400 = true;
-        }
-
-        if ((div4 && !div100) || (div4 && div100 && div400)) {
-            return 29;
-        } else {
-            return 28;
-        }
-    }
+    // if (monthNum === 1) {
+        
+    // }
 };
 
 export const getFirstWeekDay = (monthNum, year) => {
