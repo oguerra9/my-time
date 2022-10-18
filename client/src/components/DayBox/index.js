@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import events from 'inquirer/lib/utils/events';
+//import events from 'inquirer/lib/utils/events';
 
 const DayBox = ({
     dayDate, 
