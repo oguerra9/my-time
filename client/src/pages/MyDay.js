@@ -11,6 +11,8 @@ import AddEventForm from '../components/AddEventForm';
 const MyDay = () => {
     const [ showModal, setShowModal ] = useState(false);
     const { currTime } = useParams();
+    console.log('--- currTime --- MyDay');
+    console.log(currTime);
     const {loading, data } = useQuery(QUERY_ME);
 
     // const [addEvent, { error }] = useMutation(ADD_EVENT);
@@ -122,7 +124,7 @@ const MyDay = () => {
                         New Event
                     </Modal.Title>
                     <AddEventForm
-                        eventDate={myTime}
+                        eventDateIn={myTime}
                     />
                 </Modal.Header>
             </Modal>

@@ -10,9 +10,9 @@ const Home = () => {
     const myDayNav = (event) => {
         event.preventDefault();
 
-        const currTime = new Date();
-        const timeParam = currTime.getTime();
-        return <Navigate to={`/myDay/${timeParam}`} />;
+        const currDate = new Date();
+        const currTime = currDate.getTime();
+        return <Navigate to={`/myDay/${currTime}`} />;
     };
 
     return (
