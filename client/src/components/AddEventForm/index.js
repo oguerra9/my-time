@@ -15,6 +15,8 @@ const AddEventForm = ({ eventDateIn }) => {
   const { loading, data } = useQuery(QUERY_ME);
   let userData = {};
 
+  console.log('--- eventDateIn --- AddEventForm');
+  console.log(eventDateIn);
   const eventDateObj = new Date(parseInt(eventDateIn));
   let monthNum = eventDateObj.getMonth() + 1;
   let dateNum = eventDateObj.getDate();
@@ -58,6 +60,10 @@ const AddEventForm = ({ eventDateIn }) => {
   });
 
   const handleFormSubmit = async (event) => {
+    console.log('--- eventFormData --- AddEventForm');
+    console.log(eventFormData);
+    const eventDateString = String.valueOf(eventDateIn);
+    console.log('--- eventDateString --- AddEventForm');
     const eventTitle = eventFormData.eventTitle;
     const eventDescription = eventFormData.eventDescription;
 
@@ -67,7 +73,7 @@ const AddEventForm = ({ eventDateIn }) => {
       const { data } = await addEvent({
         variables: {
           eventIdString,
-          eventDateIn, 
+          eventDateString, 
           eventTitle, 
           eventDescription,
         },
