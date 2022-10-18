@@ -5,6 +5,8 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_EVENT } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
+import { Form, Button, Alert } from 'react-bootstrap'; 
+
 import { addMyEvent, getMyEvents } from '../../utils/localStorage';
 
 import Auth from '../../utils/auth';
@@ -13,20 +15,17 @@ const AddEventForm = ({ eventDateIn }) => {
   const { loading, data } = useQuery(QUERY_ME);
   let userData = {};
 
+  const eventDateObj = new Date(parseInt(eventDateIn));
+  let monthNum = eventDateObj.getMonth() + 1;
+  let dateNum = eventDateObj.getDate();
+  let yearNum = eventDateObj.getFullYear();
   //const userIdNum = parseInt(userData._id);
-  //console.log('----- userIdNum ----- AddEventForm');
-  //console.log(userIdNum);
   //const eventIdNum = userIdNum + userData.eventCount;
   let eventIdString = "";
   const eventCountString = JSON.stringify(userData.eventCount);
   const userIdString = JSON.stringify(userData._id);
-  console.log('----- eventCountString ----- AddEventForm');
-  console.log(eventCountString);
-  console.log('----- userIdString ----- AddEventForm');
-  console.log(userIdString);
   eventIdString = userIdString + eventCountString;
-  console.log('----- eventIdString ----- AddEventForm');
-  console.log(eventIdString);
+
 
   eventIdString = "placeholder";
 
@@ -152,7 +151,7 @@ const AddEventForm = ({ eventDateIn }) => {
           Something went wrong adding your event
         </Alert>
 
-        {eventDate ? (
+        {eventDateIn ? (
           <Form.Text>
             <h3>Event Date</h3>
             <p>{monthNum}/{dateNum}/{yearNum}</p>
