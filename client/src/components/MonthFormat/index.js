@@ -9,7 +9,7 @@ import { Container, Row, Col, Modal } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import { getNumDays, getFirstWeekDay, getDayName, getMonthName } from '../../utils/dateFormat';
 import { getMonthStart, getMonthEnd, getWeekStart, getWeekEnd, getDayStart, getDayEnd, getNextMonth, getPrevMonth, getNextWeek, getPrevWeek, getNextDay, getPrevDay } from '../../utils/dateFunctions';
-import events from 'inquirer/lib/utils/events';
+//import events from 'inquirer/lib/utils/events';
 import Week from '../Week';
 //import AddEventForm from '../AddEventForm';
 
