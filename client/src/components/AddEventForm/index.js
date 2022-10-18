@@ -17,10 +17,16 @@ const AddEventForm = ({
   console.log('----- Event Date: ----- AddEventForm');
   console.log(eventDate);
   
-  const userIdNum = parseInt(userData._id);
-  const eventIdNum = userIdNum + userData.eventCount;
+  //const userIdNum = parseInt(userData._id);
+  //console.log('----- userIdNum ----- AddEventForm');
+  //console.log(userIdNum);
+  //const eventIdNum = userIdNum + userData.eventCount;
+  const eventCountString = String.valueOf(userData.eventCount);
+  console.log('----- eventCountString ----- AddEventForm');
+  console.log(eventCountString);
+  const eventIdString = String.concat(String.valueOf(userData._id), eventCountString);
 
-  const [eventFormData, setEventFormData] = useState({ eventId: eventIdNum, eventDate: eventDate, eventTitle: '', eventDescription: ''});
+  const [eventFormData, setEventFormData] = useState({ eventId: eventIdString, eventDate: eventDate, eventTitle: '', eventDescription: ''});
 
   const [myEvents, setMyEvents] = useState([]);
 
@@ -103,7 +109,7 @@ const AddEventForm = ({
     try {
       const { data } = await addEvent({
         variables: {
-          eventIdNum,
+          eventIdString,
           eventDate,
           eventTitle,
           eventDescription,

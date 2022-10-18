@@ -3,8 +3,7 @@ const { Schema } = require('mongoose');
 const eventSchema = new Schema({
     eventId: {
         type: String,
-        unique: true,
-        required: true,
+        trim: true,
     },
     eventDate: {
         type: String,
@@ -13,7 +12,6 @@ const eventSchema = new Schema({
     eventTitle: {
         type: String,
         trim: true,
-        required: true,
     },
     eventDescription: {
         type: String,
