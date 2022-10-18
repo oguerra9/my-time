@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
-
+import { Link } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
+
 import { ADD_EVENT } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
-import Auth from '../../utils/auth';
 import { addMyEvent, getMyEvents } from '../../utils/localStorage';
 
-const AddEventForm = ({
-  eventDate,
-}) => {
+import Auth from '../../utils/auth';
+
+const AddEventForm = ({ eventDateIn }) => {
   const { loading, data } = useQuery(QUERY_ME);
   let userData = {};
 
-  console.log('----- Event Date: ----- AddEventForm');
-  console.log(eventDate);
-  
   //const userIdNum = parseInt(userData._id);
   //console.log('----- userIdNum ----- AddEventForm');
   //console.log(userIdNum);
@@ -35,159 +31,119 @@ const AddEventForm = ({
   eventIdString = "placeholder";
 
 
-  const [eventFormData, setEventFormData] = useState({ eventId: eventIdString, eventDate: eventDate, eventTitle: '', eventDescription: ''});
-
+  const [eventFormData, setEventFormData] = useState({ eventId: eventIdString, eventDate: eventDateIn, eventTitle: '', eventDescription: '' });
   const [myEvents, setMyEvents] = useState([]);
 
   if (data) {
-    console.log('AddEventForm ----- line 40');
     userData = data.me;
-    //setEventFormData({ ...eventFormData });
-  } 
-  // if (eventDate) {
-  //   console.log('AddEventForm ----- line 45');
-  //   setEventFormData({ ...eventFormData, eventDate: eventDate });
-  // }
-
+  }
+  
   const [validated] = useState(false);
-
   const [showAlert, setShowAlert] = useState(false);
+  
+  //const [addEvent, { error }] = useMutation(ADD_EVENT);
+  const [addEvent, { error }] = useMutation(ADD_EVENT, {
+    update(cache, { data: { addEvent } }) {
+      try {
+        const { me } = cache.readQuery({ query: QUERY_ME });
+        //const { events } = me.events;
 
-  const [addEvent, { error }] = useMutation(ADD_EVENT);
-
-  // const [addEvent, { error }] = useMutation(ADD_EVENT, {
-  //   update(cache, { data: { addEvent } }) {
-  //     try {
-  //       const { events } = cache.readQuery({ query: QUERY_ME});
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-  // });
-
-  // useEffect(() => {
-  //   if (error) {
-  //     console.log('AddEventForm ----- line 67');
-  //     setShowAlert(true);
-  //   } else {
-  //     console.log('AddEventForm ----- line 70');
-  //     setShowAlert(false);
-  //   }
-  // }, [error])
-
-  useEffect(() => {
-    return () => addMyEvent(myEvents);
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: { me: { ...me, events: [...me.events, addEvent] } },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
   });
 
-  const handleInputChange = (event) => {
-    console.log('handleInputChange called ----- AddEventForm');
-    const { name, value } = event.target;
-    setEventFormData({ ...eventFormData, [name]: value });
-  };
-
   const handleFormSubmit = async (event) => {
-    handleSaveEvent();
-    event.preventDefault();
-    console.log('handleFormSubmit called ----- AddEventForm');
-
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      console.log('checkValidity = false ----- AddEventForm');
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setEventFormData({
-      eventDate: '',
-      eventTitle: '',
-      eventDescription: '',
-    });
-  };
-
-  const handleSaveEvent = async () => {
-    console.log('----- handleSaveEvent called ----- AddEventForm');
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-
     const eventTitle = eventFormData.eventTitle;
     const eventDescription = eventFormData.eventDescription;
+
+    event.preventDefault();
 
     try {
       const { data } = await addEvent({
         variables: {
           eventIdString,
-          eventDate,
-          eventTitle,
+          eventDateIn, 
+          eventTitle, 
           eventDescription,
-         },
+        },
       });
-      console.log('----- addEventData SUCCESS ----- AddEventForm');
-      console.log(myEvents);
-      setMyEvents([...myEvents, eventFormData]);
 
-      // window.location.reload();
+      setEventFormData({
+        eventId: '',
+        eventDate: '',
+        eventTitle: '',
+        eventDescription: '',
+      });
     } catch (err) {
       console.error(err);
-      setShowAlert(true);
     }
   };
 
-  let myDate = new Date (parseInt(eventDate));
-  let monthNum = myDate.getMonth() + 1;
-  let dateNum = myDate.getDate();
-  let yearNum = myDate.getFullYear();
-  let myTime = myDate.getTime();
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setEventFormData({ ...eventFormData, [name]: value });
+  };
 
-  console.log('AddEventForm ----- line 141');
+  return (
+    <div>
+      <h3>Add Event</h3>
 
+      {Auth.loggedIn() ? (
+        <>
+          <form 
+            className="flex-row justify-center justify-space-between-md align-center"
+            onSubmit={handleFormSubmit}
+          >
+            <div className="col-12 col-lg-9">
+              <textarea
+                name="eventTitle"
+                placeholder="Title"
+                value={eventFormData.eventTitle}
+                className="form-input w-100"
+                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                onChange={handleInputChange}
+              ></textarea>
+            </div>
 
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setEventFormData({ ... eventFormData, [name]: value });
-  // };
+            <div className="col-12 col-lg-3">
+              <textarea
+                name="eventDescription"
+                placeholder="Description"
+                value={eventFormData.eventDescription}
+                className="form-input w-100"
+                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                onChange={handleInputChange}
+              ></textarea>
+            </div>
 
-  // const handleFormSubmit = async (event) => {
-  //   event.preventDefault();
+            <div className="col-12 col-lg-3">
+              <button className="btn btn-primary btn-block py-3" type="submit">
+                Add Event
+              </button>
+            </div>
+            {error && (
+              <div className="col-12 my-3 bg-danger text-white p-3">
+                {error.message}
+              </div>
+            )}
+          </form>
+        </>
+      ) : (
+        <p>
+          You need to be logged in to share your thoughts. Please{' '}
+          <Link to="/">Get Started</Link>.
+        </p>
+      )}
+    </div>
+  );
 
-  //   const form = event.currentTarget;
-
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault();
-  //     event.stopPropagation(); 
-  //   }
-
-  //   try {
-  //     const {data} = await addEvent({
-  //       variables: { 
-  //         eventDate: myTime,
-  //         eventTitle: eventFormData.eventTitle,
-  //         eventDescription: eventFormData.eventDescription,
-  //        },
-  //     });
-  //     console.log(data);
-  //   } catch (err) {
-  //     console.error(err);
-  //     setShowAlert(true);
-  //   }
-
-  //   if (eventDate) {
-  //     setEventFormData({
-  //       eventDate: myDate,
-  //       eventTitle: '',
-  //       eventDescription: '',
-  //     });
-  //   } else {
-  //     setEventFormData({
-  //       eventDate: '',
-  //       eventTitle: '',
-  //       eventDescription: '',
-  //     });
-  //   }
-  // };
-
+  /*
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
@@ -244,6 +200,7 @@ const AddEventForm = ({
       </Form>
     </>
   );
+  */
 };
 
 export default AddEventForm;
