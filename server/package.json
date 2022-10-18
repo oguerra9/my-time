@@ -4,8 +4,8 @@
   "description": "app server",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "watch": "nodemon server.js"
+    "start": "node server.js",
+    "watch": "node server.js"
   },
   "author": "Olivia Guerra",
   "license": "ISC",
