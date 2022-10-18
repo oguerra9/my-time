@@ -2,7 +2,7 @@
   "name": "client",
   "version": "1.0.0",
   "private": true,
-  "proxy": "https://localhost:3001",
+
   "description": "app client",
   "main": "index.js",
   "scripts": {
