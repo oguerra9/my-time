@@ -21,23 +21,29 @@ const AddEventForm = ({
   //console.log('----- userIdNum ----- AddEventForm');
   //console.log(userIdNum);
   //const eventIdNum = userIdNum + userData.eventCount;
-  const eventCountString = String.valueOf(userData.eventCount);
+  let eventIdString = "";
+  const eventCountString = JSON.stringify(userData.eventCount);
   const userIdString = JSON.stringify(userData._id);
   console.log('----- eventCountString ----- AddEventForm');
   console.log(eventCountString);
-  const eventIdString = userIdString + eventCountString;
+  console.log('----- userIdString ----- AddEventForm');
+  console.log(userIdString);
+  eventIdString = userIdString + eventCountString;
+  console.log('----- eventIdString ----- AddEventForm');
+  console.log(eventIdString);
+
 
   const [eventFormData, setEventFormData] = useState({ eventId: eventIdString, eventDate: eventDate, eventTitle: '', eventDescription: ''});
 
   const [myEvents, setMyEvents] = useState([]);
 
   if (data) {
-    console.log('AddEventForm ----- line 20');
+    console.log('AddEventForm ----- line 40');
     userData = data.me;
     //setEventFormData({ ...eventFormData });
   } 
   // if (eventDate) {
-  //   console.log('AddEventForm ----- line 25');
+  //   console.log('AddEventForm ----- line 45');
   //   setEventFormData({ ...eventFormData, eventDate: eventDate });
   // }
 
@@ -59,10 +65,10 @@ const AddEventForm = ({
 
   // useEffect(() => {
   //   if (error) {
-  //     console.log('AddEventForm ----- line 37');
+  //     console.log('AddEventForm ----- line 67');
   //     setShowAlert(true);
   //   } else {
-  //     console.log('AddEventForm ----- line 40');
+  //     console.log('AddEventForm ----- line 70');
   //     setShowAlert(false);
   //   }
   // }, [error])
@@ -133,7 +139,7 @@ const AddEventForm = ({
   let yearNum = myDate.getFullYear();
   let myTime = myDate.getTime();
 
-  console.log('AddEventForm ----- line 84');
+  console.log('AddEventForm ----- line 141');
 
 
   // const handleInputChange = (event) => {
