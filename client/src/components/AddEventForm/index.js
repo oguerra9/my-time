@@ -32,6 +32,8 @@ const AddEventForm = ({
   console.log('----- eventIdString ----- AddEventForm');
   console.log(eventIdString);
 
+  eventIdString = "placeholder";
+
 
   const [eventFormData, setEventFormData] = useState({ eventId: eventIdString, eventDate: eventDate, eventTitle: '', eventDescription: ''});
 
