@@ -32,7 +32,7 @@ const AddEventForm = ({ eventDateIn }) => {
   eventIdString = "placeholder";
 
 
-  const [eventFormData, setEventFormData] = useState({ eventId: eventIdString, eventDate: eventDateIn, eventTitle: '', eventDescription: '' });
+  const [eventFormData, setEventFormData] = useState({ eventId: eventIdString, eventDate: JSON.stringify(eventDateIn), eventTitle: '', eventDescription: '' });
   const [myEvents, setMyEvents] = useState([]);
 
   if (data) {
@@ -60,10 +60,8 @@ const AddEventForm = ({ eventDateIn }) => {
   });
 
   const handleFormSubmit = async (event) => {
-    console.log('--- eventFormData --- AddEventForm');
-    console.log(eventFormData);
-    const eventDateString = String.valueOf(eventDateIn);
-    console.log('--- eventDateString --- AddEventForm');
+    const eventId = eventFormData.eventId;
+    const eventDate = eventFormData.eventDate;
     const eventTitle = eventFormData.eventTitle;
     const eventDescription = eventFormData.eventDescription;
 
@@ -72,8 +70,8 @@ const AddEventForm = ({ eventDateIn }) => {
     try {
       const { data } = await addEvent({
         variables: {
-          eventIdString,
-          eventDateString, 
+          eventId,
+          eventDate, 
           eventTitle, 
           eventDescription,
         },
