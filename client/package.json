@@ -14,16 +14,16 @@
   "author": "Olivia Guerra",
   "license": "ISC",
   "dependencies": {
-    "@apollo/client": "^3.7.0",
-    "bootstrap": "^5.2.2",
-    "graphql": "^16.6.0",
-    "jwt-decode": "^3.1.2",
-    "react": "^18.2.0",
-    "react-bootstrap": "^2.5.0",
+    "@apollo/client": "^3.5.8",
+    "bootstrap": "^4.4.1",
+    "graphql": "^15.4.0",
+    "jwt-decode": "^2.2.0",
+    "react": "^16.13.1",
+    "react-bootstrap": "1.0.1",
     "react-bootstrap-time-picker": "^2.0.1",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2",
-    "react-scripts": "^2.1.3"
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "^4.0.2"
   },
   "eslintConfig": {
     "extends": "react-app"
