@@ -7,6 +7,7 @@ import { ADD_EVENT } from '../utils/mutations';
 import { getNumDays, getFirstWeekDay, getDayName, getMonthName } from '../utils/dateFormat';
 import { getMonthStart, getMonthEnd, getWeekStart, getWeekEnd, getDayStart, getDayEnd, getNextMonth, getPrevMonth, getNextWeek, getPrevWeek, getNextDay, getPrevDay } from '../utils/dateFunctions';
 import AddEventForm from '../components/AddEventForm';
+import EventsList from '../components/EventsList';
 
 const MyDay = () => {
     const [ showModal, setShowModal ] = useState(false);
@@ -46,15 +47,24 @@ const MyDay = () => {
     let dayName = getDayName(myDate.getDay());
     let monthName = getMonthName(monthNum);
 
+    let dayStart = getDayStart(myTime);
+    let dayEnd = getDayEnd(myTime);
+
     let todayEvents = [];
 
-    for (let i = 0; i < myEvents; i++) {
-        const currEventDate = new Date(parseInt(myEvents[i].eventDate));
+    for (let i = 0; i < myEvents.length; i++) {
+        // const currEventDate = new Date(parseInt(myEvents[i].eventDate));
 
-        if (currEventDate.getDate() === dateNum && currEventDate.getMonth() === monthNum && currEventDate.getFullYear() === yearNum) {
+        // if (currEventDate.getDate() === dateNum && currEventDate.getMonth() === monthNum && currEventDate.getFullYear() === yearNum) {
+        //     todayEvents.push(myEvents[i]);
+        // }
+        if (parseInt(myEvents[i].eventDate) >= dayStart && parseInt(myEvents[i].eventDate) <= dayEnd) {
             todayEvents.push(myEvents[i]);
         }
     }
+
+    console.log('--- todayEvents --- MyDay');
+    console.log(todayEvents);
 
     if (loading) {
         return <h2>LOADING...</h2>;
@@ -103,14 +113,22 @@ const MyDay = () => {
                     <h3>Today's Events</h3>
                 </Card.Title>
                 <Card.Body>
-                    {todayEvents && todayEvents.map((event) => (
+                    {todayEvents ? (
+                        <Container>
+                            <Row>
+                                <EventsList
+                                    events={todayEvents}
+                                />
+                            </Row>
+                            <Row>
+                                <Button onClick={() => setShowModal(true)}>Add Event</Button>
+                            </Row>
+                        </Container>
+                    ) : (
                         <Row>
-                            <p>{event.eventTitle}</p>
+                            <Button onClick={() => setShowModal(true)}>Add Event</Button>
                         </Row>
-                    ))}
-                    <Row>
-                        <Button onClick={() => setShowModal(true)}>Add Event</Button>
-                    </Row>
+                    )}
                 </Card.Body>
             </Card>
             <Modal
