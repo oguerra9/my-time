@@ -92,16 +92,16 @@ const MyDay = () => {
 
     return (
         <div>
-            <div fluid className="jumbotron text-light bg-dark p-2 align-center justify-center">
-                <Container className="flex-row align-center justify-center">
-                    <Row className="align-center justify-center flex-row">
-                        <h2>{dayName}</h2>
+            <div fluid className="d-flex jumbotron text-light bg-dark p-2 align-content-center justify-center">
+                <Container className="flex-row align-content-center justify-center ml-5" style={{ width: '70%'}}>
+                    <Row className="text-center">
+                        <h1>{dayName}</h1>
                     </Row>
                     <Row className="flex-row align-center">
                         <Link to={`/myDay/${getPrevDay(myDate.getTime())}`}>
                             <Button>{'<'}</Button>
                         </Link>
-                        <h2>{monthName} {dateNum}, {yearNum}</h2>
+                        <h2 class="ml-2 mr-2">{monthName} {dateNum}, {yearNum}</h2>
                         <Link to={`/myDay/${getNextDay(myDate.getTime())}`}>
                             <Button>{'>'}</Button>
                         </Link>
@@ -148,12 +148,14 @@ const MyDay = () => {
 
                 <Modal.Header closeButton>
                     <Modal.Title id='addEvent-modal'>
-                        New Event
+                        <h3 class="m-0 p-0">New Event</h3>
                     </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     <AddEventForm
                         eventDateIn={myTime}
                     />
-                </Modal.Header>
+                </Modal.Body>
             </Modal>
         </div>
     );

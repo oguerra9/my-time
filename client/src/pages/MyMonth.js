@@ -116,8 +116,8 @@ const MyMonth = () => {
                         <Link to={`/myMonth/${prevMonthTime}`} class="pb-0 pr-2 col-1">
                             <Button>{'<'}</Button>
                         </Link>
-                        <h1 class="p-0 m-0 text-center col-10">{monthName} {yearNum}</h1>
-                        <Link to={`/myMonth/${nextMonthTime}`} class="pb-0 pl-2 col-1">
+                        <h1 class="p-0 m-0 ml-2 mr-2 text-center flex-fill">{monthName} {yearNum}</h1>
+                        <Link to={`/myMonth/${nextMonthTime}`} class="pb-0 pl-0 col-1">
                             <Button>{'>'}</Button>
                         </Link>
                     </div>

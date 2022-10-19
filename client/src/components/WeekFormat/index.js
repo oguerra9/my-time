@@ -40,7 +40,7 @@ const WeekFormat = ({
 
         let dayEvents = [];
 
-        //let currDayName = getDayName(currDate.getTime());
+        let currDayName = getDayName(currDate.getDay());
 
         for (let j = 0; j < events.length; j++) {
             if ((parseInt(events[j].eventDate)) >= currDateStart && (parseInt(events[j].eventDate)) <= currDateEnd) {
@@ -51,7 +51,7 @@ const WeekFormat = ({
         let dayObj = {
             boxKey: currDayTime,
             dayDateString: boxDate,
-            //dayName: currDayName,
+            dayName: currDayName,
             events: dayEvents,
         };
 
@@ -67,7 +67,7 @@ const WeekFormat = ({
                     <Link to={`/myDay/${parseInt(day.boxKey)}`}>
                         <Card class="border border-dark">
                             <Card.Title class="m-0 border border-secondary p-1 bg-secondary text-light" style={{ borderRadius: '10px 10px 0px 0px'}}>
-                                {day.dayDateString}
+                                <>{day.dayName} - {day.dayDateString}</>
                             </Card.Title>
                             <Card.Body class="m-0 p-1" style={{ minHeight: '150px' }}>
                                 <EventsList

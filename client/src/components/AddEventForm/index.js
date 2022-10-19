@@ -157,12 +157,14 @@ const AddEventForm = ({ eventDateIn }) => {
 
         {eventDateIn ? (
           <Form.Text>
-            <h3>Event Date</h3>
+            <h5 class="m-0 p-0">Event Date</h5>
             <p>{monthNum}/{dateNum}/{yearNum}</p>
           </Form.Text>
         ) : (
           <Form.Group>
-            <Form.Label htmlFor='eventDate'>Event Date</Form.Label>
+            <Form.Label htmlFor='eventDate'>
+              <h5>Event Date</h5>
+            </Form.Label>
             <Form.Control
               type='date'
               placeholder='date'
@@ -174,7 +176,7 @@ const AddEventForm = ({ eventDateIn }) => {
         )}
 
         <Form.Group>
-          <Form.Label htmlFor='eventTitle'>Title</Form.Label>
+          <Form.Label htmlFor='eventTitle'><h5 class="m-0 p-0">Title</h5></Form.Label>
           <Form.Control
             type='text'
             placeholder='Title'
@@ -187,7 +189,7 @@ const AddEventForm = ({ eventDateIn }) => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='eventDescription'>Description</Form.Label>
+          <Form.Label htmlFor='eventDescription'><h5 class="m-0 p-0">Description</h5></Form.Label>
           <Form.Control
             type='text'
             placeholder='Description'

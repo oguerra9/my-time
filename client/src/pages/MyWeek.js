@@ -58,13 +58,17 @@ const MyWeek = () => {
     let weekStartMonth = weekStartDate.getMonth() + 1;
     let weekStartDateNum = weekStartDate.getDate();
     let firstWeekDayStr = JSON.stringify(weekStartMonth) + '/' + JSON.stringify(weekStartDateNum);
+//    let firstWeekDayStr = getMonthName(weekStartMonth - 1).substring(0,3) + ' ' + JSON.stringify(weekStartDateNum);
+
     
     let weekEndDate = new Date(parseInt(weekEndTime));
     let weekEndMonth = weekEndDate.getMonth() + 1;
     let weekEndDateNum = weekEndDate.getDate();
     let lastWeekDayStr = JSON.stringify(weekEndMonth) + '/' + JSON.stringify(weekEndDateNum);
+//    let lastWeekDayStr = getMonthName(weekEndMonth - 1).substring(0,3) + ' ' + JSON.stringify(weekEndDateNum);
 
     let weekRangeStr = firstWeekDayStr + ' - ' + lastWeekDayStr;
+
 
     return (
         <div>
