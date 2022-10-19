@@ -257,3 +257,11 @@ export const getMonthName = (monthNum) => {
 //     }
 // };
 
+export const getDayFormat = (timestamp) => {
+    const currTime = new Date(timestamp);
+    let monthNum = currTime.getMonth() + 1;
+    let dayNum = currTime.getDate();
+    
+    return JSON.stringify(monthNum) + '/' + JSON.stringify(dayNum);
+    
+};

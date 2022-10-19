@@ -7,11 +7,11 @@ const EventsList = ({ events = [] }) => {
 
     return (
         <>
-            <div className="p-5 display-inline-block">
+            <div className="p-0 m-0 display-inline-block">
                 {events && events.map((myEvent) => (
-                    <div key={myEvent._id} className="col-12 mb-3 pb-3">
-                        <div className="p-3 bg-dark text-light">
-                            <h5>{myEvent.eventTitle}</h5>
+                    <div key={myEvent._id} className="col-12 mb-1 pb-1">
+                        <div className="p-1 bg-dark text-light">
+                            <p>{myEvent.eventTitle}</p>
                         </div>
                     </div>
                 ))}

@@ -110,24 +110,20 @@ const MyMonth = () => {
     const nextMonthTime = getNextMonth(currTime);
     return (
         <div>
-            <div className="jumbotron text-light bg-dark flex-row justify-center align-center">
-                <Container>
-                    <Row>
-                        <Col>
-                            <Button>
-                                <Link to={`/myMonth/${prevMonthTime}`}>prev</Link>
-                            </Button>
-                        </Col>
-                        <Col><h2>{monthName} {yearNum}</h2></Col>
-                        <Col>
-                            <Button>
-                                <Link to={`/myMonth/${nextMonthTime}`}>next</Link>
-                            </Button>
-                        </Col>
-                    </Row>
+            <div className="jumbotron text-light bg-dark flex-row justify-content-center align-center p-3">
+                <Container class="d-flex justify-content-center">
+                    <div class="d-flex flex-row align-content-center justify-content-center col-6">                    
+                        <Link to={`/myMonth/${prevMonthTime}`} class="pb-0 pr-2 col-1">
+                            <Button>{'<'}</Button>
+                        </Link>
+                        <h1 class="p-0 m-0 text-center col-10">{monthName} {yearNum}</h1>
+                        <Link to={`/myMonth/${nextMonthTime}`} class="pb-0 pl-2 col-1">
+                            <Button>{'>'}</Button>
+                        </Link>
+                    </div>
                 </Container>
             </div>
-            <Container className="m-0">
+            <Container class="m-0 col-10">
                 <MonthFormat
                     monthStart={JSON.stringify(monthStart)}
                     events={monthEvents}

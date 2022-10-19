@@ -4,10 +4,10 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_EVENT } from '../../utils/mutations';
 
-import { Container, Row, Col, Modal, Table } from 'react-bootstrap';
+import { Container, Row, Col, Modal, Table, Button } from 'react-bootstrap';
 
 import Auth from '../../utils/auth';
-import { getNumDays, getFirstWeekDay, getDayName, getMonthName } from '../../utils/dateFormat';
+import { getNumDays, getFirstWeekDay, getDayName, getMonthName, getDayFormat } from '../../utils/dateFormat';
 import { getMonthStart, getMonthEnd, getWeekStart, getWeekEnd, getDayStart, getDayEnd, getNextMonth, getPrevMonth, getNextWeek, getPrevWeek, getNextDay, getPrevDay } from '../../utils/dateFunctions';
 //import events from 'inquirer/lib/utils/events';
 import Week from '../Week';
@@ -112,24 +112,30 @@ const MonthFormat = ({
     console.log(monthDays);
     return (
         <>
-            <Container fluid="true" className="square border border-dark m-0">
-                <div class="d-flex flex-row mb-3">
-                    <div class="p-2">Sunday</div>
-                    <div class="p-2">Monday</div>
-                    <div class="p-2">Tuesday</div>
-                    <div class="p-2">Wednesday</div>
-                    <div class="p-2">Thursday</div>
-                    <div class="p-2">Friday</div>
-                    <div class="p-2">Saturday</div>
+            <div fluid='true' class="rounded rounded-3" style={{ width: '100%' }}>
+                <div class="d-flex flex-row">
+                    <div class="p-2" style={{ width: '2%' }}> </div>
+                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Sunday</div>
+                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Monday</div>
+                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Tuesday</div>
+                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Wednesday</div>
+                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Thursday</div>
+                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Friday</div>
+                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Saturday</div>
                 </div>
                 {monthWeeks && monthWeeks.map((week) => (
                     <div key={week.weekMark} class="d-flex flex-row justify-content-start">
-                       <div class="w-2 rounded-start rounded-3 bg-primary m-0"><Link to={`/myWeek/${week.weekMark}`}>W</Link></div>
-                       <Week 
+                        <Link to={`/myWeek/${week.weekMark}`}>
+                            <Button class="rounded-start rounded-3 bg-primary m-0 d-flex justify-content-center" style={{ width: '2%', height: '144px' }}>
+                                    <p class="text-nowrap" style={{ transform: 'rotate(-90deg)'}}>{getDayFormat(getWeekStart(week.weekMark))} - {getDayFormat(getWeekEnd(week.weekMark))}</p>
+                                
+                            </Button>
+                        </Link>
+                        <Week 
                            days={week.days} />    
                    </div>
                  ))}
-            </Container>
+            </div>
         </>
     );
     // return (
