@@ -108,29 +108,38 @@ const MyDay = () => {
                     </Row>
                 </Container>
             </div>
-            <Card>
-                <Card.Title>
-                    <h3>Today's Events</h3>
+            <div class="d-flex justify-content-center align-content-center" style={{ width: '100%' }}>
+            <Card class="m-3 p-3" style={{ width: '70%'}}>
+                <Card.Title class="bg-secondary text-light p-1 m-3">
+                    <h3 class="m-1 p-0">Today's Events</h3>
                 </Card.Title>
-                <Card.Body>
+                <Card.Body class="d-flex align-content-start justify-content-start">
                     {todayEvents ? (
                         <Container>
-                            <Row>
-                                <EventsList
-                                    events={todayEvents}
-                                />
+                            <Row style={{ width: '100%'}}>
+                                {todayEvents && todayEvents.map((events) => {
+                                    return (
+                                        <div key={events._id} className="mb-1 pb-1">
+                                            <h5 class="m-0">{events.eventTitle}</h5>
+                                            <p>{events.eventDescription}</p>
+                                        </div>
+                                    );
+                                })}
+
+                                
                             </Row>
                             <Row>
-                                <Button onClick={() => setShowModal(true)}>Add Event</Button>
+                                <Button onClick={() => setShowModal(true)} style={{ width: '100%' }}>Add Event</Button>
                             </Row>
                         </Container>
                     ) : (
                         <Row>
-                            <Button onClick={() => setShowModal(true)}>Add Event</Button>
+                            <Button onClick={() => setShowModal(true)} style={{ width: '100%' }}>Add Event</Button>
                         </Row>
                     )}
                 </Card.Body>
             </Card>
+            </div>
             <Modal
                 size='lg'
                 show={showModal}
