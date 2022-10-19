@@ -14,9 +14,6 @@ import Week from '../Week';
 //import AddEventForm from '../AddEventForm';
 
 
-
-
-
 const MonthFormat = ({
     monthStart,
     events
@@ -125,10 +122,9 @@ const MonthFormat = ({
                 </div>
                 {monthWeeks && monthWeeks.map((week) => (
                     <div key={week.weekMark} class="d-flex flex-row justify-content-start">
-                        <Link to={`/myWeek/${week.weekMark}`}>
-                            <Button class="rounded-start rounded-3 bg-primary m-0 d-flex justify-content-center" style={{ width: '2%', height: '144px' }}>
-                                    <p class="text-nowrap" style={{ transform: 'rotate(-90deg)'}}>{getDayFormat(getWeekStart(week.weekMark))} - {getDayFormat(getWeekEnd(week.weekMark))}</p>
-                                
+                        <Link to={`/myWeek/${week.weekMark}`} class="rounded-start rounded-3 bg-primary m-0 d-flex justify-content-center">
+                            <Button class="bg-primary m-0 d-flex justify-content-center" style={{ width: '23px', height: '144px', borderRadius: '20px 0px 0px 20px' }}>
+                                <p class="text-nowrap" style={{ transform: 'rotate(-90deg)', fontSize: '1rem' }}>{getDayFormat(getWeekStart(week.weekMark))} - {getDayFormat(getWeekEnd(week.weekMark))}</p>
                             </Button>
                         </Link>
                         <Week 
@@ -138,79 +134,7 @@ const MonthFormat = ({
             </div>
         </>
     );
-    // return (
-    //     <>
-    //         <Container fluid='true' className="square border border-dark m-0">
-    //             <Row className="square border border-primary">
-    //                 <Col xs={0.25} className="square border border-primary" bg="dark">...</Col>
-    //                 <Col className="square border border-primary">Sunday</Col>
-    //                 <Col className="square border border-primary">Monday</Col>
-    //                 <Col className="square border border-primary">Tuesday</Col>
-    //                 <Col className="square border border-primary">Wednesday</Col>
-    //                 <Col className="square border border-primary">Thursday</Col>
-    //                 <Col className="square border border-primary">Friday</Col>
-    //                 <Col className="square border border-primary">Saturday</Col>
-    //             </Row>
-    //             {monthWeeks && monthWeeks.map((week) => (
-    //                 <Row key={week.weekMark} className="square border border-primary m-2">
-    //                     <Col xs={0.25} className="square border border-primary"><Link to={`/myWeek/${week.weekMark}`}>W</Link></Col>
-    //                     <Week 
-    //                         days={week.days} />    
-    //                 </Row>
-    //             ))}
-    //         </Container>
-    //     </>
-    // );
 
-
-    // return (
-    //     <>
-    //         <Container fluid='true' className="square border border-dark">
-    //             <Row className="square border border-primary">
-    //                 <Col xs={0.25} className="square border border-primary" bg="dark">...</Col>
-    //                 <Col className="square border border-primary">Sunday</Col>
-    //                 <Col className="square border border-primary">Monday</Col>
-    //                 <Col className="square border border-primary">Tuesday</Col>
-    //                 <Col className="square border border-primary">Wednesday</Col>
-    //                 <Col className="square border border-primary">Thursday</Col>
-    //                 <Col className="square border border-primary">Friday</Col>
-    //                 <Col className="square border border-primary">Saturday</Col>
-    //             </Row>
-    //             {monthWeeks && monthWeeks.map((week) => (
-    //                 <Row key={week.weekMark} className="square border border-primary">
-    //                     <Col xs={0.25} className="square border border-primary"><Link to={`/myWeek/${week.weekMark}`}>W</Link></Col>
-    //                     <Week 
-    //                         days={week.days} />    
-    //                 </Row>
-    //             ))}
-    //         </Container>
-    //     </>
-    // );
-
-    // return (
-    //     <Table>
-    //         <thead>
-    //             <tr>
-    //                 <th></th>
-    //                 <th>Sunday</th>
-    //                 <th>Monday</th>
-    //                 <th>Tuesday</th>
-    //                 <th>Wednesday</th>
-    //                 <th>Thursday</th>
-    //                 <th>Friday</th>
-    //                 <th>Saturday</th>
-    //             </tr>
-    //         </thead>
-    //         <tbody>
-    //             {monthWeeks && monthWeeks.map((week) => (
-    //                 <tr key={week.weekMark}>
-    //                     <Week
-    //                         days={week.days} />
-    //                 </tr>
-    //             ))}
-    //         </tbody>
-    //     </Table>
-    // );
 };
 
 export default MonthFormat;
