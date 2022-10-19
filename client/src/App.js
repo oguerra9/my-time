@@ -7,6 +7,7 @@ import MyWeek from './pages/MyWeek';
 import GetStarted from './components/GetStarted';
 import Navbar from './components/NavBar';
 import { setContext } from '@apollo/client/link/context';
+import Home from './pages/Home';
 //import Footer from './components/Footer';
 
 import Auth from './utils/auth';
@@ -49,7 +50,7 @@ function App() {
               ) : (
                 <Route
                   path='/'
-                  element={<GetStarted />}
+                  element={<Home />}
                 />
               )}
               <Route

@@ -40,6 +40,8 @@ const WeekFormat = ({
 
         let dayEvents = [];
 
+        //let currDayName = getDayName(currDate.getTime());
+
         for (let j = 0; j < events.length; j++) {
             if ((parseInt(events[j].eventDate)) >= currDateStart && (parseInt(events[j].eventDate)) <= currDateEnd) {
                 dayEvents.push(events[j]);
@@ -49,6 +51,7 @@ const WeekFormat = ({
         let dayObj = {
             boxKey: currDayTime,
             dayDateString: boxDate,
+            //dayName: currDayName,
             events: dayEvents,
         };
 
@@ -58,13 +61,15 @@ const WeekFormat = ({
     }
 
     return (
-        <div class="d-flex flex-row mb-3" className="square border border-primary">
+        <div class="d-flex flex-row mb-3" className="square border border-white">
             {weekDays && weekDays.map((day) => (
-                <div key={day.boxKey} className="square border border-primary">
-                    <Link to={`/myDay/${day.dayDate}`}>
-                        <Card style={{ border: '1px #1a1a1a'}}>
-                            <Card.Title>{day.dayDateString}</Card.Title>
-                            <Card.Body>
+                <div key={day.boxKey} className="border border-light m-2" style={{ borderRadius: '10px' }}>
+                    <Link to={`/myDay/${parseInt(day.boxKey)}`}>
+                        <Card class="border border-dark">
+                            <Card.Title class="m-0 border border-secondary p-1 bg-secondary text-light" style={{ borderRadius: '10px 10px 0px 0px'}}>
+                                {day.dayDateString}
+                            </Card.Title>
+                            <Card.Body class="m-0 p-1" style={{ minHeight: '150px' }}>
                                 <EventsList
                                     events={day.events} />
                             </Card.Body>
