@@ -10,20 +10,36 @@ const Week = ({
 }) => {
 
     return (
-        <Row className="square border border-primary">
+        <>
             {days && days.map((day) => (
-                <Col key={day.boxKey} className="square border border-primary">
-                    <Card style={{ border: '1px #1a1a1a'}}>
-                        <Card.Title>{day.dayDate}</Card.Title>
-                        <Card.Body>
+                <div key={day.boxKey} class="d-flex border border-secondary">
+                    <div class="card" style={{ border: '1px #1a1a1a'}}>
+                        <div class="card-header p-0 pl-1 align-right">{day.dayDate}</div>
+                        <div class="card-body">
                             <EventsList
                                 events={day.events} />
-                        </Card.Body>
-                    </Card>
-                </Col>
+                        </div>
+                    </div>
+                </div>
             ))}
-        </Row>
+        </>
     );
+    
+    // return (
+    //     <Row className="square border border-primary">
+    //         {days && days.map((day) => (
+    //             <Col key={day.boxKey} className="square border border-primary">
+    //                 <Card style={{ border: '1px #1a1a1a'}}>
+    //                     <Card.Title>{day.dayDate}</Card.Title>
+    //                     <Card.Body>
+    //                         <EventsList
+    //                             events={day.events} />
+    //                     </Card.Body>
+    //                 </Card>
+    //             </Col>
+    //         ))}
+    //     </Row>
+    // );
     
     // return (
     //     <>

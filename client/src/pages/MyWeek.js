@@ -11,8 +11,23 @@ import MonthFormat from '../components/MonthFormat';
 
 
 const MyWeek = () => {
+    // return (
+    //     <div class="d-flex flex-row mb-3" className="square border border-primary">
+    //         {days && days.map((day) => (
+    //             <div key={day.boxKey} className="square border border-primary">
+    //                 <Card style={{ border: '1px #1a1a1a'}}>
+    //                     <Card.Title>{day.dayDate}</Card.Title>
+    //                     <Card.Body>
+    //                         <EventsList
+    //                             events={day.events} />
+    //                     </Card.Body>
+    //                 </Card>
+    //             </div>
+    //         ))}
+    //     </div>
+    // );
     return (
-        <div>Week will go here</div>
+        <div>week will go here</div>
     );
 };
 

@@ -110,32 +110,53 @@ const MonthFormat = ({
     console.log(monthWeeks);
     console.log('--- monthDays --- MonthFormat');
     console.log(monthDays);
-
     return (
         <>
-            <Container fluid='true' className="square border border-dark">
-                <Row className="square border border-primary">
-                    <Col xs={0.25} className="square border border-primary" bg="dark">...</Col>
-                    <Col className="square border border-primary">Sunday</Col>
-                    <Col className="square border border-primary">Monday</Col>
-                    <Col className="square border border-primary">Tuesday</Col>
-                    <Col className="square border border-primary">Wednesday</Col>
-                    <Col className="square border border-primary">Thursday</Col>
-                    <Col className="square border border-primary">Friday</Col>
-                    <Col className="square border border-primary">Saturday</Col>
-                </Row>
+            <Container fluid="true" className="square border border-dark m-0">
+                <div class="d-flex flex-row mb-3">
+                    <div class="p-2">Sunday</div>
+                    <div class="p-2">Monday</div>
+                    <div class="p-2">Tuesday</div>
+                    <div class="p-2">Wednesday</div>
+                    <div class="p-2">Thursday</div>
+                    <div class="p-2">Friday</div>
+                    <div class="p-2">Saturday</div>
+                </div>
                 {monthWeeks && monthWeeks.map((week) => (
-                    <Row key={week.weekMark} className="square border border-primary">
-                        <Col xs={0.25} className="square border border-primary"><Link to={`/myWeek/${week.weekMark}`}>W</Link></Col>
-                        <Week 
-                            days={week.days} />    
-                    </Row>
-                ))}
+                    <div key={week.weekMark} class="d-flex flex-row justify-content-start">
+                       <div class="w-2 rounded-start rounded-3 bg-primary m-0"><Link to={`/myWeek/${week.weekMark}`}>W</Link></div>
+                       <Week 
+                           days={week.days} />    
+                   </div>
+                 ))}
             </Container>
         </>
     );
+    // return (
+    //     <>
+    //         <Container fluid='true' className="square border border-dark m-0">
+    //             <Row className="square border border-primary">
+    //                 <Col xs={0.25} className="square border border-primary" bg="dark">...</Col>
+    //                 <Col className="square border border-primary">Sunday</Col>
+    //                 <Col className="square border border-primary">Monday</Col>
+    //                 <Col className="square border border-primary">Tuesday</Col>
+    //                 <Col className="square border border-primary">Wednesday</Col>
+    //                 <Col className="square border border-primary">Thursday</Col>
+    //                 <Col className="square border border-primary">Friday</Col>
+    //                 <Col className="square border border-primary">Saturday</Col>
+    //             </Row>
+    //             {monthWeeks && monthWeeks.map((week) => (
+    //                 <Row key={week.weekMark} className="square border border-primary m-2">
+    //                     <Col xs={0.25} className="square border border-primary"><Link to={`/myWeek/${week.weekMark}`}>W</Link></Col>
+    //                     <Week 
+    //                         days={week.days} />    
+    //                 </Row>
+    //             ))}
+    //         </Container>
+    //     </>
+    // );
 
-    
+
     // return (
     //     <>
     //         <Container fluid='true' className="square border border-dark">

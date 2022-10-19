@@ -92,19 +92,19 @@ const MyDay = () => {
 
     return (
         <div>
-            <div fluid className="jumbotron text-light bg-dark">
-                <Container>
-                    <Row>
-                        <h2 className="flex-row align-center">{dayName}</h2>
+            <div fluid className="jumbotron text-light bg-dark p-2 align-center justify-center">
+                <Container className="flex-row align-center justify-center">
+                    <Row className="align-center justify-center flex-row">
+                        <h2>{dayName}</h2>
                     </Row>
-                    <Row>
-                        <Col>
-                            <Link to={`/myDay/${getPrevDay(myDate.getTime())}`}>{'<'}</Link>
-                        </Col>
-                        <Col><h2>{monthName} {dateNum}, {yearNum}</h2></Col>
-                        <Col>
-                            <Link to={`/myDay/${getNextDay(myDate.getTime())}`}>{'>'}</Link>
-                        </Col>
+                    <Row className="flex-row align-center">
+                        <Link to={`/myDay/${getPrevDay(myDate.getTime())}`}>
+                            <Button>{'<'}</Button>
+                        </Link>
+                        <h2>{monthName} {dateNum}, {yearNum}</h2>
+                        <Link to={`/myDay/${getNextDay(myDate.getTime())}`}>
+                            <Button>{'>'}</Button>
+                        </Link>
                     </Row>
                 </Container>
             </div>

@@ -111,7 +111,7 @@ const MyMonth = () => {
     return (
         <div>
             <div className="jumbotron text-light bg-dark flex-row justify-center align-center">
-                <Container  className="flex-row justify-center align-center">
+                <Container>
                     <Row>
                         <Col>
                             <Button>
@@ -127,7 +127,7 @@ const MyMonth = () => {
                     </Row>
                 </Container>
             </div>
-            <Container>
+            <Container className="m-0">
                 <MonthFormat
                     monthStart={JSON.stringify(monthStart)}
                     events={monthEvents}
