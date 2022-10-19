@@ -13,15 +13,24 @@ const Week = ({
         <>
             {days && days.map((day) => (
                 <>
-                <div key={day.boxKey} class="border border-secondary" style={{width: '14%', height: '144px'}}>
-                    <div class="card" style={{ border: '1px #1a1a1a'}}>
-                        <div class="card-header p-0 pl-1 align-right">{day.dayDate}</div>
-                        <div class="card-body">
-                            <EventsList
-                                events={day.events} />
+                {day.dayDate == 0 ? (
+                    <div key={day.boxKey} class="border border-secondary" style={{width: '14%', height: '144px'}}>
+                        <div class="card" style={{ border: '1px #1a1a1a'}}>
+                            <p> </p>
                         </div>
                     </div>
-                </div>
+                ) : (
+                    <div key={day.boxKey} class="border border-secondary" style={{width: '14%', height: '144px'}}>
+                        <div class="card" style={{ border: '1px #1a1a1a'}}>
+                            <div class="card-header p-0 pl-1 align-right">{day.dayDate}</div>
+                            <div class="card-body">
+                                <EventsList
+                                    events={day.events} />
+                            </div>
+                        </div>
+                    </div>
+                )}
+                
                 </>
             ))}
         </>

@@ -112,19 +112,18 @@ const MonthFormat = ({
             <div fluid='true' class="rounded rounded-3" style={{ width: '100%' }}>
                 <div class="d-flex flex-row">
                     <div class="p-2" style={{ width: '2%' }}> </div>
-                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Sunday</div>
-                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Monday</div>
-                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Tuesday</div>
-                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Wednesday</div>
-                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Thursday</div>
-                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Friday</div>
-                    <div class="rounded-top rounded-5 text-center p-2 border border-dark bg-secondary" style={{ width: '14%' }}>Saturday</div>
+                    <div class="text-center p-1 bg-secondary" style={{ width: '14%', borderRadius: '10px 0px 0px 0px' }}>Sunday</div>
+                    <div class="text-center p-1 bg-secondary" style={{ width: '14%' }}>Monday</div>
+                    <div class="text-center p-1 bg-secondary" style={{ width: '14%' }}>Tuesday</div>
+                    <div class="text-center p-1 bg-secondary" style={{ width: '14%' }}>Wednesday</div>
+                    <div class="text-center p-1 bg-secondary" style={{ width: '14%' }}>Thursday</div>
+                    <div class="text-center p-1 bg-secondary" style={{ width: '14%' }}>Friday</div>
+                    <div class="text-center p-1 bg-secondary" style={{ width: '14%', borderRadius: '0px 10px 0px 0px' }}>Saturday</div>
                 </div>
                 {monthWeeks && monthWeeks.map((week) => (
                     <div key={week.weekMark} class="d-flex flex-row justify-content-start">
-                        <Link to={`/myWeek/${week.weekMark}`} class="rounded-start rounded-3 bg-primary m-0 d-flex justify-content-center">
-                            <Button class="bg-primary m-0 d-flex justify-content-center" style={{ width: '23px', height: '144px', borderRadius: '20px 0px 0px 20px' }}>
-                                <p class="text-nowrap" style={{ transform: 'rotate(-90deg)', fontSize: '1rem' }}>{getDayFormat(getWeekStart(week.weekMark))} - {getDayFormat(getWeekEnd(week.weekMark))}</p>
+                        <Link to={`/myWeek/${week.weekMark}`} class="rounded-start rounded-3 bg-dark m-0 d-flex justify-content-center align-content-end " style={{ borderRadius: '20px 0px 0px 20px'}}>
+                            <Button class="d-flex justify-content-center bg-primary m-0 p-1 border border-primary" style={{ width: '23px', height: '144px', borderRadius: '20px 0px 0px 20px' }}>
                             </Button>
                         </Link>
                         <Week 
