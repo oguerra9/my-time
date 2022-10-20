@@ -117,14 +117,19 @@ const MyDay = () => {
                     {todayEvents ? (
                         <Container>
                             <Row style={{ width: '100%', minHeight: '20px'}}>
+                                <ul>
                                 {todayEvents && todayEvents.map((events) => {
                                     return (
+                                        <li>
                                         <div key={events._id} className="mb-1 pb-1">
                                             <h5 class="m-0">{events.eventTitle}</h5>
                                             <p>{events.eventDescription}</p>
                                         </div>
+                                        </li>
                                     );
                                 })}
+                                </ul>
+                                
 
                                 
                             </Row>
