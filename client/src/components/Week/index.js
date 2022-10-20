@@ -21,7 +21,7 @@ const Week = ({
                     </div>
                 ) : ( 
                     <div key={day.boxKey} class="border border-secondary" style={{width: '14%', height: '144px'}}>
-                        <Link href={`/myDay/${parseInt(day.boxKey)}`}>
+                        <Link to={`/myDay/${parseInt(day.boxKey)}`}>
                             <div class="card" style={{ border: '1px #1a1a1a'}}>
                                 <div class="card-header p-0 pl-1 align-right">{day.dayDate}</div>
                                 <div class="card-body p-0">
