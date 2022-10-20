@@ -4,7 +4,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@ap
 import MyMonth from './pages/MyMonth';
 import MyDay from './pages/MyDay';
 import MyWeek from './pages/MyWeek';
-import GetStarted from './components/GetStarted';
+//import GetStarted from './components/GetStarted';
 import Navbar from './components/NavBar';
 import { setContext } from '@apollo/client/link/context';
 import Home from './pages/Home';
