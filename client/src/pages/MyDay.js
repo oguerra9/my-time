@@ -110,13 +110,13 @@ const MyDay = () => {
             </div>
             <div class="d-flex justify-content-center align-content-center" style={{ width: '100%' }}>
             <Card class="m-3 p-3" style={{ width: '70%'}}>
-                <Card.Title class="bg-secondary text-light p-1 m-3">
-                    <h3 class="m-1 p-0">Today's Events</h3>
+                <Card.Title class="bg-secondary text-light p-1 m-0">
+                    <h3 class="m-0 p-0">Today's Events</h3>
                 </Card.Title>
                 <Card.Body class="d-flex align-content-start justify-content-start">
                     {todayEvents ? (
                         <Container>
-                            <Row style={{ width: '100%'}}>
+                            <Row style={{ width: '100%', minHeight: '20px'}}>
                                 {todayEvents && todayEvents.map((events) => {
                                     return (
                                         <div key={events._id} className="mb-1 pb-1">

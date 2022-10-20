@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-
 import { ADD_EVENT } from '../../utils/mutations';
-
 import { Container, Row, Col, Modal, Table, Button, Card } from 'react-bootstrap';
 
 import Auth from '../../utils/auth';
 import { getNumDays, getFirstWeekDay, getDayName, getMonthName, getDayFormat } from '../../utils/dateFormat';
 import { getMonthStart, getMonthEnd, getWeekStart, getWeekEnd, getDayStart, getDayEnd, getNextMonth, getPrevMonth, getNextWeek, getPrevWeek, getNextDay, getPrevDay } from '../../utils/dateFunctions';
-//import events from 'inquirer/lib/utils/events';
-//import Week from '../Week';
-//import AddEventForm from '../AddEventForm';
 import EventsList from '../EventsList';
 
 
