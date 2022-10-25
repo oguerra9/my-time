@@ -8,6 +8,7 @@ import { getNumDays, getFirstWeekDay, getDayName, getMonthName } from '../utils/
 import { getMonthStart, getMonthEnd, getWeekStart, getWeekEnd, getDayStart, getDayEnd, getNextMonth, getPrevMonth, getNextWeek, getPrevWeek, getNextDay, getPrevDay } from '../utils/dateFunctions';
 import AddEventForm from '../components/AddEventForm';
 import EventsList from '../components/EventsList';
+import Countdown from '../components/Countdown';
 
 const MyDay = () => {
     const [ showModal, setShowModal ] = useState(false);
@@ -109,41 +110,52 @@ const MyDay = () => {
                 </Container>
             </div>
             <div class="d-flex justify-content-center align-content-center" style={{ width: '100%' }}>
-            <Card class="m-3 p-3" style={{ width: '70%'}}>
-                <Card.Title class="bg-secondary text-light p-1 m-0">
-                    <h3 class="m-0 p-0">Today's Events</h3>
-                </Card.Title>
-                <Card.Body class="d-flex align-content-start justify-content-start">
-                    {todayEvents ? (
-                        <Container>
-                            <Row style={{ width: '100%', minHeight: '20px'}}>
-                                <ul>
-                                {todayEvents && todayEvents.map((events) => {
-                                    return (
-                                        <li>
-                                        <div key={events._id} className="mb-1 pb-1">
-                                            <h5 class="m-0">{events.eventTitle}</h5>
-                                            <p>{events.eventDescription}</p>
-                                        </div>
-                                        </li>
-                                    );
-                                })}
-                                </ul>
-                                
+                <Card class="p-3" style={{ width: '50%', margin: '3px' }}>
+                    <Card.Title class="bg-secondary text-light p-1 m-0">
+                        <h3 class="m-0 p-0">Today's Events</h3>
+                    </Card.Title>
+                    <Card.Body class="d-flex align-content-start justify-content-start">
+                        {todayEvents ? (
+                            <Container>
+                                <Row style={{ width: '100%', minHeight: '20px'}}>
+                                    <ul>
+                                    {todayEvents && todayEvents.map((events) => {
+                                        return (
+                                            <li>
+                                            <div key={events._id} className="mb-1 pb-1">
+                                                <h5 class="m-0">{events.eventTitle}</h5>
+                                                <p>{events.eventDescription}</p>
+                                            </div>
+                                            </li>
+                                        );
+                                    })}
+                                    </ul>
+                                    
 
-                                
-                            </Row>
+                                    
+                                </Row>
+                                <Row>
+                                    <Button onClick={() => setShowModal(true)} style={{ width: '100%' }}>Add Event</Button>
+                                </Row>
+                            </Container>
+                        ) : (
                             <Row>
                                 <Button onClick={() => setShowModal(true)} style={{ width: '100%' }}>Add Event</Button>
                             </Row>
-                        </Container>
-                    ) : (
-                        <Row>
-                            <Button onClick={() => setShowModal(true)} style={{ width: '100%' }}>Add Event</Button>
-                        </Row>
-                    )}
-                </Card.Body>
-            </Card>
+                        )}
+                    </Card.Body>
+                </Card>
+                <Card class="p-3" style={{ width: '30%', margin: '3px' }}>
+                    <Card.Title class="bg-secondary text-light p-1 m-0">
+                        <h3 class="m-0 p-0">Countdown</h3>
+                    </Card.Title>
+                    <Card.Body>
+                            <Countdown
+                                currDate={myTime}
+                                events={myEvents} />
+                    </Card.Body>
+
+                </Card>
             </div>
             <Modal
                 size='lg'
