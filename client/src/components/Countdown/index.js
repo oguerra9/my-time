@@ -10,12 +10,6 @@ const Countdown = ({
 
     let upcomingEvents = [];
 
-    for (let i = 0; i < events.length; i++) {
-        if ( (parseInt(events[i].eventDate) > parseInt(currDate)) && (getDaysUntil(events[i].eventDate) <= 100) ) {
-            upcomingEvents.push(events[i]);
-        }
-    }
-
     const getDaysUntil = (eventDate) => {
         const currDateMS = parseInt(currDate);
         const eventDateMS = parseInt(eventDate);
@@ -23,7 +17,15 @@ const Countdown = ({
         const numDays = timeDiffMS / 86400000;
 
         return numDays;
+    };
+
+    for (let i = 0; i < events.length; i++) {
+        if ( (parseInt(events[i].eventDate) > parseInt(currDate)) && (getDaysUntil(events[i].eventDate) <= 100) ) {
+            upcomingEvents.push(events[i]);
+        }
     }
+
+    
 
     return (
         <>
