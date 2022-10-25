@@ -1,51 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap';
 //import events from 'inquirer/lib/utils/events';
+import AddEventForm from '../AddEventForm';
+import EventsList from '../EventsList';
 
 const DayBox = ({
+    boxKey,
     dayDate, 
-    events,
-    showDescPreview = true,
+    events
 }) => {
-    if (dayDate.getDate() === 0) {
+
+    const [showModal, setShowModal] = useState(false);
+
+    if (dayDate === 0) {
         return (
             <Col></Col>
         );
     }
 
     return (
-        <Card>
-            <Card.Title>
-                {dayDate}
-            </Card.Title>
-            {showDescPreview ? (
-                <Card.Body>
-                    {events && events.map((event) => (
-                        <Row>
-                            <Row>
-                                {event.eventTitle}
-                            </Row>
-                            <Row>
-                                {((event.eventDescription.length) > 50) ? (
-                                    <Row>{(event.eventDescription).substring(0,49)}...</Row>
-                                ) : (
-                                    <Row>{(event.eventDescription)}</Row>
-                                )}
-                            </Row>
-                        </Row>
-                    ))}
-                </Card.Body>    
-            ) : (
-                <Card.Body>
-                    {events && events.map((event) => (
-                        <Row>
-                            {event.eventTitle}
-                        </Row>
-                    ))}
-                </Card.Body>  
-            )}
-        </Card>
+            <>
+                {dayDate === 0 ? (
+                    <div class="border border-secondary" style={{width: '14%', height: '144px', borderStyle: 'solid' }}>
+                        <div class="card" style={{ border: '1px #1a1a1a'}}>
+                            <p> </p>
+                        </div>
+                    </div>
+                ) : ( 
+                    <>
+                        <div class="border border-secondary" style={{width: '14%', height: '144px'}}>
+                            <div class="card" style={{ border: '1px #1a1a1a'}}>
+                                <div class="card-header p-0 pl-1 d-flex justify-content-between">
+                                    <Button onClick={() => setShowModal(true)} id={`boxKey`} style={{ width: '20px', height: '20px', margin: '0px', padding: '0px' }}>
+                                        {'+'}
+                                    </Button>
+                                    <p class="p-0 m-0">{dayDate}</p>
+                                </div>
+                                <div class="card-body p-0">
+                                    <EventsList
+                                        events={events} />
+                                </div>
+                            </div>                        
+                        </div>
+                        <Modal
+                            size='lg'
+                            show={showModal}
+                            onHide={() => setShowModal(false)}
+                            aria-labelledby='addEvent-modal'>
+            
+                            <Modal.Header closeButton>
+                                <Modal.Title id='addEvent-modal'>
+                                    <h3 class="m-0 p-0">New Event</h3>
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <AddEventForm
+                                    eventDateIn={boxKey}
+                                />
+                            </Modal.Body>
+                        </Modal>
+                    </>
+                    )}
+                    
+                </>
     );
 
     // return (
